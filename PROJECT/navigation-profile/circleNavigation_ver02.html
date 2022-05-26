@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Hello</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script type="text/javascript">
+		document.oncontextmenu = function() {return false;}
+	</script>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap');
+		body { -webkit-touch-callout:none;}
+
+		html, body {margin:0; padding:0; font-family: 'Nanum Gothic', sans-serif;}
+		#modal-popup {}
+		#toggleWrap {position: fixed; top: 100%; left: 100%; margin-top: -100px; margin-left: -100px; transition: all .5s; }
+		#toggleWrap.active {position: fixed; margin:0 auto; top: 50%; left: 50%; margin-top: -35px; margin-left: -35px;}
+		input {position: absolute; display:none;}
+		.btn {width: 70px; height: 70px; border-radius: 70px; background: #fff; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.5); transition: all .3s}
+		.material-icons.size-35 {font-size: 35px}
+
+		.btn:first-child {background: rgb(67, 163, 67);}
+		.material-icons.size-35 {color: #fff;}
+		input#toggle:checked ~ #show-menu .btn:first-child {background: #fff;}
+		input#toggle:checked ~ #show-menu .material-icons.size-35 {color: rgb(67, 163, 67);}
+		
+		.btn {position: absolute; overflow: hidden;}
+		.btn:not(:first-child) {opacity:0; z-index: -2;} 
+		.menuBtn, .closeBtn {position: absolute; transition: all 0.3s ease;}
+		.closeBtn {transform: translateY(50px); opacity: 0}
+		.btn:nth-child(2) {top: 0}
+		.btn:nth-child(3) {top: 0; left: 0;}
+		.btn:nth-child(4) {left: 0}
+		.btn:nth-child(5) {top:0; left: 0}
+		.btn:nth-child(6) {top: 0}
+		.btn:nth-child(7) {top: 0; left: 0}
+		.btn:nth-child(8) {left: 0}
+		.btn:nth-child(9) {top: 0; left: 0}
+		input#toggle:checked ~ #show-menu .btn {transition: all 0.3s cubic-bezier(.25,.8,.25,1);}
+		input#toggle:checked ~ #show-menu .btn:not(:first-child) { transition: all 0.6s cubic-bezier(.87,-.41,.19,1.44);}
+		/* cubic-bezier 움짤처럼 움직이게 하려면 0. / -0. / 0. / 1.4이하 == 곡선이 그래프 밖으로 나가야 한다. */ 
+		input#toggle:checked ~ #show-menu .btn:nth-child(2) {top: -150px; opacity: 1}
+		input#toggle:checked ~ #show-menu .btn:nth-child(3) {top: -100px; left: 100px; opacity:1; transition-delay: .1s}
+		input#toggle:checked ~ #show-menu .btn:nth-child(4) {left: 150px; opacity:1; transition-delay: .2s}
+		input#toggle:checked ~ #show-menu .btn:nth-child(5) {top: 100px; left: 100px; opacity:1; transition-delay: .3s}
+		input#toggle:checked ~ #show-menu .btn:nth-child(6) {top: 150px; opacity:1; transition-delay: .4s}
+		input#toggle:checked ~ #show-menu .btn:nth-child(7) {top: 100px; left: -100px; opacity:1; transition-delay: .5s}
+		input#toggle:checked ~ #show-menu .btn:nth-child(8) {left: -150px; opacity:1;  transition-delay: .6s}
+		input#toggle:checked ~ #show-menu .btn:nth-child(9) {top: -100px; left: -100px; opacity:1; transition-delay: .7s}
+		input#toggle:checked ~ #show-menu .btn .menuBtn {transform: translateY(-50px); opacity:0}
+		input#toggle:checked ~ #show-menu .btn .closeBtn {transform: translateY(0px); opacity:1}
+		
+		input#toggle:checked ~ .bg-overlay {width:100%; height: 100%; position: fixed; top:0; left: 0; background: rgba(0,0,0,0.7); z-index: -3;}
+
+		#user-profile {display: flex; flex-direction: column; justify-content: center; align-items: center; position: absolute; top: 50%; left: 0; margin-top: -250px; width: 100%; height: 80%; max-height: 500px; min-height: 300px;}
+		.user-img {width: 50%; max-width: 250px; height: 50%; max-height: 250px; border: 3px solid #cdcc; border-radius: 30px; margin-top: -100px; box-shadow: 0 1px 5px rgb(184, 182, 182); overflow: hidden; text-align: center}
+		.user-img img {object-fit: cover; margin-top: 50px;}
+		.user-info {margin-top: 30px; text-align: center}
+		.user-info > .name {font-size: 13px; color: #fff; background:rgb(152, 194, 152); line-height: 30px; padding: 0 3px}
+
+		/* 버튼 */
+		.btn-group {padding-top: 20px;}
+		.btn-group button {background: #fff; color: rgb(67, 163, 67); font-size: 13px; outline: none; border: rgb(148, 165, 148); border-radius: 10px; box-shadow: 0 2px 5px rgb(165, 162, 162); padding: 5px 10px; cursor: pointer}
+		.btn-group button.close {margin-left: 10px;}
+
+		/* 이름 입력창 */
+		#layer {width: 100%; height: 100vh; display: flex; justify-content: center; align-items: center; visibility: hidden; opacity:0;}
+		#layer.on {visibility: visible; opacity:1}
+		.prompt-layer {position: relative; z-index: 2; width: 70%; max-width: 350px; height: 200px;}
+		
+		.inp-label {margin-top: 20px; font-size: 15px;}
+		.help-text {margin-top: 10px; font-size: 13px; color: rgb(102, 102, 102); display: table; vertical-align: baseline;}
+		.material-icons.size-13 {font-size: 15px; color: #ccc; margin-right: 8px}
+		input.user-name {position: absolute; display: block; width: calc(100% - 40px); height: 40px; font-size: 13px; margin-top: 27px; border: 1px solid #ccc; border-radius: 30px; padding: 0 20px; box-sizing: border-box}
+		.layer-close {position: absolute; top: 20px; right: 20px; background: #fff; cursor: pointer; border: none; width: 20px; height: 20px;}
+		.layer-close .material-icons.size-13 {font-size: 20px; color: #aaa;}
+		
+		/* else */
+		.get-name {position: absolute; background: #fff; border-radius: 10px; padding: 20px; box-sizing: border-box; width: 100%; height: 200px; visibility: hidden; opacity:0; transform: scale(0); transition: visibility .3s, opacity .3s, transform .3s;}
+		.no-friend {position:absolute; top:0; left:0; background: #fff; border-radius: 10px; padding: 20px; box-sizing: border-box; width: 100%; height: 100px; font-size: 18px; visibility: hidden;  opacity:0; transform: scale(0);transition: visibility .3s, opacity .3s, transform .3s; transition-delay: .3s;}
+
+		.get-name.on,	.no-friend.on {visibility: visible; opacity:1; transform: scale(1)}
+		.no-friend .inp-label {font-size: inherit;}
+
+		#layer .bg-overlay {width:100%; height: 100%; position: fixed; top:0; left: 0; background: rgba(0,0,0,0.9); z-index: 1;}
+
+		/* login */
+		#login {position: fixed; width: 100%; height: 100%; overflow: hidden; background: rgb(241, 241, 241); z-index: 100; visibility: visible; opacity: 1; transform: scale(1); transition: visibility .3s, opacity .3s, transform .3s; transition-delay: .3s;}
+		#login .button {position: absolute; top: calc(50% - 35px); left: calc(50% - 35px); width: 70px; height: 70px; border-radius: 70px; background:rgb(107, 179, 107); box-shadow: 1px 2px 5px #bbb; cursor: pointer;}
+		#login .login {position: absolute; top: calc(50% - 30px); left: calc(50% - 30px); width: 60px; height: 60px; border-radius: 60px; border: 0.5px solid #999; box-shadow: 1px 2px 2px rgb(90, 90, 90); background:rgb(67, 163, 67); cursor: pointer; font-size: 20px;}
+		#login .login:active {box-shadow: 0px 0px 1px rgba(90,90,90,0.6);}
+		#login.off {visibility: hidden; opacity: 0; transform: scale(0);}
+	</style>
+</head>
+<body oncontextmenu="return false" onselect="return false" ondragstart="return false">
+	<div id="login">
+		<div class="button">
+			<button type="button" class="login" title="로그인">👆</button>
+		</div>
+	</div>
+
+	<div id="layer">
+		<div class="prompt-layer">
+			<div class="get-name">
+				<p class="inp-label">이름을 입력해주세요</p>
+				<span class="help-text"><i class="material-icons size-13">info</i>예시) 홍길동/ 길동/ 그 외 별명</span>
+				<form class="name-form">
+					<input type="text" title="이름입력" placeholder="이름을 입력해주세요." class="user-name" />
+				</form>
+				<button type="button" class="layer-close"><i class="material-icons size-13">close</i></button>
+			</div>
+	
+			<div class="no-friend">
+				<p class="inp-label">누구세요? 나가주세요!😒</p>
+				<button type="button" class="layer-close user-non"><i class="material-icons size-13">close</i></button>
+			</div>
+		</div>
+
+		<div class="bg-overlay"></div>
+	</div>
+
+	<div id="user-profile">
+		<div class="user-img">
+			<img src="./img/bg-bear.jpg" alt="사용자 이미지" class="change"/>
+		</div>
+		<div class="user-info">
+			<p class="name"></p>
+			<div class="btn-group"></div>
+		</div>
+	</div>
+
+	<div id="modal-popup">
+		<div id="toggleWrap">
+			<input type="checkbox" id="toggle" name="check01"/>
+			<label id="show-menu" for="toggle">
+				<div class="btn">
+					<i class="material-icons size-35 menuBtn">sort</i>
+					<i class="material-icons size-35 closeBtn">close</i>
+				</div>
+	
+				<div class="btn">
+					<i class="material-icons size-35">photo_camera</i>
+				</div>
+	
+				<div class="btn">
+					<i class="material-icons size-35">photo</i>
+				</div>
+	
+				<div class="btn">
+					<i class="material-icons size-35">music_note</i>
+				</div>
+	
+				<div class="btn">
+					<i class="material-icons size-35">chat_bubble</i>
+				</div>
+				
+				<div class="btn">
+					<i class="material-icons size-35">settings</i>
+				</div>
+				
+				<div class="btn">
+					<i class="material-icons size-35">phone</i>
+				</div>
+				
+				<div class="btn">
+					<i class="material-icons size-35">cloud</i>
+				</div>
+					
+				<div class="btn">
+					<i class="material-icons size-35">videocam</i>
+				</div>
+			</label>
+			<div class="bg-overlay"></div>
+		</div>
+	</div>
+
+	<script>
+		let toggleLabel = document.querySelector('#toggle');
+		
+		const addClass = function() {
+			let navigationToggle = document.querySelector('#toggleWrap');
+			const is_checked = toggleLabel.checked;
+			if (is_checked === true) {
+				navigationToggle.classList.add('active');
+			} else {
+				navigationToggle.classList.remove('active');
+			}
+		}
+		toggleLabel.addEventListener('click', addClass);
+		/* ***************************************************************************************** */
+		// user name
+		let currentForm = document.querySelector('.name-form');
+		let currentUser = document.querySelector('.user-name');
+		let currentUserName = currentUser.value;
+		let USERNAME = document.querySelector('.name');
+		const notNameBtn = document.querySelector('.btn-group');
+		// date
+		let day = new Date();
+		let week = new Array('일요일','너무나 힘든 월요일','화요일','수요일','설레는 목요일','씬나는 금요일','토요일');
+		let today = week[day.getDay()];
+
+		// login
+		let loginBtn = document.querySelector('#login .login');
+		let fadePaper = document.querySelector('#login');
+		function logIn () {
+			fadePaper.classList.add('off');
+		}
+		loginBtn.addEventListener('click', logIn);
+
+		// 처음으로 돌아가기
+		function logOut () {
+			let closeBtn = document.querySelector('.close');
+			let out = function() {
+				window.location.reload();		
+			}
+			closeBtn.addEventListener('click', out);
+		}
+		
+		
+		//prompt
+		let modal = document.querySelector('#layer');
+		let currentModal = document.querySelector('.get-name')
+		let whoRU = document.querySelector('.no-friend')
+		let closeModal = document.querySelector('.layer-close')
+		let noNameCloseModal = document.querySelector('.user-non')
+
+		// first Load
+		window.onload = function() {
+			modal.classList.add('on');
+			currentModal.classList.add('on');
+		}	
+
+		// false
+		function notFriend () {			
+			const resetBtn = document.querySelector('.reload')
+			let reset = function() {
+				modal.classList.add('on');
+				currentModal.classList.add('on');
+			}
+			resetBtn.addEventListener('click', reset);
+		}
+		
+		// fake
+		function fakeFriend () {
+			const fakeBtn = document.querySelector('.notBtn')
+			currentModal.classList.remove('on');
+			let fake = function() {
+				let warnFake = document.querySelector('.no-friend > .inp-label');
+
+				modal.classList.add('on');
+				whoRU.classList.add('on');
+				whoRU.style.cssText = 'height: 150px; font-size:13px; padding-top: 25px; line-height: 1.6;'
+				warnFake.innerText = '어딜 다른 사람들껄 훔쳐보려고 하시나요!? \n당신은 속았습니다! \n약오르지!🤣';
+				noNameCloseModal.addEventListener('click', warnModalClose);
+			}
+			fakeBtn.addEventListener('click', fake);
+		}
+		
+		// 모달창 닫기 ( null )
+		function warnModalClose () {
+			// event.preventDefault(e);
+			modal.classList.remove('on');
+			whoRU.classList.remove('on');
+		}
+		function closeModalLayer () {
+			// event.preventDefault(e);
+			whoRU.classList.add('on');
+			currentModal.classList.remove('on');
+			noNameCloseModal.addEventListener('click', warnModalClose);
+
+			// close 버튼을 눌렀을때 + 다른 이름을 입력하였을때
+			USERNAME.innerText = `${currentUserName}님 저는 당신을 모릅니다.😒 \n웹페이지 주인의 지인 이름을 쓰거나 나가주시오!`
+			notNameBtn.innerHTML = `<button type="button" class="reload">이름 다시쓰기</button> 
+			<button type="button" class="close">로그아웃</button>`
+			notFriend();
+			logOut();
+		}	
+		
+		// 메인 화면 조건식
+	function matchUser () {
+		let imgEl = document.querySelector('.change');
+		
+		// friend
+		let FRIEND = {
+			ME: ['승연','김승연','씅욘','뜽욘','김승'],
+			FRIEND_01: ['은미죠'],
+			FRIEND_02:  ['최정반', '최정빈','정빈','정반쓰'],
+			FRIEND_03:  ['현'],
+			FRIEND_04:  ['최성빈', '성빈','성빈이','성빈쓰']
+		}
+		
+		// true 공통
+		function myFriend () {
+			warnModalClose();
+
+			// info 설정
+			USERNAME.innerText = `안녕하세요 ${currentUserName} 님! 오늘은 ${today}이예요😉 \n 다른 친구들의 프로필을 검색해보고 싶으신가요? 버튼을 눌러주세요 😊`;
+			notNameBtn.innerHTML = `<button type="button" class="notBtn">이름 다시쓰기</button> <button type="button" class="close">로그아웃</button>`
+			fakeFriend();
+			logOut();
+			let imgEl = document.querySelector('.change');
+			imgEl.style.cssText = 'margin-top: 0px; width: 100%; height: auto;';
+		}
+		
+		// 이름 구별
+		if (FRIEND.FRIEND_01.includes(currentUserName)) {
+			myFriend();
+			// 이미지 설정
+			imgEl.src = './img/friend01.jpg';
+		} else if (FRIEND.FRIEND_02.includes(currentUserName)) { 
+			myFriend();
+			// 이미지 설정
+			imgEl.src = './img/friend02.jpg';
+		} else if (FRIEND.FRIEND_03.includes(currentUserName)) { 
+			myFriend();
+			// 이미지 설정
+			imgEl.src = './img/friend03.jpg';
+		} else if (FRIEND.FRIEND_04.includes(currentUserName)) { 
+			myFriend();
+			// 이미지 설정
+			imgEl.src = './img/friend04.jpg';
+		} else if (FRIEND.ME.includes(currentUserName)) { 
+			myFriend();
+			// 이미지 설정
+			imgEl.src = './img/me.jpg';
+		} else {
+			closeModalLayer()
+			USERNAME.innerText = `${currentUserName} 님 저는 당신을 모릅니다.😒 \n웹페이지 주인의 지인 이름을 쓰거나 나가주시오!`
+			notNameBtn.innerHTML = `<button type="button" class="reload">이름 다시쓰기</button> 
+			<button type="button" class="close">로그아웃</button>`
+			notFriend();
+			logOut();
+		}
+	}
+	
+	// 사용자 이름 값 반환
+	function getUserName (e) {
+		event.preventDefault(e);
+		currentUserName = document.querySelector('.user-name').value;
+
+		matchUser();
+	}
+	currentForm.addEventListener('submit', getUserName);
+	closeModal.addEventListener('click', closeModalLayer);
+
+
+	</script>
+</body>
+</html>

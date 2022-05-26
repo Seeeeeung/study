@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>zerocho Javascript</title>
+</head>
+<body>
+	<!--  버튼
+		<div id="counter">0</div>
+	<button id="increase">+</button>
+	<button id="decrease">-</button>
+
+	<script>
+		const $counter = document.getElementById('counter');
+		const $increase = document.getElementById('increase');
+		const $decrease = document.getElementById('decrease');
+
+		let num = 0;
+		const render = function() { $counter.innerHTML = num; };
+
+		$increase.onclick = function() {
+			num++;
+			console.log('increase 버튼 클릭', num);
+			render();
+		}
+
+		$decrease.onclick = function() {
+			num--;
+			console.log('decrease 버튼 클릭', num);
+			render();
+		}
+	</script> -->
+<!--  야구문제
+	<script>
+		var list = [0,1,2,3,4,5,6,7,8,9];
+		var number = [];
+		for (var i = 0; i < 4; i++) {
+			var select = Math.floor(Math.random() * list.length);
+			number[i] = list.splice(select, 1)[0];
+		}
+
+		var count = 0;
+		var strike = 0;
+		var ball = 0;
+		while (count < 10) {
+			var input = prompt('숫자 입력');
+			if (input === null) {
+				console.log('게임종료');
+				break;
+			}
+			
+			var inputArray = input.split('');
+
+			for (var a = 0; a < input.length; a++) {
+				for (var b = 0; b < input.length; b++) {
+					if (a !== b && inputArray[a] ==inputArray[b]) {
+						console.error('중복', inputArray[a], inputArray[b]);
+						break;
+					}
+				}
+				break;
+			}
+			// break;
+
+			strike = 0;
+			ball = 0;
+			count++;
+		
+			for (var j = 0 ; j < 4; j++) {
+				for (var k = 0 ; k < 4; k++) {
+					if(number[j] == inputArray[k]) {
+						if (j === k) {
+							strike++;
+						} else {
+							ball++;
+						}
+						break;
+					}
+				}
+			}
+			if (strike === 4) {
+				console.log('홈런' + (count - 1) + '번 만에 맞춤');
+				break;
+			} else if (count >= 10) {
+				console.error('시도 횟수 초과');
+			} else {
+				console.info(inputArray.join('') + ': ' + strike + '스트라이크' + ball + '볼' + '-' + count +'번째 시도') ;
+			}
+
+		}
+	</script> -->
+	<p id="info">가ㅓ나나ㅏㄴ나나</p>
+	<header id="header">header</header>
+	<main>
+		<ol>
+			<li>rksk</li>
+			<li>rksk</li>
+			<li>rksk</li>
+			<li>rksk</li>
+			<li>rksk</li>
+			<li>rksk
+				<ul>
+					<li>rkskrk</li>
+				</ul>
+			</li>
+			<li>rksk</li>
+			<li>rksk</li>
+			<li>rksk</li>
+			<li>rksk</li>
+		</ol>
+	</main>
+	<footer>hello</footer>
+	<script>
+		// RegExp
+		// var array = ['사자', '과자', '과일', '타자', '타일'];
+		// var result = [];
+		// array.forEach(function(item) {
+		// 	if (item.match(/일$/)) {
+		// 		result.push(item);
+		// 	}
+		// });
+		// console.log(result);
+
+		// constructor
+		// 01
+		// function Person(name, gender) {
+		// 	this.name = name;
+		// 	this.gender = gender;
+		// 	// this.sayHello = function() {
+		// 	// 	alert(this.name + ' said "hello"');
+		// 	// }
+		// }
+		// // Person.prototype.constructor === Percon (prototype 과 constructor는 부모자식 관계)
+		// Person.prototype.sayHello = function() {
+		// 	alert(this.name + ' said "hello"');
+		// };
+
+		// var zero = new Person('Zero', 'm');
+		// var hero = new Person('Hero', 'f');
+		// console.log(zero, hero)
+		// // zero.sayHello();
+		// // hero.sayHello();
+		
+		// // 02
+		// var Legionary = (function() {
+		// 	function Legionary(name) {
+		// 		this.name = name;
+		// 		// this.hp = 50;
+		// 		// this.att = 5;
+		// 		// this.attack = function(target) {
+		// 		// 	console.log(this.name + '가 ' + target + '를 공격합니다');
+		// 		// };
+		// 	}
+		// 	Legionary.prototype.hp = 50;
+		// 	Legionary.prototype.att = 5;
+		// 	Legionary.prototype.attack = function(target) {
+		// 		console.log(this.name + '가 ' + target + '를 공격합니다.');
+		// 	};
+		// 	return Legionary;
+		// })();
+
+		// var soldier1 = new Legionary('Marcus');
+		// soldier1.attack();
+
+		// // 03
+		// function Vehicle(name, speed) {
+		// 	this.name = name;
+		// 	this.speed = speed;
+		// }
+		// // drive
+		// Vehicle.prototype.drive = function () {
+		// 	console.log(this.name + ' runs at ' + this.speed)
+		// };
+		// // //drive
+		// var tico = new Vehicle('tico', 50);
+		// tico.drive();
+		// //  까지 Vehicle
+
+		// function Sedan(name, speed, maxSpeed) {
+		// 	// .apply 는 Vehicle의 있는그대로 적용하는 메소드(상속)/ arguments는 매개변수(=name, speed, maxSpeed), maxSpeed는 Vehicle이 가지고있지않아서 무시됨
+		// 	Vehicle.apply(this, arguments)
+		// 	this.maxSpeed = maxSpeed;
+		// }
+		// // Vehicle 과 Sedan을 연결(상속)
+		// Sedan.prototype = Object.create(Vehicle.prototype);
+
+		// // 오류 수정코드 / 저걸 제거하면 Sedan.prototype.constructor = Vehicle 이 됨
+		// Sedan.prototype.constructor = Sedan;
+
+		// // Vehicle에 없어서 확장한 boost임
+		// Sedan.prototype.boost = function() {
+		// 	console.log(this.name + ' boosts its speed at ' + this.maxSpeed);
+		// };
+		// var sonata = new Sedan('sonata', 100, 200);
+		// sonata.drive(); //Vehicle 에게 상속받은 것
+		// sonata.boost();
+		// // 까지 Sedan
+		
+		// // Truck
+		// function Truck(name, speed, capacity) {
+		// 	Vehicle.apply(this, arguments);
+		// 	this.capacity = capacity;
+		// }
+		// Truck.prototype = Object.create(Vehicle.prototype);
+		// Truck.prototype.constructor = Truck;
+
+		// Truck.prototype.load = function(weight) {
+		// 	if (weight > this.capacity) {
+		// 		return console.error('아이고 나 죽네!');
+		// 	}
+		// 	return console.log('짐을 실었습니다');
+		// }
+		// var boongboong = new Truck('boongboong', 40, 100);
+		// boongboong.drive();
+		// boongboong.load(120);
+		
+		// Object
+		function Person(name) {this.name = name;}
+		Person.prototype.sayHello = function() {
+			alert(this.name);
+		}
+		var zero = new Person('zero');
+
+		// hasOwnProperty(속성명)
+		// 속성이 상속받은것 = false/ 자신의 속성 = true
+		var obj = {
+			example: 'yes',
+		};
+
+		// isPrototypeOf(대상) 객체가 대상의 조상인지
+		var GrandParent = function() { };
+		var Parent = function() { };
+		Parent.prototype = new GrandParent();
+		Parent.prototype.constructor = Parent;
+
+		var Child = function() { };
+		Child.prototype = new Parent();
+		Child.prototype.constructor = Child;
+
+		var child = new Child();
+		
+		// Object.getPrototypeOf(객체), Object.setPrototypeOf(객체, prototype) 객체의 prototype을 조회,설정
+		//객체 instanceof 조상; 객체가 조상의 자식인지 조회
+		
+		// 객체.propertylsEnumerable(속성)
+	
+		window.onkeydown = function() {
+			alert('I\'m loaded');
+		};
+	</script>
+</body>
+</html>

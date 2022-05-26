@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>전역변수에서 클로저사용</title>
+</head>
+<body>
+	<button id="increase">+</button>
+	<p id="count">0</p>
+	<script>
+		var incleaseBtn = document.getElementById('increase');
+		var count = document.getElementById('count');
+
+		var increase = (function () {
+			var counter = 0;
+
+			return function() {
+				return ++counter;
+			}
+		} ());
+
+		incleaseBtn.onclick = function() {
+			count.innerHTML = increase();
+		};
+
+		//  배열 반환예제
+		var arr = [];
+
+		for (var i = 0; i < 5; i++){
+			arr[i] = (function (id) { // ②
+				return function () {
+					return id; // ③
+				};
+			}(i)); // ①
+		}
+
+		for (var j = 0; j < arr.length; j++) {
+			console.log(arr[j]());
+		}
+	</script>
+</body>
+</html>

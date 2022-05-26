@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<style>
+		html, body {margin:0; padding:0; background: rgba(0,0,0,0.7)}
+		#toggleWrap {position: absolute; margin:0 auto; top: 50%; left: 50%; margin-top: -35px; margin-left: -35px;}
+		input {position: absolute; display:none;}
+		.btn {width: 70px; height: 70px; border-radius: 70px; background: #fff; display: flex; justify-content: center; align-items: center; cursor: pointer;
+		box-shadow: 0 1px 2px rgba(0,0,0,0,5); transition: all .3s}
+		.material-icons.size-35 {font-size: 35px; color: rgb(67, 163, 67);}
+
+		.btn {position: absolute; overflow: hidden;  transition: all 0.3s cubic-bezier(.25,.8,.25,1);}
+		.btn:not(:first-child) {opacity:0; z-index: -2; transition: all 0.6s cubic-bezier(.87,-.41,.19,1.44);} /* cubic-bezier 움짤처럼 움직이게 하려면 0. / -0. / 0. / 1.4이하 == 곡선이 그래프 밖으로 나가야 한다. */ 
+		.menuBtn, .closeBtn {position: absolute; transition: all 0.3s ease;}
+		.closeBtn {transform: translateY(50px); opacity: 0}
+		.btn:nth-child(2) {top: 0}
+		.btn:nth-child(3) {top: 0; left: 0; transition-delay: .1s}
+		.btn:nth-child(4) {left: 0; transition-delay: .2s}
+		.btn:nth-child(5) {top:0; left: 0; transition-delay: .3s}
+		.btn:nth-child(6) {top: 0; transition-delay: .4s}
+		.btn:nth-child(7) {top: 0; left: 0; transition-delay: .5s}
+		.btn:nth-child(8) {left: 0;  transition-delay: .6s}
+		.btn:nth-child(9) {top: 0; left: 0; transition-delay: .7s}
+		input#toggle:checked ~ #show-menu .btn:nth-child(2) {top: -150px; opacity: 1}
+		input#toggle:checked ~ #show-menu .btn:nth-child(3) {top: -100px; left: 100px; opacity:1}
+		input#toggle:checked ~ #show-menu .btn:nth-child(4) {left: 150px; opacity:1}
+		input#toggle:checked ~ #show-menu .btn:nth-child(5) {top: 100px; left: 100px; opacity:1}
+		input#toggle:checked ~ #show-menu .btn:nth-child(6) {top: 150px; opacity:1}
+		input#toggle:checked ~ #show-menu .btn:nth-child(7) {top: 100px; left: -100px; opacity:1}
+		input#toggle:checked ~ #show-menu .btn:nth-child(8) {left: -150px; opacity:1}
+		input#toggle:checked ~ #show-menu .btn:nth-child(9) {top: -100px; left: -100px; opacity:1}
+		input#toggle:checked ~ #show-menu .btn .menuBtn {transform: translateY(-50px); opacity:0}
+		input#toggle:checked ~ #show-menu .btn .closeBtn {transform: translateY(0px); opacity:1}
+
+	</style>
+</head>
+<body>
+	<div id="toggleWrap">
+		<input type="checkbox" id="toggle" name="check01"/>
+		<label id="show-menu" for="toggle">
+			<div class="btn">
+				<i class="material-icons size-35 menuBtn">sort</i>
+				<i class="material-icons size-35 closeBtn">close</i>
+			</div>
+
+			<div class="btn">
+				<i class="material-icons size-35">photo_camera</i>
+			</div>
+
+			<div class="btn">
+				<i class="material-icons size-35">photo</i>
+			</div>
+
+			<div class="btn">
+				<i class="material-icons size-35">music_note</i>
+			</div>
+
+			<div class="btn">
+				<i class="material-icons size-35">chat_bubble</i>
+			</div>
+			
+			<div class="btn">
+				<i class="material-icons size-35">settings</i>
+			</div>
+			
+			<div class="btn">
+				<i class="material-icons size-35">phone</i>
+			</div>
+			
+			<div class="btn">
+				<i class="material-icons size-35">cloud</i>
+			</div>
+				
+			<div class="btn">
+				<i class="material-icons size-35">videocam</i>
+			</div>
+		</label>
+	</div>
+</body>
+</html>
