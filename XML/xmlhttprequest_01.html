@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='ko'>
+<head>
+<meta charset='UTF-8'>
+<title>XML XMLHttpRequest</title>
+<script>
+	function loadDoc() {
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function() { // onreadystatechange 이벤트 핸들러 작성
+			// 서버상 문서가 존재하고 요청한 데이터의 처리가 완료되어 응답할 준비가 되었을때
+			if (this.status == 200 && this.readyState == this.DONE) {
+				/*  요청한 데이터를 문자열로 반환함
+				document.getElementById('text').innerHTML = xmlHttp.responseText; */
+				processXMLObj(xmlHttp);
+			}
+		};
+		xmlHttp.open('GET', './xmlhttprequest_xml.xml', true);
+		xmlHttp.send();
+	}
+
+	function processXMLObj(xmlHttp) {
+		var xmlObj, nameList, result, idx;
+		xmlObj = xmlHttp.responseXML; // 요청 데이터 XML DOM으로 변환
+		nameList = xmlObj.getElementsByTagName('name'); // XML DOM객체에서 id가 'name' 인 요소들 선택
+		result = '';
+		for (idx = 0; idx < nameList.length; idx++) {
+			// id 가 'name' 인 요소들의 텍스트 노드를 찾아 값반환
+			result += nameList[idx].childNodes[0].nodeValue + '<br/>';
+		}
+		document.getElementById('text').innerHTML = result;
+
+	}
+</script>
+</head>
+<body>
+	<h1>XMLHttpRequest 객체 전송</h1>
+	<button onclick='loadDoc()'>요청 전송하기</button>
+	<p id='text'></p>
+</body>
+</html>
