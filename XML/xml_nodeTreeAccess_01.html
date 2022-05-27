@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>XML Node</title>
+<script>
+	function loadDoc() {
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function() {
+			if (this.status == 200 && this.readyState == this.DONE) {
+				traversingNodeTree(xmlHttp);
+			}
+		};
+		xmlHttp.open('GET', './xml_nodeTreeAccess.xml', true);
+		xmlHttp.send();
+	}
+
+	function traversingNodeTree(xmlHttp) {
+		var xmlObj, nodeList, result, idx;
+		xmlObj = xmlHttp.responseXML; //요청한 데이터를 XML DOM객체로 반환
+		nodeList = xmlObj.documentElement.childNodes; // XML 문서 노드의 자식 노드를 반환
+		result = 'XML 문서 노드의 자식 노드 <br/>';
+		for (idx = 0; idx < nodeList.length; idx++) {
+			if (nodeList[idx].nodeType == 1) { // 요소 노드만을 출력
+				result += nodeList[idx].nodeName + '<br/>';
+			}
+		}
+		document.getElementById('text').innerHTML = result;
+		
+	}
+</script>
+</head>
+<body>
+	<h1>노드 트리를 연속적으로 탐색하여 접근하는 방법</h1>
+	<button onclick="loadDoc()">노드 트리 탐색하기</button>
+	<p id="text"></p>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>XML Node</title>
+<script>
+	function loadDoc() {
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function () {
+			if (this.status == 200 && this.readyState == this.DONE) {
+				searchNode(xmlHttp);
+			}
+		};
+		xmlHttp.open('GET', './xml_nodeTreeAccess_02.xml', true);
+		xmlHttp.send();
+	}
+
+	function searchNode(xmlHttp) {
+		var xmlObj, firstLang, node, result, idx;
+		xmlObj = xmlHttp.responseXML; // 요청한 데이터를 XML DOM 객체로 반환
+		firstLang = xmlObj.getElementsByTagName('language')[0]; // 첫 번째 <language>요소 반환
+		node = firstLang.firstChild; // 첫 번째 <language>요소의 첫 번째 자식 노드를 반환
+		result = 'language 요소의 자식 요소 노드 <br/>';
+		for (idx = 0; idx < firstLang.childNodes.length; idx++) {
+			if (node.nodeType == 1) {
+				result += node.nodeName + '<br/>';
+			}
+			node = node.nextSibling; // 현재 노드의 바로 다음 형제 노드를 반환
+		}
+		document.getElementById('text').innerHTML = result;
+	}
+</script>
+</head>
+<body>
+	<h1>노드 간의 관계를 이용하여 접근하는 방법</h1>
+	<button onclick="loadDoc()">노드 접근하기!</button>
+	<p id="text"></p>
+</body>
+</html>
