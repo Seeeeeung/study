@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>XML Node</title>
+<script>
+	function loadDoc() {
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function () {
+			if (this.status == 200 && this.readyState == this.DONE) {
+				changeAttributeValue(xmlHttp);
+			}
+		};
+		xmlHttp.open('GET', './xml_01_data.xml', true);
+		xmlHttp.send();
+	}
+
+	function changeAttributeValue(xmlHttp) {
+		var xmlObj, targetNode, result;
+		xmlObj = xmlHttp.responseXML; // 요청한 데이터를 XML DOM 객체로 반환
+		targetNode = xmlObj.getElementsByTagName('name')[2]; // 세 번째 <name>요소를 반환
+		result = '변경 전 : ' + targetNode.getAttribute('korean') + '<br/>';
+		// 해당 요소에 'korean' 속성의 속성값을 '자바스크립트'로 변경
+		targetNode.setAttribute('korean', '자바스크립트');
+		result += '변경 후 : ' + targetNode.getAttribute('korean') + '<br/>';
+		document.getElementById('text').innerHTML = result;
+	}
+</script>
+</head>
+<body>
+	<h1>텍스트 노드의 값 변경</h1>
+	<button onclick="loadDoc()">텍스트 변경!</button>
+	<p id="text"></p>
+</body>
+</html>
