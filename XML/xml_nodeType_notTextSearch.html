@@ -18,7 +18,11 @@
 	function findLastChild(xmlHttp) {
 		var xmlObj, documentNode, lastNode;
 		xmlObj = xmlHttp.responseXML;
-		documentNode = xmlObj.documentElement; // XML 문서 노드를 반환
+		documentNode = xmlObj.documentElement; // XML 문서 노드를 객체로 반환
+		// 노드리스트의 길이
+		nodeNum = documentNode.childNodes.length;
+		console.log(nodeNum);
+
 		lastNode = documentNode.lastChild; // XML 문서 노드의 마지막 자식 노드 반환
 		if (lastNode.nodeType != 1) { // 마지막 자식 노드가 요소 노드가 아니면
 			lastNode = lastNode.previousSibling; // 현재 마지막 노드의 바로 앞 노드를 반환

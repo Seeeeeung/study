@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>XML Node</title>
+<script>
+	function loadDoc() {
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function() {
+			if (this.status == 200 && this.readyState == this.DONE) {
+				changeTextValue(xmlHttp);
+			}
+		};
+		xmlHttp.open('GET', './xml_nodeValue_01.xml', true);
+		xmlHttp.send();
+	}
+
+	function changeTextValue(xmlHttp) {
+		var xmlObj, targetNode, result;
+		xmlObj = xmlHttp.responseXML; // 요청한 데이터를 XML DOM 객체로 반환
+		// 첫 번째 <priority>요소의 첫 번째 자식 노드 반환
+			targetNode = xmlObj.getElementsByTagName('priority')[0].firstChild;
+			document.getElementById('text').innerHTML = targetNode.nodeValue;
+	}
+</script>
+</head>
+<body>
+	<h1>노드의 값 확인</h1>
+	<button onclick="loadDoc()">노드의 값 확인!</button>
+	<p id="text"></p>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>XML Node List</title>
+<script>
+	function loadDoc() {
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function() {
+			if (this.status == 200 && this.readyState == this.DONE) {
+				findNameNodeMap(xmlHttp);
+			}
+		};
+		xmlHttp.open('GET', './xml_nodeAttributeList.xml', true);
+		xmlHttp.send();
+	}
+
+	function findNameNodeMap (xmlHttp) {
+		var xmlObj, attrList;
+		xmlObj = xmlHttp.responseXML; // 요청한 데이터를 XML DOM 객체로 반환
+		// 첫 번째 <version> 요소의 모든 속성을 리스트 형태로 반환
+		attrList = xmlObj.getElementsByTagName('version')[0].attributes;
+		document.getElementById('text').innerHTML = // 속성 리스트에서 status 속성 값을 반환
+		'첫 번째 version 요소의 status 속성값은 ' + attrList.getNamedItem('status').nodeValue + '입니다.';
+	}
+</script>
+</head>
+<body>
+	<h1>속성 리스트</h1>
+	<button onclick="loadDoc()">속성 리스트 확인</button>
+	<p id="text"></p>
+</body>
+</html>
