@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>XML Node</title>
+<script>
+	function loadDoc () {
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function () {
+			if (this.status == 200 && this.readyState == this.DONE) {
+				removeNode(xmlHttp);
+			}
+		};
+		xmlHttp.open('GET', './xml_01_data.xml', true);
+		xmlHttp.send();
+	}
+
+	function removeNode (xmlHttp) {
+		var xmlObj, firstChild, removeNode, node, result, idx;
+		xmlObj = xmlHttp.responseXML;
+		firstLang = xmlObj.getElementsByTagName('language')[0]
+
+		// 변경 전
+		node = firstLang.firstChild;
+		result = '변경 전 : <br/>';
+		for (idx = 0; idx < firstLang.childNodes.length; idx++) {
+			if (node.nodeType == 1) {
+				result += node.nodeName + '<br/>';
+			}
+			node = node.nextSibling;
+		}
+
+		removeNode = firstLang.removeChild(firstLang.childNodes[3]); // <language>요소의 자식 요소 노드 중 4번째 요소 제거
+
+		// <language> 요소의 자식 요소 노드 모두 출력
+		node = firstLang.firstChild;
+		result += '<br/>변경 후 : <br/>';
+		for (idx = 0; idx < firstLang.childNodes.length; idx++) {
+			if (node.nodeType == 1) {
+				result += node.nodeName + '<br/>';
+			}
+			node = node.nextSibling;
+		}
+		result += '<br/>제거된 요소 노드는 ' + removeNode.nodeName + '입니다.';
+		document.getElementById('text').innerHTML = result;
+	}
+</script>
+</head>
+<body>
+	<h1>노드의 제거</h1>
+	<button onclick="loadDoc()">요소 노드 제거!</button>
+	<p id="text"></p>
+</body>
+</html>

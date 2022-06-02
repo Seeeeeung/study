@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>XML Node</title>
+<script>
+	function loadDoc () {
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function () {
+			if (this.status == 200 && this.readyState == this.DONE) {
+				addData(xmlHttp);
+			}
+		};
+		xmlHttp.open('GET', './xml_01_data.xml', true);
+		xmlHttp.send();
+	}
+
+	function addData (xmlHttp) {
+		var xmlObj, javaName;
+		xmlObj = xmlHttp.responseXML;
+		javaName = xmlObj.getElementsByTagName('name')[2].firstChild; // 세 번째 <name>요소의 텍스트 노드를 반환
+		originTextData = javaName.nodeValue; // 원본 텍스트 데이터
+
+		document.getElementById('text').innerHTML = '변경 전 : ' + javaName.nodeValue + '<br/>';
+
+		// 반복
+		javaName.insertData(1, 'Script'); // 텍스트 데이터의 두 번째 문자 위치에 'script' 추가
+		document.getElementById('text').innerHTML += '변경 후 : ' + javaName.nodeValue + '<br/>';
+		javaName.nodeValue = originTextData; // 텍스트 데이터 원상 복수
+		// //반복
+		
+		javaName.insertData(2, 'Script'); // 텍스트 데이터의 세 번째 문자 위치에 'script' 추가
+		document.getElementById('text').innerHTML += '변경 후 : ' + javaName.nodeValue + '<br/>';
+		javaName.nodeValue = originTextData; // 텍스트 데이터 원상 복수
+		
+		javaName.insertData(3, 'Script'); // 텍스트 데이터의 네 번째 문자 위치에 'script' 추가
+		document.getElementById('text').innerHTML += '변경 후 : ' + javaName.nodeValue + '<br/>';
+		javaName.nodeValue = originTextData; // 텍스트 데이터 원상 복수
+		
+		javaName.insertData(4, 'Script'); // 텍스트 데이터의 다섯 번째 문자 위치에 'script' 추가
+		document.getElementById('text').innerHTML += '변경 후 : ' + javaName.nodeValue + '<br/>';
+		javaName.nodeValue = originTextData; // 텍스트 데이터 원상 복수
+
+	}
+</script>
+</head>
+<body>
+	<h1>데이터의 추가</h1>
+	<button onclick="loadDoc()">데이터 추가!</button>
+	<p id="text"></p>
+</body>
+</html>

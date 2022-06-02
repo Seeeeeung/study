@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>XML Node</title>
+<script>
+	function loadDoc () {
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function () {
+			if (this.status == 200 && this.readyState == this.DONE) {
+				addNode(xmlHttp);
+			}
+		};
+		xmlHttp.open('GET', './xml_01_data.xml', true);
+		xmlHttp.send();
+	}
+
+	function addNode (xmlHttp) {
+		var xmlObj, firstLang, newNode, node, result, idx;
+		xmlObj = xmlHttp.responseXML;
+		firstLang = xmlObj.getElementsByTagName('language')[0]; // 첫 번째 <language>요소를 반환
+		
+		// 변경 전
+		node = firstLang.firstChild;
+		result = '변경 전 : <br/>';
+		for (idx = 0; idx < firstLang.childNodes.length; idx++) {
+			if (node.nodeType == 1) {
+				result += node.nodeName + '<br/>';
+			}
+			node = node.nextSibling;
+		}
+
+		newNode = xmlObj.createElement('paradigm'); // 새로운 <paradigm> 요소 생성
+		firstLang.appendChild(newNode); // 첫 번째 <language>요소의 맨 마지막에 새로운 요소 추가
+
+		// <language>요소의 자식 요소 노드를 모두 출력
+		node = firstLang.firstChild;
+		result += '<br/>변경 후 : <br/>';
+		for (idx = 0; idx < firstLang.childNodes.length; idx++) {
+			if (node.nodeType == 1) {
+				result += node.nodeName + '<br/>';
+			}
+			node = node.nextSibling;
+		}
+		document.getElementById('text').innerHTML = result;
+	}
+</script>
+</head>
+<body>
+	<h1>노드의 추가</h1>
+	<button onclick="loadDoc()">노드 추가!</button>
+	<p id="text"></p>
+</body>
+</html>

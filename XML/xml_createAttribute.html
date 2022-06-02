@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>XML Node</title>
+<script>
+	function loadDoc () {
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function () {
+			if (this.status == 200 && this.readyState == this.DONE) {
+				createNode(xmlHttp);
+			}
+		};
+		xmlHttp.open('GET', './xml_01_data.xml', true);
+		xmlHttp.send();
+	}
+
+	function createNode (xmlHttp) {
+		var xmlObj, versionElement, newNode, newAttrNode;
+		xmlObj = xmlHttp.responseXML;
+		versionElement = xmlObj.getElementsByTagName('version')[3]; // 네 번째 <version> 요소 반환
+
+		newAttrNode = xmlObj.createAttribute('anotherVersion'); // 새로운 anotherVersion 속성 노드를 생성
+		newAttrNode.nodeValue = '2.7.12'; // 새로운 속성 노드에 속성값을 설정
+
+		versionElement.setAttributeNode(newAttrNode); // 네 번째 <version>요소에 새로운 속성 노드 추가
+		document.getElementById('text').innerHTML = 
+		'another version : ' + versionElement.getAttribute('anotherVersion');
+	}
+</script>
+</head>
+<body>
+	<h1>노드의 생성</h1>
+	<button onclick="loadDoc()">속성 노드 생성!</button>
+	<p id="text"></p>
+</body>
+</html>

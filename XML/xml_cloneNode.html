@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>XML Node</title>
+<script>
+	function loadDoc() {
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function() {
+			if(this.status == 200 && this.readyState == this.DONE) {
+				copyNode(xmlHttp);
+			}
+		};
+		xmlHttp.open("GET", "./xml_01_data.xml", true);
+		xmlHttp.send();
+	}
+
+	function copyNode (xmlHttp) {
+		var xmlObj, firstLang, copiedNode, node, result, idx;
+		xmlObj = xmlHttp.responseXML;
+		firstLang = xmlObj.getElementsByTagName('language')[0];
+
+		node = firstLang.firstChild;
+		result = '변경 전 : <br/>';
+		for (idx = 0; idx < firstLang.childNodes.length; idx++) {
+			if (node.nodeType == 1) {
+				result += node.nodeName + '<br/>';
+			}
+			node = node.nextSibling;
+		}
+
+		copiedNode = firstLang.childNodes[1].cloneNode(true); // <name>요소 복제
+		firstLang.appendChild(copiedNode); // 첫 번째 <language>요소에 복제한 <name>요소를 추가
+		
+		node = firstLang.firstChild;
+		result += '<br/>변경 후 : <br/>';
+		for (idx = 0; idx < firstLang.childNodes.length; idx++) {
+			if (node.nodeType == 1) {
+				result += node.nodeName + '<br/>';
+			}
+			node = node.nextSibling;
+		}
+		document.getElementById('text').innerHTML = result;
+	}
+</script>
+</head>
+<body>
+	<h1>노드의 복제</h1>
+	<button onclick="loadDoc()">노드 복제!</button>
+	<p id="text"></p>
+</body>
+</html>
