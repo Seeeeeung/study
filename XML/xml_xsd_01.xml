@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<food>
+	<name>상추</name>
+	<type>야채</type>
+	<cost>2000</cost>
+</food>
