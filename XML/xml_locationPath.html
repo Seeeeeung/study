@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>XML Path</title>
+<script>
+	function loadDoc() {
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function() {
+			if (this.status == 200 && this.readyState == this.DONE) {
+				findResult(xmlHttp);
+			}
+		};
+		xmlHttp.open('GET', './xml_01_data.xml', true);
+		xmlHttp.send();
+	}
+
+	function findResult(xmlHttp) {
+		var xmlObj, path, result, nodeList, node;
+		xmlObj = xmlHttp.responseXML;
+		path = '//version';
+		result = '';
+
+		// 익스플로러를 위한 코드
+		// ActiveXObject 는 비동기 통신 방식인 익스플로러 5과 6버전에서 사용하여 구현하기 위함이며, 익스일때 오브젝트를 리턴하고 익스가 아닐때 null을 리턴하게 되기때문에 인터넷브라우저를 구분하기 위해 사용한다. / msxml-document는 microsoft가 만든 xml 문서를 확인하는 것
+		if (window.ActiveXObject !== undefined || xmlHttp.responseType == 'msxml-document') {
+			xmlObj.setProperty('SelectionLanguage', 'XPath'); // 속성 설정 XPath언어를 사용해야하는지의 여부 지정
+			nodeList = xmlObj.selectNodes(path); // XPath의 식과 일치하는 노드의 목록 선택
+
+			for (i = 0; i < nodeList.length; i++) {
+				result += nodeList[i].text + '<br/>';
+			}
+			// 익스제외 모든 브라우저
+			// implemetation은 특정 문서에 종속되지 않은 메소드를 제공하는 객체를 나타냄. (문서의 구현객체) / document.implementation 은 현재 document에 연관된 객체를 반환 / document.implementation.createDocument는 XMLDocument를 생성하고 반환함 
+		} else if (document.implementation && document.implementation.createDocument) {
+			nodeList = xmlObj.evaluate(path, xmlObj, null, XPathResult.ANY_TYPE, null);
+			// evaluate() 메소드는 매개변수에 제공된 XPath표현식 document를 기반으로 요소를 선택한다 / https://developer.mozilla.org/en-US/docs/Web/API/Document/evaluate 참조 / XPathResult는 주어진 노드의 컨텍스트 내에서 XPath표현식을 평가하여 생성된 결과를 나타냄 / ANY_TYPE 은 평가에서 자연스럽게 발생하는 모든 유형을 포함하는 결과 집합이다
+			node = nodeList.iterateNext(); // 노드 집합 결과(XPathResult)를 반복하고 그 결과에서 다음 노드를 반환하거나 더이상 노드가 없으면 null을 반환.
+
+			while(node) {
+				result += node.firstChild.nodeValue + '<br/>';
+				node = nodeList.iterateNext();
+			}
+		}
+		document.getElementById('text').innerHTML = result;
+	}
+</script>
+</head>
+<body>
+	<h1></h1>
+	<button onclick="loadDoc()">경로 표현식 //version 확인!</button>
+	<p id="text"></p>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>XML Xpath</title>
+<script>
+	function loadDoc() {
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function () {
+			if (this.status == 200 && this.readyState == this.DONE) {
+				findResult(xmlHttp);
+			}
+		};
+		xmlHttp.open('GET', './xml_01_data.xml',true);
+		xmlHttp.send();
+	}
+
+	function findResult(xmlHttp) {
+		var xmlObj, path, result, nodeList, node;
+		xmlObj = xmlHttp.responseXML;
+		path = 'descendant::*';
+		result = '';
+
+		if (window.ActiveXObject !== undefined || xmlHttp.responseType == 'msxml-document') {
+			xmlObj.setProperty('SelectionLanguage', 'XPath');
+			nodeList = xmlObj.selectNodes(path);
+
+			for (i = 0; i < nodeList.length; i++) {
+				result += nodeList[i].text + '<br/>';
+			}
+		} else if (document.implementation && document.implementation.createDocument) {
+			nodeList = xmlObj.evaluate(path, xmlObj, null, XPathResult.ANY_TYPE, null);
+			node = nodeList.iterateNext();
+
+			while (node) {
+				result += node.firstChild.nodeValue + '<br/>';
+				node = nodeList.iterateNext();
+			}
+		}
+		document.getElementById('text').innerHTML = result;
+	}
+</script>
+</head>
+<body>
+	<h1></h1>
+	<button onclick="loadDoc()">경로 표현식 descendant::* 확인!</button>
+	<p id="text"></p>
+</body>
+</html>
