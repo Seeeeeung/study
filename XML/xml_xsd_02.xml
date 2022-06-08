@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE food SYSTEM "food.dtd">
+<food>
+	<name>상추</name>
+	<type>야채</type>
+	<cost>2000</cost>
+</food>
+<!-- food 02 외부 DTD파일 포함 -->
