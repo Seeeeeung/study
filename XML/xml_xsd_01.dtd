@@ -2,3 +2,4 @@
 <!ELEMENT name (#PCDATA)>
 <!ELEMENT type (#PCDATA)>
 <!ELEMENT cost (#PCDATA)>
+<!-- food 예제 01 의 요소들을 정의한 DTD파일 예제 -->

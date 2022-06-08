@@ -15,3 +15,4 @@ elementFormDefault="qualified">
 </xs:element>
 
 </xs:schema>
+<!-- food 예제 01 의 요소들을 정의한 XSD파일 예제 -->
