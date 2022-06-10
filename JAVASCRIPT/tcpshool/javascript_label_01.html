@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>javascript Etx control statement</title>
+</head>
+<body>
+	<h1>continue 문</h1>
+	<script>
+		var exceptNum = 3;
+
+		for (var i = 0; i <= 100; i++) {
+			if (i % exceptNum == 0) // exceptNum의 배수 출력 안함
+				continue;
+			document.write(i + ' ');
+		}
+		document.write('<br/>');
+		gugudan:
+		for (var j = 2; j <= 9; j++) {
+			dan:
+			for (var k = 1; k <= 9; k++) {
+				if ((j*k) % 2 == 0)
+				continue dan;
+				document.write(j + ' * ' + k + ' = ' + (j*k) + '<br/>');
+			}
+		}
+	</script>
+</body>
+</html>

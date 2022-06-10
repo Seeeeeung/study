@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Javascript Array</title>
+</head>
+<body>
+	<h1>Array.isArray() 메소드</h1>
+	<script>
+		var arr = [1, true, 'JS']; // 배열 생성
+		document.write(Array.isArray(arr) + '<br/>');
+		document.write(Array.isArray('문자열'));
+		// 구형버전 브라우저는 메소드를 작동시키지 않을 수 있다
+
+		document.write('<br/>' + (arr instanceof Array) + '<br/>');
+		document.write(123 instanceof Array);
+
+		// constructor 프로퍼티를 사용하여 확인할수 있다
+		function isArray(a) {
+			return a.constructor.toString().indexOf('Array') > -1;
+		}
+
+		document.write('<br/>' + arr.constructor + '<br/>'); // constructor 프로퍼티 값 출력
+		document.write(arr.constructor.toString() + '<br/>'); // function Array() {[native code]}
+		document.write(arr.constructor.toString().indexOf('Array') + '<br/>'); // 10
+		document.write(isArray(arr)); // true
+	</script>
+</body>
+</html>

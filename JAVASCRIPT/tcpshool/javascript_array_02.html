@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>JS Array</title>
+</head>
+<body>
+	<h1>01 희소 배열</h1>
+	<h1>02 다차원 배열</h1>
+	<script>
+		// 01
+		var arr = new Array(); // 빈 배열 객체 생성
+		arr[99] = 'JS'; // 문자열 삽입 100번째 요소를 삽입했기 때문에 배열의 길이는 100으로 늘어난다
+
+		document.write('배열의 길이는 ' + arr.length + ' 입니다. <br/><br/>');
+
+		// 02
+		var arr2 = new Array(3); // 3개의 요소를 가지는 배열 생성
+		for (var row = 0; row < 3; row++) {
+			arr2[row] = new Array(4); // 각각의 요소마다 또다시 4개의 요소를 가지는 배열
+			for (var column = 0; column < 4; column++) {
+				arr2[row][column] = '[' + row + ' , ' + column + ']'; // 각각의 배열 요소 생성
+				document.write(arr2[row][column] + ' '); // 각 배열 요소에 접근
+			}
+			document.write('<br/>');
+		}
+	</script>
+</body>
+</html>

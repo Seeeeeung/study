@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charest="UTF-8">
+<title>JS etc control statement</title>
+</head>
+<body>
+	<h1>break 문</h1>
+
+	<script>
+		var lectures = ['html', '자바스크립트', 'css', 'php'];
+		var topic = '자바스크립트';
+
+		for (var i = 0; i < lectures.length; i++) {
+			if (lectures[i] == topic) {
+				document.write(topic + '과목은 ' + (i + 1) + '번째 과목입니다');
+				break; // 원하는 값을 찾은 후 더이상 for문을 반복하지 않고 빠져나감
+			}
+		}
+		document.write('<br/>');
+
+		gugudan:
+		for (var j = 2; j <= 9; j++) {
+			dan:
+			for (var k = 1; k <= 9; k++) {
+				if (j > 3)
+				break gugudan;
+				document.write(j + ' * ' + k + ' = ' + (j+k) + '<br/>')
+			}
+		}
+	</script>
+</body>
+</html>

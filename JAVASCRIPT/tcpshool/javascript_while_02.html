@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>javascript iteration statement</title>
+</head>
+<body>
+	<h1>do / while 문</h1>
+	
+	<script>
+		var i = 1, j = 1;
+
+		while (i > 3) { // 변수의 초기값이 1이기 때문에 표현식이 거짓이라 한번도 실행되지 않는다
+			document.write('i : ' + (i++) + '<br/>');
+		}
+
+		do { // 변수의 초기값이 1이라 거짓이지만 무조건 식을 한번 실행해야하기 때문에 한번 실행하고 멈춘다
+			document.write('j : ' + (j++) + '<br/>');
+		} while (j > 3);
+	</script>
+</body>
+</html>

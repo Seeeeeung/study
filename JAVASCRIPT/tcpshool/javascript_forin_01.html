@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>javascript iteration statement</title>
+</head>
+<body>
+	<h1>for / in  문</h1>
+	<script>
+		var arr = [3, 4, 5];
+		var day = ['가','나','다']
+
+		// for (var i = 0; i < arr.length; i++) { // 배열 arr의 모든 요소의 인덱스 출력
+		// 	document.write(i + ' ');
+		// }
+		
+		for (var i in day) { // 위와 같은 동작을 하는 for / in 문
+			document.write(i + ' ' );
+		}
+		document.write('<br/>');
+
+		var obj = {
+			name : '이순신',
+			age : 20
+		};
+		for (var i in obj) {
+			document.write(i + '<br/>');
+		}
+	</script>
+</body>
+</html>
