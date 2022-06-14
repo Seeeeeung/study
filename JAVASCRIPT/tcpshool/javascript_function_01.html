@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>JS function</title>
+</head>
+<body>
+	<h1>값으로서의 함수</h1>
+
+	<script>
+		function sqr(x) {
+			return x * x;
+		}
+		var sqrNum = sqr;
+
+		document.write(sqr(4) + '<br/>');
+		document.write(sqrNum(4));
+	</script>
+</body>
+</html>
