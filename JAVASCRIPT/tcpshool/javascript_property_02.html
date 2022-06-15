@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>JS object handling</title>
+</head>
+<body>
+	<h1>객체간 비교</h1>
+	<script>
+		function Dog(color, name, age) {
+			this.color = color;
+			this.name = name;
+			this.age = age;
+		}
+
+		var myDog = new Dog('흰색', '마루', 1);
+		var hisDog = new Dog('흰색', '마루', 1);
+		document.write((myDog == hisDog) + '<br/>');
+		document.write((myDog === hisDog) + '<br/>');
+
+		var herDog = hisDog;
+		document.write((hisDog == herDog) + '<br/>');
+		document.write((hisDog === herDog) + '<br/>');
+	</script>
+</body>
+</html>

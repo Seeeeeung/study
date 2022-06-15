@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>JS Object</title>
+</head>
+<body>
+	<h1>Object.create() 메소드 이용한 객체 생성</h1>
+
+	<script>
+		var obj = Object.create(null, { // null 프로토타입을 사용하여 새로운 객체를 만들고
+			x : { value: 100, enumerable: true}, // x좌표를 나타내는 열거할 수 있는 속성과
+			y : { value: 200, enumerable: true} // y좌표를 나타내는 열거할 수 있는 속성 추가
+		});
+
+		document.write(obj.x + '<br/>');
+		document.write(obj.y + '<br/>');
+		document.write(Object.getPrototypeOf(obj)); // 객체의 프로토타입 반환
+	</script>
+</body>
+</html> 

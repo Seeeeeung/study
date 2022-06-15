@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>JS object method</title>
+</head>
+<body>
+	<h1>01객체의 hasOwnProperty()메소드</h1>
+	<h1>02객체의 propertyIsEnumerable()메소드</h1>
+	<h1>03객체의 isPrototypeOf()메소드</h1>
+	<h1>04객체의 isExtensible()메소드</h1>
+	<h1>05객체의 isExtensible()메소드</h1>
+	<h1>06객체의 valueOf()메소드</h1>
+	<script>
+		function Dog(color, name, age, family) {
+			this.color = color;
+			this.name = name;
+			this.age = age;
+			this.family = family;
+			this.breed = function() {return this.color + ' ' + this.family;}
+		}
+
+		//01
+		var myDog = new Dog('검정색', '곰', 3, '불독');
+
+		document.write(myDog.hasOwnProperty('color') + '<br/>');
+		document.write(myDog.hasOwnProperty('breed') + '<br/>');
+		document.write(myDog.hasOwnProperty('class') + '<br/><br/>') // 상속받은 속성이므로 false 반환
+
+		//02
+		var myDog2 = new Dog('흰색', '마루', 1);
+		// color 프로퍼티의 enumerable 속성을 false로 설정
+		Object.defineProperty(myDog2, 'color', {enumerable: false});
+		document.write(myDog2.propertyIsEnumerable('color') + '<br/>');
+		document.write(myDog2.propertyIsEnumerable('name') + '<br/>');
+		document.write(myDog2.propertyIsEnumerable('age') + '<br/><br/>');
+
+		// 03
+		var day = new Date(); // 객체 생성
+		// 객체의 day의 프로토타입이 Date.prototype인지 검사
+		document.write(Date.prototype.isPrototypeOf(day) + '<br/>');
+		document.write(Date.prototype.isPrototypeOf(new String()) + '<br/><br/>');
+
+		// 04
+		var day2 = new Date();
+		// 새 프로퍼티 추가 여부 검사
+		document.write(Object.isExtensible(day2) + '<br/>');
+
+		// 해당객체에 새 프로퍼티 추가 제한
+		var myDay = Object.preventExtensions(day2);
+		document.write(Object.isExtensible(day2) + '<br/><br/>');
+
+		//05
+		var arr = [10, '문자열', true];
+		var bool = false;
+		function func() { return 0;}
+
+		document.write(arr.toString() + '<br/>');
+		document.write(bool.toString() + '<br/>');
+		document.write(func.toString() + '<br/><br/>');
+
+		//06
+		function func2(n) {
+			this.number = n;
+		}
+
+		myFunc = new func2(4);
+		document.write(myFunc + 5);
+
+		func2.prototype.valueOf = function() {
+			return this.number;
+		}
+		document.write('<br/><br/>');
+		document.write(myFunc + 5);
+	</script>
+</body>
+</html>

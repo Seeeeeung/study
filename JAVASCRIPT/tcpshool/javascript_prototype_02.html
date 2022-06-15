@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>JS prototype</title>
+</head>
+<body>
+	<h1>prototype 속성을 이용한 프로퍼티 및 메소드 추가</h1>
+
+	<script>
+		function Dog(color, name, age, deleteProperty) {
+			this.color = color;
+			this.name = name;
+			this.age = age;
+			this.deleteProperty = deleteProperty; // 객체의 삭제
+		}
+		// 현재 존재하고 있는 Dog 프로토타입에 family 프로퍼티 추가
+		Dog.prototype.family = '시베리안 허스키';
+		// 현재 존재하고 있는 Dog 프로토타입에 breed 메소드 추가
+		Dog.prototype.breed = function() { return this.color + ' ' + this.family;};
+
+		var myDog = new Dog('흰색', '마루', 1, '삭제됨');
+		delete myDog.deleteProperty; // 프로퍼티 삭제
+		var hisDog = new Dog('갈색', '콩이', 3);
+
+		document.write('우리집 강아지는 ' + myDog.family + ' 이고, 친구네 집 강아지도 ' + hisDog.family + ' 입니다 <br/>');
+		document.write('우리집 강아지 품종은 ' + myDog.breed() + '입니다 <br/>');
+		document.write('친구네 집 강아지 품종은 ' + hisDog.breed() + '입니다');
+
+		document.write('삭제한 프로퍼티는 ' + myDog.deleteProperty + ' 를 반환합니다')
+	</script>
+</body>
+</html>
