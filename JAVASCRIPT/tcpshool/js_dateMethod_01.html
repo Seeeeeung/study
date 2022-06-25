@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>JS date method</title>
+</head>
+<body>
+	<h1>Date.now() 메소드</h1>
+
+	<script>
+		var nowMiliSec = Date.now();
+		document.write(nowMiliSec + '<br/>'); // 1970년부터 현재까지의 밀리초 반환
+		document.write(new Date(nowMiliSec) + '<br/>'); // new Datee() 와 같은 결과 반환
+		document.write(new Date());
+	</script>
+</body>
+</html>

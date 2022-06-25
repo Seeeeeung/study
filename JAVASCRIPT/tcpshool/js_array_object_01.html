@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>JS array object</title>
+</head>
+<body>
+	<p>01 forEach()</p>
+	<p>02 map()</p>
+	<p>03 filter()</p>
+
+	<script>
+		// 01
+		var arr = [1, true, 'JS'];
+		function printArr(value, index, array) {
+			document.write('arr[' + index + '] = ' + value + '<br/>');
+		}
+
+		arr.forEach(printArr); // 배열 arr의 각 요소마다 printArr() 함수 호출됨 
+
+		//02
+		var arr2 = [1, -2, 3, -4];
+		//배열 arr의 각 요소마다 Math.abs() 함수가 호출되고 그 결과값이 배열로 저장
+		var absoluteValues = arr2.map(Math.abs);
+		// Math.abs() 메소드는 주어진 숫자의 절대값을 반환한다(양수, )
+		document.write(absoluteValues + '<br/>');
+
+		// 03
+		var arr3 = [-10, 5, 100, -20, 40];
+		function compareValue(value) {
+			return value < 10;
+		}
+
+		var lessTen = arr3.filter(compareValue);
+		document.write(lessTen + '<br/>');
+		document.write(arr3.every(compareValue) + '<br/>'); // false
+		document.write(arr3.some(compareValue)) // true
+	</script>
+</body>
+</html>

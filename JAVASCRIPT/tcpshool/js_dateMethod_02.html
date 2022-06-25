@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>JS getter 메소드</title>
+</head>
+<body>
+	<p>01 getFullYear</p>
+	<p>02 getDay</p>
+
+	<script>
+		var date = new Date();
+
+		// 01
+		document.write('올해는 ' + date.getFullYear() + ' 년 입니다. <br/>') 
+		// date.getFullYear() 부분에 Date, Day, Time 수식언을 넣으면 원하는 숫자를 반환할 수 있다
+
+		//02
+		var day;
+		switch (date.getDay()) { // 현재 요일을 반환
+			case 0:
+				day = '일';
+				break;
+			case 1:
+				day = '월';
+				break;
+			case 2:
+				day = '화';
+				break;
+			case 3:
+				day = '수';
+				break;
+			case 4:
+				day = '목';
+				break;
+			case 5:
+				day = '금';
+				break;
+			case 6:
+				day = '토';
+				break;
+		}
+		document.write('오늘은 ' + day + '요일 입니다 <br/>');
+
+		var days = ['일','월','화','수','목','금','토'];
+		document.write('오늘은 ' + days[date.getDay()] + '요일입니다 <br/>')
+	</script>
+</body>
+</html>
