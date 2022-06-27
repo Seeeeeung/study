@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>JS node manage</title>
+</head>
+<body>
+	<p>removeChild 메소드</p>
+	<button onclick="remove()">요소 노드 삭제</button>
+	<p>cloneNode() 메소드</p>
+	<button onclick="cloneElement()">노드 복제</button>
+	<h2 id="origin-item">JavaScript</h2>
+
+	<div id="list">
+		<p>HTML</p>
+		<p id="item">CSS</p>
+		<p>JS</p>
+		<p>JQuery</p>
+	</div>
+
+	<p>removeAttribute 메소드</p>
+	<button onclick="remove_Attribute()">속성 노드 삭제</button>
+	<p id="text" style="color:red; background-color:lemonchiffon">이 단락의 속성이 제거될 것이다</p>
+
+	<script>
+	function remove() {
+		var parent = document.getElementById('list');
+		var removedItem = document.getElementById('item');
+		parent.removeChild(removedItem);
+	}
+
+	function remove_Attribute() {
+		var text = document.getElementById('text');
+		text.removeAttribute('style');
+	}
+
+	function cloneElement() {
+		var parent = document.getElementById('list');
+		var originItem = document.getElementById('origin-item');
+		parent.appendChild(originItem.cloneNode(true));
+	}
+	</script>
+</body>
+</html>

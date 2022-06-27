@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>JS node manage</title>
+</head>
+<body>
+	<p>요소 노드의 생성</p>
+	<p id="text">새로운 단락을 생성하여 이 단락 앞에 추가할 것입니다</p>
+	<button onclick="createNode()">요소 노드 생성!</button>
+
+	<p>속성 노드의 생성</p>
+	<p id="text1">이 단락에 새로운 속성을 추가할 것이다</p>
+	<button onclick="create_AttributeNode()">속성 노드 생성</button>
+
+	<p>텍스트 노드의 생성</p>
+	<button onclick="create_TextNode()">텍스트노드 노드 생성</button>
+	<p id="text2"></p>
+
+	<script>
+		function createNode() {
+			var criteriaNode = document.getElementById('text'); // 기준이 되는 요소로 아이디가 'text' 인 요소 선택
+			var newNode = document.createElement('p'); // 새로운 <p>요소 생성
+			newNode.innerHTML = '새로운 단락입니다';
+			document.body.insertBefore(newNode, criteriaNode); // 새로운 요소를 기준이 되는 요소 바로앞에 추가
+		}
+		function create_AttributeNode() {
+			var text = document.getElementById('text1');
+			var newAttribute = document.createAttribute('style');
+			newAttribute.value = 'color:red';
+			text.setAttributeNode(newAttribute);
+		}
+
+		function create_TextNode() {
+			var elementNode = document.getElementById('text2');
+			var newText = document.createTextNode('새로운 텍스트입니다');
+			elementNode.appendChild(newText);
+		}
+	</script>
+</body>
+</html>

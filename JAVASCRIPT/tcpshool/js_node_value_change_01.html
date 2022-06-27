@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>JS node handle</title>
+<style>
+	.para2 {background-color:orange;}
+</style>
+</head>
+<body>
+	<p>텍스트 노드 값 변경</p>
+	<p id="text-change">이 텍스트 변경</p>
+	<button onclick="changeText()">텍스트 변경!</button>
+
+	<p>속성 노드 값 변경</p>
+	<p>속성 변경 할거예요</p>
+	<button onclick="changeAttribute()">속성 변경!</button>
+
+	<p>요소 노드의 교체</p>
+	<div id="parent">
+		<p id="first">첫번째 요소</p>
+		<p>두번째 요소</p>
+	</div>
+	<p id="third">세번째 요소</p>
+	<button onclick="changeNode()">요소노드 교체!</button>
+
+	<p>텍스트 노드의 데이터 교체</p>
+	<p id="text-data">지금 시간은 오후 3시 입니다</p>
+	<button onclick="changeTextData()">텍스트 교체!</button>
+
+	<script>
+		var para = document.getElementById('text-change');
+		function changeText() {
+			para.firstChild.nodeValue = '텍스트 변경 완료염'
+		}
+
+		var para2;
+		function changeAttribute() {
+			// 모든 <p>요소 중에 원하는 요소에 클래스 속성값으로 'para' 설정
+			document.getElementsByTagName('p')[3].setAttribute('class','para2');
+			// 클래스가 설정되면 해당 클래스에 설정되어있던 스타일이 자동으로 적용
+		}
+
+		var parent = document.getElementById('parent');
+		var first = document.getElementById('first');
+		var third = document.getElementById('third');
+		function changeNode() {
+			parent.replaceChild(third, first); // first요소 삭제하고 그 자리에 third요소 삽입
+		}
+
+		var text_data = document.getElementById('text-data').firstChild;
+		function changeTextData() {
+			text_data.replaceData(7,4,'저녁 7');
+		}
+	</script>
+</body>
+</html>
