@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>JS BOM screen Object</title>
+</head>
+<body>
+	<p>사용자의 화면크기</p>
+	<script>
+		document.write('현재 사용자의 디스플레이 화면의 너비는 ' + screen.width + ' 픽셀입니다 <br/>');
+		document.write('현재 사용자의 디스플레이 화면의 높이는 ' + screen.height + ' 픽셀 입니다<br/>');
+		document.write('현재 브라우저의창의 너비는 ' + window.outerWidth + '픽셀입니다 <br/>');
+		document.write('현재 브라우저의 창의 높이는 ' + window.outerHeight + '픽셀 입니다<br/>');
+
+		document.write('실제 사용할 수 있는 화면의 너비는 ' + screen.availWidth + '픽셀 이다 <br/>');
+		document.write('실제 사용할 수 있는 화면의 높이는 ' + screen.availHeight + '픽셀 이다<br/>');
+	</script>
+</body>
+</html>
