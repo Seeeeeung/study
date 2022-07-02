@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <title>JS EventListener Call</title>
 <style>
-	#divBox {width:100%; height:100px; border:2px solid red;}
-	#paraBox {width:80%; height:50px; border:2px solid orange;}
-	#spanBox {border:2px solid green;}
+	div[id*="divBox"] {width:100%; height:100px; border:2px solid red;}
+	p[id*="paraBox"] {width:80%; height:50px; border:2px solid orange;}
+	span[id*="spanBox"] {border:2px solid green;}
 </style>
 </head>
 <body>
@@ -15,6 +15,18 @@
 		<p id="paraBox">박스안의 여러곳을 <span id="spanBox">클릭</span>해보세요</p>
 	</div>
 	<p id="text"></p>
+
+	<h1>캡처링 이벤트 전파</h1>
+	<div id="divBox2">
+		<p id="paraBox2">박스 안의 여러 곳을 <span id="spanBox2">클릭</span>해 보세요</p>
+	</div>
+	<p id="text2"></p>
+
+	<h1>이벤트 전파 취소</h1>
+	<div id="divBox3">
+		<p id="paraBox3">박스 안의 여러 곳을 <a id="linkBox" href="/JAVASCRIPT/tcpshool/js_eventlistener_call.html">클릭</a>해 보세요</p>
+	</div>
+	<p id="text3"></p>
 
 	<script>
 		// 각 요소마다 버블링 방식으로 click 이벤트 리스너 등록
@@ -31,6 +43,44 @@
 		function clickSpan(event) {
 			document.getElementById('text').innerHTML += 'span 요소를 click 하셨습니다<br/>'
 		}
+
+		// 버블링 : span p div 순
+		// 캡처링 : div p span 순
+
+		// 각 요소마다 캡처링 방식으로 click 이벤트 리스너를 등록함
+		document.getElementById('divBox2').addEventListener('click', clickDiv2, true);
+		document.getElementById('paraBox2').addEventListener('click', clickPara2, true);
+		document.getElementById('spanBox2').addEventListener('click', clickSpan2, true);
+
+		function clickDiv2(event) {
+			document.getElementById('text2').innerHTML += 'div2 요소를 click하셨네요 <br/>'
+		}
+		function clickPara2(event) {
+			document.getElementById('text2').innerHTML += 'p2 요소를 click하셨네요 <br/>'
+		}
+		function clickSpan2(event) {
+			document.getElementById('text2').innerHTML += 'span2 요소를 click하셨네요 <br/>'
+		}
+
+		// 각 요소마다 버블링 방식으로 click 이벤트 리스너를 등록함
+		document.getElementById('divBox3').addEventListener('click', clickDiv3);
+		document.getElementById('paraBox3').addEventListener('click', clickPara3);
+		document.getElementById('linkBox').addEventListener('click', clickLink);
+
+		function clickDiv3(event) {
+			document.getElementById('text3').innerHTML += 'div3 요소를 click하셨네요 <br/>'
+		}
+		function clickPara3(event) {
+			document.getElementById('text3').innerHTML += 'p3 요소를 click하셨네요 <br/>'
+		}
+		function clickLink(event) {
+			event.preventDefault(); // 링크의 기본 동작 취소
+		
+			document.getElementById('text3').innerHTML += '링크의 기본 동작을 막았어요 <br/>'
+			event.stopPropagation(); // 이벤트 전파 취소
+			document.getElementById('text3').innerHTML += '이벤트의 전파를 막았어요 <br/>'
+		}
+
 	</script>
 </body>
 </html>

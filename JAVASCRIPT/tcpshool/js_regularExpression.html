@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>JS Regular Expression</title>
+</head>
+<body>
+	<h1>정규 표현식 생성</h1>
+	<p id="text"></p>
+
+	<h1>정규 표현식 플래그</h1>
+	<p id="text2"></p>
+
+	<h1>정규 표현식 위치 문자</h1>
+	<p id="text3"></p>
+
+	<script>
+		var regStr = /a+bc/; // 정규 표현식 리터럴을 이용한 생성
+		var regObj = new RegExp('a+bc'); // RegExp 객체를 이용한 생성
+		document.getElementById('text').innerHTML = regStr + '<br/>' + regObj + '<br/><br/>';
+
+		var targetStr = 'bcabcAB';
+		var strReg = /AB/; // 검색 패턴 비교시 기본 설정으로 대소문자 구분
+		var strUsingFlag = /AB/i; // new RegExp('AB', 'i')와 동일
+		document.getElementById('text2').innerHTML = 
+			targetStr.search(strReg) + '<br/>' + targetStr.search(strUsingFlag) + '<br/><br/>';
+
+		var firstStr = 'Pho';
+		var secondStr = 'phP';
+		var strReg = /^p/; //  단어의 맨 처음에 문자 'p'가 나타나는 경우 검색
+		document.getElementById('text3').innerHTML = 
+			firstStr.match(strReg) + '<br/>' + secondStr.match(strReg);
+	</script>
+</body>
+</html>
