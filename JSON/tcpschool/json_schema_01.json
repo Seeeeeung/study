@@ -1,0 +1,12 @@
+{
+	"title": "강아지 스키마",
+	"description": "이 스키마는 강아지에 관한 데이터를 검증하기 위해 작성된 스키마임",
+	"type": "object",
+	"properties": {
+		"name": {"type": "string"},
+		"age": {"type": "integer"},
+		"owner": {
+			"type": "object"
+		}
+	}
+}

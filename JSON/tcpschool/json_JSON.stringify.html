@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>stringify</title>
+</head>
+<body>
+	<p id="json"></p>
+	<p id="json2"></p>
+	<p id="json3"></p>
+
+	<script>
+		var dog = {name: "식빵", family: "웰시코기", age: 1, weight: 2.14}; // 자바스크립트 객체
+
+		var data = JSON.stringify(dog); // 문자열로 반환
+		document.getElementById('json').innerHTML = data;
+
+		var data2 = '{"name": "식빵", "family": "웰시코기", "age": 1, "weight": 2.14}';
+
+		var dog2 = JSON.parse(data2);
+		document.getElementById('json2').innerHTML = dog2 + '<br/>';
+		document.getElementById('json2').innerHTML += dog2.name + ', ' + dog2.family;
+
+		var date = new Date();
+		var str = date.toJSON();
+
+		document.getElementById('json3').innerHTML = date + '<br/>';
+		document.getElementById('json3').innerHTML += str;
+	</script>
+</body>
+</html>
