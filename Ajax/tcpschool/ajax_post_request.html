@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charest="UTF-8">
+<title>Ajax request</title>
+<script>
+	function sendRequest() {
+		var httpRequest = new XMLHttpRequest();
+		httpRequest.onreadystatechange = function() {
+			if (httpRequest.readyState == XMLHttpRequest.DONE && httpRequest.status == 200) {
+				document.getElementById('text').innerHTML = httpRequest.responseText;
+			}
+		};
+		// POST 방식의 요청은 데이터를 Http헤더에 포함시켜 전송함
+		httpRequest.open('POST', './ajax_intro_data.php', true);
+		httpRequest.setRequestHeader('Content-Type', 'application/???');
+		// x-www-form-urlencoded 이거나 xml
+		httpRequest.send('./ajax_intro_data.txt');
+	}
+</script>
+</head>
+<body>
+	<h1>POST 방식의 요청</h1>
+	<button type="button" onclick="sendRequest()">POST 방식으로 요청보내기</button>
+	<p id="text"></p>
+</body>
+</html>

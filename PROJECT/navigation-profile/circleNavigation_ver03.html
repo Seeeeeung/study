@@ -1,47 +1,74 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Hello</title>
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-	<style>
-		@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap');
-
-		html, body {margin:0; padding:0; font-family: 'Nanum Gothic', sans-serif;}
-		#app {width: 100%; height: 100vh; display: flex; justify-content: center; align-items: center; }
-	</style>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hello</title>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="./static/css/common.css" rel="stylesheet">
+<link href="./static/css/contents.css" rel="stylesheet">
 </head>
 <body>
 	<!-- app -->
 	<div id="app">
-		<!-- layer-popup -->
-		<div class="layer-popup">
-			<div class="login-lock-btn">
-				<button type="button" class="loginBtn" title="로그인">👆</button>
-			</div>
-			
-			<div class="layer-wrap">
-				
-			</div>
-			
-			<div class="bg-overlay"></div>
-		</div>
-		<!-- //layer-popup -->
-	</div>
+		<!-- layer-wrap -->
+		<div class="layer-wrap">
+			<!-- layer-lock -->
+			<div class="layer-lock hidden">
+				<button type="button" class="btn-login bg-dark-green" title="로그인 화면 열기">👆</button>
 
-	<main>
-		<div class="contents">
-			<div class="current-img">
-				<img src="./img/bg-bear.jpg" alt="사용자 지정 이미지" />
+				<div class="btn-bg bg-green"></div>
 			</div>
-			<div class="infomation">
-				
+			<!-- //layer-lock -->
+			
+			<!-- layer-login -->
+			<div class="layer-login">
+				<h1 class="logo"><img src="./static/img/bg/bg-bear.jpg" alt="곰돌이" /></h1>
+
+				<!-- layer-contents -->
+				<div class="layer-contents">
+					<!-- inp-wrap -->
+					<div class="inp-wrap error" aria-controls="toast-msg01">
+						<input type="text" title="이름 입력" placeholder="이름을 입력해주세요" id="id" class="ui-input user-name mb15" />
+					</div>
+					<!-- //inp-wrap -->
+						
+						<div class="btn-group">
+							<button type="button" id="login" class="ui-btn color-dark-green bg-yellow-green">로그인</button>
+							<button type="button" id="search-name" class="ui-btn color-dark-green bg-yellow-green">이름찾기</button>
+						</div>
+						<button type="button" id="join" class="ui-btn btn-block color-dark-green bg-yellow-green">회원가입</button>
+				</div>
+				<!-- //layer-contents -->
+
+				<!-- layer-popup -->
+				<div class="layer-popup">
+					<!-- no-account -->
+					<div class="no-account">
+						<p class="error">존재하지 않는 계정입니다</p>
+						<button type="button" class="layer-close"><i class="material-icons .font13"></i></button>
+					</div>
+					<!-- //no-account -->
+
+					<!--  -->
+
+				</div>
+				<!-- //layer-popup -->
 			</div>
+			<!-- //layer-login -->
+
+			<!-- ui-toast -->
+			<div class="ui-toast" aria-live="toast-msa01">이름을 입력해주세요</div>
+			<!-- //ui-toast -->
 		</div>
-	</main>
+		<!-- //layer-wrap -->
+		
+		<main>
+		</main>
+	</div>
 	<!-- //app -->
+
+	<script src="./static/js/ui-common.js"></script>
 </body>
 </html>
