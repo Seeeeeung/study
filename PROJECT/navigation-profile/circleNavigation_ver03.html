@@ -21,50 +21,119 @@
 				<div class="btn-bg bg-green"></div>
 			</div>
 			<!-- //layer-lock -->
-			
-			<!-- layer-login -->
-			<div class="layer-login">
-				<h1 class="logo"><img src="./static/img/bg/bg-bear.jpg" alt="곰돌이" /></h1>
 
-				<!-- layer-contents -->
-				<div class="layer-contents">
+			<!-- layer-popup -->
+			<div class="layer-popup">
+				<!-- no-account -->
+				<div class="popup no-account">
+					<p class="txt">존재하지 않는 닉네임입니다 😥</p>
+					<button type="button" title="닫기" class="layer-close"><i class="material-icons iconset ico-close">close</i></button>
+				</div>
+				<!-- //no-account -->
+
+				<!-- wrong-account -->
+				<div class="popup wrong-account">
+					<p class="txt">잘못된 닉네임을 입력하셨습니다 🥺</p>
+					<button type="button" title="닫기" class="layer-close"><i class="material-icons iconset ico-close">close</i></button>
+				</div>
+				<!-- //wrong-account -->
+
+				<!-- search-name -->
+				<div class="popup search-name">
+					<p class="txt inp-label fw700">당신의 이름을 입력해주세요</p>
+
 					<!-- inp-wrap -->
-					<div class="inp-wrap error" aria-controls="toast-msg01">
-						<input type="text" title="이름 입력" placeholder="이름을 입력해주세요" id="id" class="ui-input user-name mb15" />
+					<div class="inp-wrap col2 mt20" aria-controls="toast-msg01">
+						<input type="search" title="실명입력" placeholder="주민등록상 이름을 입력해주세요" id="search-user" class="ui-input" />
+						<button type="button" class="ui-btn btn-search font13 color-white bg-green">검색</button>
+						<p class="error">이름을 입력해주세요</p>
 					</div>
 					<!-- //inp-wrap -->
-						
-						<div class="btn-group">
-							<button type="button" id="login" class="ui-btn color-dark-green bg-yellow-green">로그인</button>
-							<button type="button" id="search-name" class="ui-btn color-dark-green bg-yellow-green">이름찾기</button>
-						</div>
-						<button type="button" id="join" class="ui-btn btn-block color-dark-green bg-yellow-green">회원가입</button>
-				</div>
-				<!-- //layer-contents -->
 
-				<!-- layer-popup -->
-				<div class="layer-popup">
-					<!-- no-account -->
-					<div class="no-account">
-						<p class="error">존재하지 않는 계정입니다</p>
-						<button type="button" class="layer-close"><i class="material-icons .font13"></i></button>
+					<!-- result -->
+					<ul class="result text-center"></ul>
+					<!-- //result -->
+
+					<!-- no-result -->
+					<!-- <p class="txt no-result fw700 text-center">검색결과가 없습니다</p> -->
+					<!-- //no-result -->
+
+					<button type="button" title="닫기" class="layer-close"><i class="material-icons iconset ico-close">close</i></button>
+				</div>
+				<!-- //search-name -->
+
+				<!-- join -->
+				<div class="popup join">
+					<h2 class="tit">회원가입</h2>
+
+					<!-- form-list -->
+					<ul class="form-list font13 mt20">
+						<li>
+							<span class="inp-label">이름</span>
+							<div class="inp-wrap">
+								<input type="text" title="이름" class="ui-input" placeholder="주민등록상의 이름을 입력해주세요" />
+								<p class="error">이름을 입력해주세요</p>
+							</div>
+						</li>
+						<li>
+							<span class="inp-label">닉네임</span>
+							<div class="inp-wrap">
+								<input type="text" title="닉네임" class="ui-input" placeholder="설정하실 닉네임을 입력해주세요" />
+								<p class="error">닉네임을 입력해주세요</p>
+							</div>
+						</li>
+						<li>
+							<p class="txt warn"><i class="iconset ico-info material-icons color-yellow">warning_amber</i><strong>WARNING</strong></p>
+							<p class="txt-info txt">개인정보를 보호하시려면 회원가입을 취소해 주세요.<br/>이 웹 페이지는 당신의 <strong>개인정보를 보호해 드릴 수 없습니다.</strong></p>
+						</li>
+					</ul>
+					<!-- //form-list -->
+
+					<!-- btn-group -->
+					<div class="btn-group mt20">
+						<button type="button" class="ui-btn btn-join color-white bg-green">확인</button>
+						<button type="button" class="ui-btn btn-close color-white bg-gray ml5">취소</button>
 					</div>
-					<!-- //no-account -->
-
-					<!--  -->
-
+					<!-- //btn-group -->
 				</div>
-				<!-- //layer-popup -->
-			</div>
-			<!-- //layer-login -->
+				<!-- //join -->
 
-			<!-- ui-toast -->
-			<div class="ui-toast" aria-live="toast-msa01">이름을 입력해주세요</div>
-			<!-- //ui-toast -->
+				<div class="bg-overlay"></div>
+			</div>
+			<!-- //layer-popup -->
 		</div>
 		<!-- //layer-wrap -->
 		
 		<main>
+			<!-- container-login -->
+			<div class="container-login">
+				<h1 class="logo"><img src="./static/img/bg/bg-bear.jpg" alt="곰돌이" /></h1>
+	
+				<!-- contents-login -->
+				<div class="contents-login">
+					<span class="inp-label fw700">안녕하세요! 당신은 누구인가요?</span>
+					<!-- inp-wrap -->
+					<div class="inp-wrap mt15" aria-controls="toast-msg01">
+						<input type="text" title="닉네임 입력" placeholder="닉네임을 입력해주세요" id="user-name" class="ui-input" />
+						<p class="error">닉네임을 입력해주세요</p>
+					</div>
+					<!-- //inp-wrap -->
+						
+					<div class="btn-group">
+						<button type="button" id="login" class="ui-btn color-white bg-green">로그인</button>
+						<button type="button" id="search-name" class="ui-btn color-white bg-dark-green ml5">닉네임찾기</button>
+					</div>
+					<button type="button" id="join" class="ui-btn btn-block color-white bg-green">회원가입</button>
+				</div>
+				<!-- //contents-login -->
+			</div>
+			<!-- //container-login -->
+
+
+	
+			<!-- ui-toast -->
+			<div class="ui-toast" aria-live="toast-msa01">이름을 입력해주세요</div>
+			<!-- //ui-toast -->
 		</main>
 	</div>
 	<!-- //app -->
