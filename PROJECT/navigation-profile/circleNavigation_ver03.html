@@ -23,23 +23,23 @@
 			<!-- //layer-lock -->
 
 			<!-- layer-popup -->
-			<div class="layer-popup">
+			<div id="layer-popup">
 				<!-- no-account -->
-				<div class="popup no-account">
+				<div id="no-account" class="popup">
 					<p class="txt">존재하지 않는 닉네임입니다 😥</p>
 					<button type="button" title="닫기" class="layer-close"><i class="material-icons iconset ico-close">close</i></button>
 				</div>
 				<!-- //no-account -->
 
 				<!-- wrong-account -->
-				<div class="popup wrong-account">
+				<div id="wrong-account" class="popup">
 					<p class="txt">잘못된 닉네임을 입력하셨습니다 🥺</p>
 					<button type="button" title="닫기" class="layer-close"><i class="material-icons iconset ico-close">close</i></button>
 				</div>
 				<!-- //wrong-account -->
 
 				<!-- search-name -->
-				<div class="popup search-name">
+				<div id="search-name" class="popup">
 					<p class="txt inp-label fw700">당신의 이름을 입력해주세요</p>
 
 					<!-- inp-wrap -->
@@ -63,7 +63,7 @@
 				<!-- //search-name -->
 
 				<!-- join -->
-				<div class="popup join">
+				<div id="join" class="popup">
 					<h2 class="tit">회원가입</h2>
 
 					<!-- form-list -->
@@ -92,7 +92,7 @@
 					<!-- btn-group -->
 					<div class="btn-group mt20">
 						<button type="button" class="ui-btn btn-join color-white bg-green">확인</button>
-						<button type="button" class="ui-btn btn-close color-white bg-gray ml5">취소</button>
+						<button type="button" class="ui-btn btn-close layer-close color-white bg-gray ml5">취소</button>
 					</div>
 					<!-- //btn-group -->
 				</div>
@@ -121,7 +121,7 @@
 						
 					<div class="btn-group">
 						<button type="button" id="login" class="ui-btn color-white bg-green">로그인</button>
-						<button type="button" id="search-name" class="ui-btn color-white bg-dark-green ml5">닉네임찾기</button>
+						<button type="button" id="search" class="ui-btn color-white bg-dark-green ml5">닉네임찾기</button>
 					</div>
 					<button type="button" id="join" class="ui-btn btn-block color-white bg-green">회원가입</button>
 				</div>

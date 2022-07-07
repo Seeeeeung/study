@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /* layer-lock */
-.btn-login.bg-dark-green {width:60px; height:60px; position:absolute; z-index:1; font-size:20px; border:0.5px solid #999; border-radius:60px; box-shadow:0px 2px 2px #5a5a5a, 2px 0px 2px #5a5a5a;}
-.btn-login:active {box-shadow:inset 1px 1px 1px #5a5a5a65;}
+.btn-lock.bg-dark-green {width:60px; height:60px; position:absolute; z-index:1; font-size:20px; border:0.5px solid #999; border-radius:60px; box-shadow:0px 2px 2px #5a5a5a, 2px 0px 2px #5a5a5a;}
+.btn-lock:active {box-shadow:inset 1px 1px 1px #5a5a5a65;}
 .btn-bg {width:70px; height:70px; position:absolute; z-index:0; border-radius:70px; box-shadow:1px 2px 5px #bbb;}
 
 /* layer-login */
