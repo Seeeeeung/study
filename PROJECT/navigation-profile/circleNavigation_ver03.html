@@ -16,7 +16,7 @@
 		<div class="layer-wrap">
 			<!-- layer-lock -->
 			<div class="layer-lock hidden">
-				<button type="button" class="btn-login bg-dark-green" title="로그인 화면 열기">👆</button>
+				<button type="button" class="btn-lock bg-dark-green" title="로그인 화면 열기">👆</button>
 
 				<div class="btn-bg bg-green"></div>
 			</div>
@@ -44,7 +44,7 @@
 
 					<!-- inp-wrap -->
 					<div class="inp-wrap col2 mt20" aria-controls="toast-msg01">
-						<input type="search" title="실명입력" placeholder="주민등록상 이름을 입력해주세요" id="search-user" class="ui-input" />
+						<input type="search" title="실명입력" placeholder="주민등록상 이름을 입력해주세요" name="inp-user-name" class="ui-input user-name search-form" />
 						<button type="button" class="ui-btn btn-search font13 color-white bg-green">검색</button>
 						<p class="error">이름을 입력해주세요</p>
 					</div>
@@ -71,14 +71,14 @@
 						<li>
 							<span class="inp-label">이름</span>
 							<div class="inp-wrap">
-								<input type="text" title="이름" class="ui-input" placeholder="주민등록상의 이름을 입력해주세요" />
+								<input type="text" title="이름" name="inp-push-user-name" class="ui-input user-name" placeholder="주민등록상의 이름을 입력해주세요" />
 								<p class="error">이름을 입력해주세요</p>
 							</div>
 						</li>
 						<li>
 							<span class="inp-label">닉네임</span>
 							<div class="inp-wrap">
-								<input type="text" title="닉네임" class="ui-input" placeholder="설정하실 닉네임을 입력해주세요" />
+								<input type="text" title="닉네임" name="inp-push-user-nick" class="ui-input user-nick-name" placeholder="설정하실 닉네임을 입력해주세요" />
 								<p class="error">닉네임을 입력해주세요</p>
 							</div>
 						</li>
@@ -91,7 +91,7 @@
 
 					<!-- btn-group -->
 					<div class="btn-group mt20">
-						<button type="button" class="ui-btn btn-join color-white bg-green">확인</button>
+						<button type="button" class="ui-btn btn-push color-white bg-green">확인</button>
 						<button type="button" class="ui-btn btn-close layer-close color-white bg-gray ml5">취소</button>
 					</div>
 					<!-- //btn-group -->
@@ -111,19 +111,19 @@
 	
 				<!-- contents-login -->
 				<div class="contents-login">
-					<span class="inp-label fw700">안녕하세요! 당신은 누구인가요?</span>
+					<p class="inp-label fw700">안녕하세요! 당신은 누구인가요?</p>
 					<!-- inp-wrap -->
 					<div class="inp-wrap mt15" aria-controls="toast-msg01">
-						<input type="text" title="닉네임 입력" placeholder="닉네임을 입력해주세요" id="user-name" class="ui-input" />
+						<input type="text" title="닉네임 입력" placeholder="닉네임을 입력해주세요" name="inp-current-user" class="ui-input user-nick-name login-form" />
 						<p class="error">닉네임을 입력해주세요</p>
 					</div>
 					<!-- //inp-wrap -->
 						
 					<div class="btn-group">
-						<button type="button" id="login" class="ui-btn color-white bg-green">로그인</button>
-						<button type="button" id="search" class="ui-btn color-white bg-dark-green ml5">닉네임찾기</button>
+						<button type="button" class="ui-btn btn-login color-white bg-green">로그인</button>
+						<button type="button" class="ui-btn btn-open-layer-search color-white bg-dark-green ml5">닉네임찾기</button>
 					</div>
-					<button type="button" id="join" class="ui-btn btn-block color-white bg-green">회원가입</button>
+					<button type="button" class="ui-btn btn-join btn-block color-white bg-green">회원가입</button>
 				</div>
 				<!-- //contents-login -->
 			</div>
@@ -132,7 +132,7 @@
 
 	
 			<!-- ui-toast -->
-			<div class="ui-toast" aria-live="toast-msa01">이름을 입력해주세요</div>
+			<div class="ui-toast" aria-live="toast-msa01">닉네임을 입력해주세요</div>
 			<!-- //ui-toast -->
 		</main>
 	</div>
