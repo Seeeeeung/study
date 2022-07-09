@@ -44,19 +44,15 @@
 
 					<!-- inp-wrap -->
 					<div class="inp-wrap col2 mt20" aria-controls="toast-msg01">
-						<input type="search" title="실명입력" placeholder="주민등록상 이름을 입력해주세요" name="inp-user-name" class="ui-input user-name search-form" />
+						<input type="search" title="실명입력" placeholder="주민등록상 이름을 입력해주세요" class="ui-input search-form" />
 						<button type="button" class="ui-btn btn-search font13 color-white bg-green">검색</button>
 						<p class="error">이름을 입력해주세요</p>
 					</div>
 					<!-- //inp-wrap -->
 
 					<!-- result -->
-					<ul class="result text-center"></ul>
+					<div class="result text-center"></div>
 					<!-- //result -->
-
-					<!-- no-result -->
-					<!-- <p class="txt no-result fw700 text-center">검색결과가 없습니다</p> -->
-					<!-- //no-result -->
 
 					<button type="button" title="닫기" class="layer-close"><i class="material-icons iconset ico-close">close</i></button>
 				</div>
@@ -71,15 +67,17 @@
 						<li>
 							<span class="inp-label">이름</span>
 							<div class="inp-wrap">
-								<input type="text" title="이름" name="inp-push-user-name" class="ui-input user-name" placeholder="주민등록상의 이름을 입력해주세요" />
+								<input type="text" title="이름" class="ui-input user-name new-user" placeholder="주민등록상의 이름을 입력해주세요" />
 								<p class="error">이름을 입력해주세요</p>
+								<p class="had-name font10">등록되어있는 계정입니다. 다른 이름을 입력해주세요</p>
 							</div>
 						</li>
 						<li>
 							<span class="inp-label">닉네임</span>
 							<div class="inp-wrap">
-								<input type="text" title="닉네임" name="inp-push-user-nick" class="ui-input user-nick-name" placeholder="설정하실 닉네임을 입력해주세요" />
+								<input type="text" title="닉네임" class="ui-input user-nick-name new-user" placeholder="설정하실 닉네임을 입력해주세요" />
 								<p class="error">닉네임을 입력해주세요</p>
+								<p class="had-name font10">등록되어있는 닉네임입니다. 다른 닉네임을 입력해주세요</p>
 							</div>
 						</li>
 						<li>
@@ -114,7 +112,7 @@
 					<p class="inp-label fw700">안녕하세요! 당신은 누구인가요?</p>
 					<!-- inp-wrap -->
 					<div class="inp-wrap mt15" aria-controls="toast-msg01">
-						<input type="text" title="닉네임 입력" placeholder="닉네임을 입력해주세요" name="inp-current-user" class="ui-input user-nick-name login-form" />
+						<input type="text" title="닉네임 입력" placeholder="닉네임을 입력해주세요" class="ui-input login-form" />
 						<p class="error">닉네임을 입력해주세요</p>
 					</div>
 					<!-- //inp-wrap -->

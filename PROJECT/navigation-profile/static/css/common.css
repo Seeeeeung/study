@@ -27,6 +27,7 @@ img {width:inherit; height:inherit;}
 .ml5 {margin-left:5px !important;}
 .mr5 {margin-right:5px !important;}
 .text-center {text-align:center !important;}
+.font10 {font-size:10px !important;}
 .font13 {font-size:13px !important;}
 .font15 {font-size:15px !important;}
 .fw700 {font-weight:700 !important;}
@@ -60,9 +61,10 @@ input {border:none;}
 .inp-label.on {color:#43a343}
 /* error */
 .inp-wrap .error {display:none;}
-.inp-wrap.error:after {display:block; position:absolute; top:50%; right:0; width: 44px; height:44px; background:url('../img/bg/bg-field-error.png') no-repeat 50% 50%; background-size:cover; transform:translateY(-50%); content:'';}
-.inp-wrap.error .ui-input {border-color:red;}
-.inp-wrap.error .error {display:block; position:absolute; top:36px; left:10px; color:red; margin:0; text-align:justify; font-size:12px; line-height:1.6rem;}
+.inp-wrap .had-name {display:none;}
+.inp-wrap.error:after, .inp-wrap.had-user:after {display:block; position:absolute; top:50%; right:0; width: 44px; height:44px; background:url('../img/bg/bg-field-error.png') no-repeat 50% 50%; background-size:cover; transform:translateY(-50%); content:'';}
+.inp-wrap.error .ui-input, .inp-wrap.had-user .ui-input {border-color:red;}
+.inp-wrap.error .error, .inp-wrap.had-user .had-name {display:block; position:absolute; top:36px; left:10px; color:red; margin:0; text-align:justify; font-size:12px; line-height:1.6rem;}
 .inp-wrap.error.col2:after {right:50px;}
 
 /* POPUP */
