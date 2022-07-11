@@ -9,21 +9,17 @@ btnActive.addEventListener('click', function() {
 // 모달 웹접근성 고려해서 수정하기 **********
 
 // login
-let reqLabel = document.querySelectorAll('.inp-label');
 const $inp = document.querySelectorAll('.ui-input');
 // 인풋 박스 포커스 기능
 for (let i=0; i < $inp.length; i++) {
-	for(let j=0; j<reqLabel.length; j++){
-		$inp[i].onfocus = function() {
-			reqLabel[j].classList.add('on');
-		}
-		
-		$inp[i].onblur = function() {
-			reqLabel[j].classList.remove('on')
-		}
+	$inp[i].onfocus = function() {
+		this.closest('.inp-wrap').previousElementSibling.classList.add('on');
+	}
+	
+	$inp[i].onblur = function() {
+		this.closest('.inp-wrap').previousElementSibling.classList.remove('on')
 	}
 }
-
 // 유저 데이터베이스
 var userData = [
 	{
@@ -39,8 +35,7 @@ var userData = [
 		"id":"김승연id2"
 	}
 ];
-userData.push({"name":"푸쉬"});
-console.log(userData)
+let newUserData = {};
 
 const $popup = document.getElementById('layer-popup');
 const $wrongAccount = document.getElementById('wrong-account');
@@ -50,17 +45,6 @@ const $newUser = document.getElementById('join');
 
 // 모달창 오픈
 const openLayer = function() {$popup.classList.add('active');}
-// 모달창 닫기(리셋)
-let $btnCloseLayer = document.querySelectorAll('.layer-close')
-function closeLayer() {
-	$popup.classList.remove('active');
-	$noAccount.classList.remove('on');
-	$wrongAccount.classList.remove('on');
-	$searchUser.classList.remove('on');
-}
-for (let i = 0; i < $btnCloseLayer.length; i++) {
-	$btnCloseLayer[i].addEventListener('click', closeLayer);
-}
 
 
 for (let i=0; i < $inp.length; i++) {	
@@ -82,18 +66,15 @@ for (let i=0; i < $inp.length; i++) {
 			toastTarget.classList.add('active');
 		}
 	}
-	// 회원가입 에러 기능
-	function joinError() {
-		$this.closest('.inp-wrap').classList.add('error')
-	}
-	function hadName() {
-		$this.closest('.inp-wrap').classList.add('had-user');
-	}
 	// 공백 에러 클래스 제거
 	function removeError() {
 		$this.closest('.inp-wrap').classList.remove('error');
-		$this.closest('.inp-wrap').classList.remove('had-user');
 		toastTarget.classList.remove('active');
+	}
+	// 유효성 클래스 제거
+	function removeValidate() {
+		$this.closest('.inp-wrap').classList.remove('validate');
+		$errorText.classList.remove('validate')
 	}
 	
 	// 로그인 인풋
@@ -151,35 +132,90 @@ for (let i=0; i < $inp.length; i++) {
 		}
 	}
 	// 회원가입
-	function joinFormHandler () {
+	// 회원 이름
+	function joinFormNameHandler () {
 		$currentUserName = $inp[i].value;
 		for (let j=0; j < userData.length; j++) {
-
-			if(userData[j].id == $currentUserName || userData[j].name == $currentUserName) {
-				removeError();
-				hadName();
+			console.log('유저이름')
+			$errorText = $this.nextElementSibling;
+			$errorText.innerText = '';
+			
+			if(userData[j].name == $currentUserName) {
+				// removeError();
+				removeValidate();
+				$this.closest('.inp-wrap').classList.add('error')
+				$errorText.classList.add('error')
+				console.log($errorText);
+				$errorText.innerText = '등록되어있는 계정입니다. 다른 이름을 입력해주세요'
+				$this.focus();
 				console.log('등록된 이름')
+				console.log(userData[j].id)
 				break;
 			}	else if (!$currentUserName) {
-				removeError()
-				joinError()
+				// removeError()
+				removeValidate()
+				
+				$this.closest('.inp-wrap').classList.add('error')
+				$errorText.classList.add('error')
+				$errorText.innerText = '이름을 입력해주세요'
+				$this.focus();
 				console.log('공백')
 			} else {
 				removeError();
-				console.log('푸쉬'); // 따로 푸쉬됨
-				// 따로 푸쉬되는거 처리하기 ****************************
-				if ($this.classList.contains('user-name')) {
-					userData.push({"name":$currentUserName})
-					console.log(userData);
-					break;
-				} else if($this.classList.contains('user-nick-name')) {
-					userData.push({"id":$currentUserName})
-					console.log(userData);
-					// console.log('유저 닉네임 푸쉬')
-				}
+				$errorText.classList.remove('error');
+				
+				$this.closest('.inp-wrap').classList.add('validate');
+				$errorText.classList.add('validate');
+				
+				$errorText.innerText = '사용가능한 이름입니다'
 			}
-		}
-	}
+			// console.log($this)
+		
+		} // for
+	} // function
+
+	// 회원 닉네임
+	function joinFormNickNameHandler () {
+		$currentUserName = $inp[i].value;
+		for (let j=0; j < userData.length; j++) {
+			console.log('유저닉네임')
+			$errorText = $this.nextElementSibling;
+			$errorText.innerText = '';
+			
+			if(userData[j].id == $currentUserName) {
+				// removeError();
+				removeValidate();
+				$this.closest('.inp-wrap').classList.add('error')
+				$errorText.classList.add('error')
+				console.log($errorText);
+				$errorText.innerText = '등록되어있는 닉네임입니다. 다른 닉네임을 입력해주세요'
+				$this.focus();
+				console.log('등록된 닉네임')
+				console.log(userData[j].id)
+				break;
+			}	else if (!$currentUserName) {
+				// removeError()
+				removeValidate()
+				
+				$this.closest('.inp-wrap').classList.add('error')
+				$errorText.classList.add('error')
+				$errorText.innerText = '닉네임을 입력해주세요'
+				$this.focus();
+				console.log('공백')
+			} else {
+				removeError();
+				$errorText.classList.remove('error');
+
+				$this.closest('.inp-wrap').classList.add('validate');
+				$errorText.classList.add('validate');
+				$errorText.innerText = '사용가능한 닉네임입니다'
+			}
+			// console.log(newUserData)
+		
+		
+		} // for
+	} // function
+
 
 	
 	// 화면 구분
@@ -214,18 +250,43 @@ for (let i=0; i < $inp.length; i++) {
 		
 		let btnSearch = document.querySelector('.btn-search');
 		btnSearch.addEventListener('click', function() {
+			// closeLayer()
 			searchFormHandler();
 		})
-	} else if ($this.classList.contains('new-user')) {
-		// 회원가입
+	} else if ($this.classList.contains('new-user')) { // 현재 인풋이 회원가입 폼일때
 		$inp[i].addEventListener('keyup',function (e) {
 			if (e.keyCode === 13) {
-				console.log($this)
-				joinFormHandler()
-				console.log($this)
+				// console.log($this)
+				if ($this.classList.contains('user-name')) {
+					joinFormNameHandler();
+				} else if ($this.classList.contains('user-nick-name')) {
+					joinFormNickNameHandler()
+				}
 			}
 		});
+
 	}
+	let btnPush = document.querySelector('.btn-push');
+	btnPush.addEventListener('click', function(){
+		if ($this.classList.contains('user-name')) {
+			joinFormNameHandler();
+		} else if ($this.classList.contains('user-nick-name')) {
+			joinFormNickNameHandler();
+			validatePush()
+		}
+
+		function validatePush() {
+			if ($this.closest('.inp-wrap').classList.contains('validate')) {
+				
+				console.log($this)
+				let userName = document.querySelector('.user-name').value;
+				let userId = document.querySelector('.user-nick-name').value;
+				userData.push({"name":userName, "id":userId});
+				console.log(userData)
+				closeLayer()
+			}
+		}
+	})
 
 	// join popup
 	// 버튼 클릭시 팝업 화면 나오기
@@ -235,7 +296,25 @@ for (let i=0; i < $inp.length; i++) {
 		openLayer();
 		$newUser.classList.add('on');
 	})
-	openLayer();
-	$newUser.classList.add('on');
-
+	// openLayer();
+	// $newUser.classList.add('on');
 } // for
+
+// 모달창 닫기(리셋)
+let $btnCloseLayer = document.querySelectorAll('.layer-close')
+function closeLayer() {
+	$popup.classList.remove('active');
+	$noAccount.classList.remove('on');
+	$wrongAccount.classList.remove('on');
+	$searchUser.classList.remove('on');
+	$newUser.classList.remove('on');
+}
+for (let i = 0; i < $btnCloseLayer.length; i++) {
+	$btnCloseLayer[i].addEventListener('click', closeLayer);
+	$btnCloseLayer[i].addEventListener('click', function() {
+		let reset = document.querySelectorAll('.ui-input');
+		for (j=0; j<reset.length; j++) {
+			reset[j].value =null;
+		}
+	});
+}

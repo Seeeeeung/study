@@ -58,14 +58,18 @@ input {border:none;}
 .inp-wrap .ui-input:focus {border-color:#43a343; caret-color:#43a343}
 .inp-wrap .ui-input:valid:not(:placeholder-shown) {border-color:#43a343;}
 .inp-label {font-size:13px; cursor:default;}
-.inp-label.on {color:#43a343}
+.inp-label.on {color:#43a343 }
 /* error */
-.inp-wrap .error {display:none;}
-.inp-wrap .had-name {display:none;}
-.inp-wrap.error:after, .inp-wrap.had-user:after {display:block; position:absolute; top:50%; right:0; width: 44px; height:44px; background:url('../img/bg/bg-field-error.png') no-repeat 50% 50%; background-size:cover; transform:translateY(-50%); content:'';}
-.inp-wrap.error .ui-input, .inp-wrap.had-user .ui-input {border-color:red;}
-.inp-wrap.error .error, .inp-wrap.had-user .had-name {display:block; position:absolute; top:36px; left:10px; color:red; margin:0; text-align:justify; font-size:12px; line-height:1.6rem;}
+.inp-wrap .error, .inp-wrap .validate {display:none;}
+.inp-wrap.error:after, .inp-wrap.validate:after {display:block; position:absolute; top:50%; right:0; width: 44px; height:44px; transform:translateY(-50%); content:'';}
+.inp-wrap.error:after {background:url('../img/bg/bg-field-error.png') no-repeat 50% 50%; background-size:cover;}
+.inp-wrap.error .ui-input:valid:not(:placeholder-shown), .inp-wrap.error .ui-input {border-color:red;}
+.inp-wrap.error .error {display:block; position:absolute; top:36px; left:0; color:red; margin:0; text-align:justify; font-size:12px; line-height:1.6rem;}
 .inp-wrap.error.col2:after {right:50px;}
+/* validate */
+.inp-wrap.validate:after {background:url('../img/bg/bg-field-validate.png') no-repeat 50% 50%; background-size:cover;}
+.inp-wrap.validate .ui-inp:valid:not(:placeholder-shown), .inp-wrap.validate .ui-input {border-color:#43a343;}
+.inp-wrap.validate .validate {display:block; position:absolute; top:36px; left:0; color:#43a343; margin:0; text-align:justify; font-size:12px; line-height:1.6rem;}
 
 /* POPUP */
 #layer-popup {visibility:hidden; display:flex; justify-content:center; align-items:center; position:fixed; top:0; bottom:0; left:0; right:0; z-index:1;}
