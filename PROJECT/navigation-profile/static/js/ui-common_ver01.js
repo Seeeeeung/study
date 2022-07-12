@@ -22,7 +22,7 @@ for (let i=0; i < $inp.length; i++) {
 			reqLabel[j].classList.remove('on')
 		} 
 	}
-}
+} // 작동안함 에러있음
 
 const btnLogin = document.getElementById('login');
 let inp = document.querySelectorAll('.inp-wrap');

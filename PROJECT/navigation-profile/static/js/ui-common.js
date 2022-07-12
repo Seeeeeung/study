@@ -5,21 +5,8 @@ btnActive.addEventListener('click', function() {
 	layerActive.classList.add('active');
 });
 
-// 7월 6일 할거 className 도 만들어보기, layer-login 1. input == null error(완료) , 2. input == not friend popup, 3. input == true login -> nextpage, 4. 이름찾기-> 이름입력 -> 회원정보 미등록 / 등록 => 이름나옴 , 5. 회원가입 -> 이름 등록+사진등록
 // 모달 웹접근성 고려해서 수정하기 **********
 
-// login
-const $inp = document.querySelectorAll('.ui-input');
-// 인풋 박스 포커스 기능
-for (let i=0; i < $inp.length; i++) {
-	$inp[i].onfocus = function() {
-		this.closest('.inp-wrap').previousElementSibling.classList.add('on');
-	}
-	
-	$inp[i].onblur = function() {
-		this.closest('.inp-wrap').previousElementSibling.classList.remove('on')
-	}
-}
 // 유저 데이터베이스
 var userData = [
 	{
@@ -45,31 +32,42 @@ const $newUser = document.getElementById('join');
 
 // 모달창 오픈
 const openLayer = function() {$popup.classList.add('active');}
-
-
+const $inp = document.querySelectorAll('.ui-input');
 for (let i=0; i < $inp.length; i++) {	
 	let $currentUserName = $inp[i].value;
 	console.log($currentUserName);
 
-	// 공백 에러 클래스 작동
+	// 인풋 박스 포커스 기능 
+	// 이전 코드에서 에러를 발생하는 원인 노션에 적어둠(log 파일 참고)
+	$inp[i].onfocus = function() {
+		this.closest('.inp-wrap').previousElementSibling.classList.add('on');
+	}
+	$inp[i].onblur = function() {
+		this.closest('.inp-wrap').previousElementSibling.classList.remove('on')
+	}
+
 	let $this = $inp[i];
 	let $inpWrap = document.querySelectorAll('.inp-wrap');
-	const toastTarget = document.querySelector('.ui-toast');
+	const toastTarget = document.querySelectorAll('.ui-toast');
+	// 공백 에러 클래스 작동
 	function activeError() {
 		// 전체 에러 클래스 제거
 		for (let index=0; index<$inpWrap.length; index++) {
 			$inpWrap[index].classList.remove('error');
 		}
 		console.log($this)
-		$this.closest('.inp-wrap').classList.add('error')
-		if ($this.classList.contains('login-form')) { // login form 부분일때
-			toastTarget.classList.add('active');
-		}
+		$this.focus()
+		$this.closest('.inp-wrap').classList.add('error');
+		if ($this.parentElement.hasAttribute('aria-controls','toast-msg01')) { // login form 부분일때
+			toastTarget[0].classList.add('active');
+		} 
 	}
 	// 공백 에러 클래스 제거
 	function removeError() {
 		$this.closest('.inp-wrap').classList.remove('error');
-		toastTarget.classList.remove('active');
+		for (let k=0; k<toastTarget.length; k++) {
+			toastTarget[k].classList.remove('active');
+		}
 	}
 	// 유효성 클래스 제거
 	function removeValidate() {
@@ -86,6 +84,7 @@ for (let i=0; i < $inp.length; i++) {
 				console.log('로그인 성공')
 				closeLayer()
 			} else if (!$currentUserName) {
+				removeError()
 				activeError()
 				console.log('공백')
 			} else if (userData[j].id.includes($currentUserName)) {
@@ -147,7 +146,7 @@ for (let i=0; i < $inp.length; i++) {
 				$errorText.classList.add('error')
 				console.log($errorText);
 				$errorText.innerText = '등록되어있는 계정입니다. 다른 이름을 입력해주세요'
-				$this.focus();
+				// $this.focus();
 				console.log('등록된 이름')
 				console.log(userData[j].id)
 				break;
@@ -158,7 +157,7 @@ for (let i=0; i < $inp.length; i++) {
 				$this.closest('.inp-wrap').classList.add('error')
 				$errorText.classList.add('error')
 				$errorText.innerText = '이름을 입력해주세요'
-				$this.focus();
+				// $this.focus();
 				console.log('공백')
 			} else {
 				removeError();
@@ -189,7 +188,7 @@ for (let i=0; i < $inp.length; i++) {
 				$errorText.classList.add('error')
 				console.log($errorText);
 				$errorText.innerText = '등록되어있는 닉네임입니다. 다른 닉네임을 입력해주세요'
-				$this.focus();
+				// $this.focus();
 				console.log('등록된 닉네임')
 				console.log(userData[j].id)
 				break;
@@ -200,7 +199,7 @@ for (let i=0; i < $inp.length; i++) {
 				$this.closest('.inp-wrap').classList.add('error')
 				$errorText.classList.add('error')
 				$errorText.innerText = '닉네임을 입력해주세요'
-				$this.focus();
+				// $this.focus();
 				console.log('공백')
 			} else {
 				removeError();
@@ -227,20 +226,12 @@ for (let i=0; i < $inp.length; i++) {
 				loginFormHandler();
 			}
 		});
-		
 		// 로그인 버튼 클릭
 		let btnLogin = document.querySelector('.btn-login');
 		btnLogin.addEventListener('click', function() {
 			loginFormHandler();
 		});
 	} else if ($this.classList.contains('search-form')) { // 현재 인풋이 닉네임 찾기 폼일때
-		let btnOpenSearchLayer = document.querySelector('.btn-open-layer-search');
-		btnOpenSearchLayer.addEventListener('click', function() {
-			openLayer();
-			console.log('지금 실행되는건 검색창입니다');
-			$searchUser.classList.add('on');
-		});
-		
 		$inp[i].addEventListener('keyup',function (e) {
 			if (e.keyCode === 13) {
 				searchFormHandler();
@@ -265,56 +256,83 @@ for (let i=0; i < $inp.length; i++) {
 			}
 		});
 
-	}
-	let btnPush = document.querySelector('.btn-push');
-	btnPush.addEventListener('click', function(){
-		if ($this.classList.contains('user-name')) {
-			joinFormNameHandler();
-		} else if ($this.classList.contains('user-nick-name')) {
-			joinFormNickNameHandler();
-			validatePush()
-		}
+	} //화면구분 if
 
-		function validatePush() {
-			if ($this.closest('.inp-wrap').classList.contains('validate')) {
-				
-				console.log($this)
-				let userName = document.querySelector('.user-name').value;
-				let userId = document.querySelector('.user-nick-name').value;
-				userData.push({"name":userName, "id":userId});
-				console.log(userData)
-				closeLayer()
-			}
-		}
-	})
-
-	// join popup
-	// 버튼 클릭시 팝업 화면 나오기
+	// 회원가입 버튼 클릭시 팝업 화면 나오기
 	let btnOpenJoinLayer = document.querySelector('.btn-join');
 	btnOpenJoinLayer.addEventListener('click', function() {
 		console.log('회원가입 창이 열였습니다')
 		openLayer();
 		$newUser.classList.add('on');
 	})
-	// openLayer();
-	// $newUser.classList.add('on');
+	
+	// 닉네임찾기 버튼 클릭시 팝업화면 나오기
+	let btnOpenSearchLayer = document.querySelector('.btn-open-layer-search');
+	btnOpenSearchLayer.addEventListener('click', function() {
+		openLayer();
+		console.log('지금 실행되는건 검색창입니다');
+		$searchUser.classList.add('on');
+		// $searchUser.focus
+	});	
+
+	// 확인버튼 클릭시 배열에 회원정보 추가
+	let btnPush = document.querySelector('.btn-push');
+	btnPush.addEventListener('click', function(){
+		// error 클래스 있는 input 에 focus 
+		let $error = document.querySelector('#join .inp-wrap.error');
+		if ($error !== null) {
+			console.log($error.firstElementChild)
+			$error.firstElementChild.closest('.ui-input').focus()
+		}
+		// 버튼클릭시 input 기능 활성화
+		if ($this.classList.contains('user-name')) {
+			joinFormNameHandler();
+		} else if ($this.classList.contains('user-nick-name')) {
+			joinFormNickNameHandler();
+
+			// 회원가입 성공
+			if ($this.closest('.inp-wrap').classList.contains('validate') && $error == null) {
+				let userName = document.querySelector('.user-name').value;
+				let userId = document.querySelector('.user-nick-name').value;
+				userData.push({"name":userName, "id":userId});
+				console.log(userData)
+				closeLayer()
+				
+				if (this.hasAttribute('aria-controls','toast-msg02')) { // 회원가입 완료시 토스트 활성화
+					toastTarget[1].classList.add('active');
+					console.log('가입성공')
+					
+					// 로그인폼 인풋에 포커스
+					document.querySelector('.login-form').focus()
+				}
+			}
+		}
+	});
 } // for
 
 // 모달창 닫기(리셋)
-let $btnCloseLayer = document.querySelectorAll('.layer-close')
+let $btnCloseLayer = document.querySelectorAll('.layer-close');
 function closeLayer() {
+	// 모달창 전부 닫기
+	console.log(this)
 	$popup.classList.remove('active');
 	$noAccount.classList.remove('on');
 	$wrongAccount.classList.remove('on');
 	$searchUser.classList.remove('on');
 	$newUser.classList.remove('on');
+
+	// 로그인폼 인풋에 포커스
+	document.querySelector('.login-form').focus()
+
+	// 인풋 내 값 + 에러 + 성공 리셋
+	let reset = document.querySelectorAll('.ui-input');
+	for (j=0; j<reset.length; j++) {
+		reset[j].value =null;
+		reset[j].parentElement.classList.remove('error');
+		reset[j].parentElement.classList.remove('validate');
+	}
 }
+
 for (let i = 0; i < $btnCloseLayer.length; i++) {
 	$btnCloseLayer[i].addEventListener('click', closeLayer);
-	$btnCloseLayer[i].addEventListener('click', function() {
-		let reset = document.querySelectorAll('.ui-input');
-		for (j=0; j<reset.length; j++) {
-			reset[j].value =null;
-		}
-	});
 }

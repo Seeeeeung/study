@@ -40,11 +40,11 @@
 
 				<!-- search-name -->
 				<div id="search-name" class="popup">
-					<p class="txt inp-label fw700">당신의 이름을 입력해주세요</p>
+					<p class="txt inp-label fw700" id="search-name-label">당신의 이름을 입력해주세요</p>
 
 					<!-- inp-wrap -->
-					<div class="inp-wrap col2 mt20" aria-controls="toast-msg01">
-						<input type="search" title="실명입력" placeholder="주민등록상 이름을 입력해주세요" class="ui-input search-form" />
+					<div class="inp-wrap col2 mt20">
+						<input type="search" title="실명입력" placeholder="주민등록상 이름을 입력해주세요" class="ui-input search-form" id="test" />
 						<button type="button" class="ui-btn btn-search font13 color-white bg-green">검색</button>
 						<p class="error">이름을 입력해주세요</p>
 					</div>
@@ -87,7 +87,7 @@
 
 					<!-- btn-group -->
 					<div class="btn-group mt20">
-						<button type="button" class="ui-btn btn-push color-white bg-green">확인</button>
+						<button type="button" class="ui-btn btn-push color-white bg-green" aria-controls="toast-msg02">확인</button>
 						<button type="button" class="ui-btn btn-close layer-close color-white bg-gray ml5">취소</button>
 					</div>
 					<!-- //btn-group -->
@@ -117,7 +117,7 @@
 						
 					<div class="btn-group">
 						<button type="button" class="ui-btn btn-login color-white bg-green">로그인</button>
-						<button type="button" class="ui-btn btn-open-layer-search color-white bg-dark-green ml5">닉네임찾기</button>
+						<button type="button" class="ui-btn btn-open-layer-search color-white bg-dark-green ml5" aria-controls="search-name">닉네임찾기</button>
 					</div>
 					<button type="button" class="ui-btn btn-join btn-block color-white bg-green">회원가입</button>
 				</div>
@@ -129,6 +129,7 @@
 	
 			<!-- ui-toast -->
 			<div class="ui-toast" aria-live="toast-msa01">닉네임을 입력해주세요</div>
+			<div class="ui-toast" aria-live="toast-msa02">회원등록이 완료되었습니다</div>
 			<!-- //ui-toast -->
 		</main>
 	</div>
