@@ -44,7 +44,7 @@
 
 					<!-- inp-wrap -->
 					<div class="inp-wrap col2 mt20">
-						<input type="search" title="실명입력" placeholder="주민등록상 이름을 입력해주세요" class="ui-input search-form" id="test" />
+						<input type="search" title="실명입력" placeholder="주민등록상 이름을 입력해주세요" class="ui-input search-form" name="search-form"/>
 						<button type="button" class="ui-btn btn-search font13 color-white bg-green">검색</button>
 						<p class="error">이름을 입력해주세요</p>
 					</div>
@@ -102,7 +102,7 @@
 		
 		<main>
 			<!-- container-login -->
-			<div class="container-login">
+			<div class="container-login hidden">
 				<h1 class="logo"><img src="./static/img/bg/bg-bear.jpg" alt="곰돌이" /></h1>
 	
 				<!-- contents-login -->
@@ -125,7 +125,21 @@
 			</div>
 			<!-- //container-login -->
 
-
+			<!-- container -->
+			<div class="container">
+				<!-- contents -->
+				<div class="contents">
+					<div class="profile">
+						<fieldset>
+							<img src="./img/bg-bear.jpg" alt="프로필 이미지" class="img-user">
+						</fieldset>
+						<input type="file" id="img-change" />
+					</div>
+					<!-- 진행중 0713 -->
+				</div>
+				<!-- //contents -->
+			</div>
+			<!-- //container -->
 	
 			<!-- ui-toast -->
 			<div class="ui-toast" aria-live="toast-msa01">닉네임을 입력해주세요</div>

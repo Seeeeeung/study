@@ -56,7 +56,7 @@ for (let i=0; i < $inp.length; i++) {
 			$inpWrap[index].classList.remove('error');
 		}
 		console.log($this)
-		$this.focus()
+		// $this.focus()
 		$this.closest('.inp-wrap').classList.add('error');
 		if ($this.parentElement.hasAttribute('aria-controls','toast-msg01')) { // login form 부분일때
 			toastTarget[0].classList.add('active');
@@ -232,10 +232,15 @@ for (let i=0; i < $inp.length; i++) {
 			loginFormHandler();
 		});
 	} else if ($this.classList.contains('search-form')) { // 현재 인풋이 닉네임 찾기 폼일때
+		function searchLayerFocusHandler() {
+			let inpTarget = $inp[i].parentElement.querySelector('.ui-input');
+			setTimeout(function(){
+				inpTarget.focus();
+			},100);
+		}
 		$inp[i].addEventListener('keyup',function (e) {
 			if (e.keyCode === 13) {
 				searchFormHandler();
-				console.log($this)
 			}
 		});
 		
@@ -245,6 +250,15 @@ for (let i=0; i < $inp.length; i++) {
 			searchFormHandler();
 		})
 	} else if ($this.classList.contains('new-user')) { // 현재 인풋이 회원가입 폼일때
+		let inpTarget = $inp[i].parentElement.querySelector('.user-name');
+		if (inpTarget !== null) {
+			function joinLayerFocusHandler() {
+				setTimeout(function(){
+					inpTarget.focus();
+				},100);
+			}
+		}
+
 		$inp[i].addEventListener('keyup',function (e) {
 			if (e.keyCode === 13) {
 				// console.log($this)
@@ -255,16 +269,7 @@ for (let i=0; i < $inp.length; i++) {
 				}
 			}
 		});
-
 	} //화면구분 if
-
-	// 회원가입 버튼 클릭시 팝업 화면 나오기
-	let btnOpenJoinLayer = document.querySelector('.btn-join');
-	btnOpenJoinLayer.addEventListener('click', function() {
-		console.log('회원가입 창이 열였습니다')
-		openLayer();
-		$newUser.classList.add('on');
-	})
 	
 	// 닉네임찾기 버튼 클릭시 팝업화면 나오기
 	let btnOpenSearchLayer = document.querySelector('.btn-open-layer-search');
@@ -272,8 +277,17 @@ for (let i=0; i < $inp.length; i++) {
 		openLayer();
 		console.log('지금 실행되는건 검색창입니다');
 		$searchUser.classList.add('on');
-		// $searchUser.focus
+		searchLayerFocusHandler()
 	});	
+
+	// 회원가입 버튼 클릭시 팝업 화면 나오기
+	let btnOpenJoinLayer = document.querySelector('.btn-join');
+	btnOpenJoinLayer.addEventListener('click', function() {
+		console.log('회원가입 창이 열였습니다')
+		openLayer();
+		$newUser.classList.add('on');
+		joinLayerFocusHandler()
+	})
 
 	// 확인버튼 클릭시 배열에 회원정보 추가
 	let btnPush = document.querySelector('.btn-push');
@@ -296,7 +310,9 @@ for (let i=0; i < $inp.length; i++) {
 				let userId = document.querySelector('.user-nick-name').value;
 				userData.push({"name":userName, "id":userId});
 				console.log(userData)
-				closeLayer()
+				setTimeout(function(){
+					closeLayer()
+				},100)
 				
 				if (this.hasAttribute('aria-controls','toast-msg02')) { // 회원가입 완료시 토스트 활성화
 					toastTarget[1].classList.add('active');

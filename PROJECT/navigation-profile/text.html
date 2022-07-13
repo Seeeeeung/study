@@ -18,7 +18,7 @@
         }
     
         /* Modal Content/Box */
-        .modal-content {
+        #modal-content {
             background-color: #fefefe;
             margin: 15% auto; /* 15% from the top and centered */
             padding: 20px;
@@ -42,13 +42,14 @@
 </style>
 </head>
 <body>    <!-- Trigger/Open The Modal -->
-	<button id="myBtn">Open Modal</button>
+	<button id="myBtn" role="button" aria-controls="myModal">Open Modal</button>
+	<input><label>가나다다다다</label>
 
 	<!-- The Modal -->
-	<div id="myModal" class="modal">
+	<div id="myModal" class="modal" role="alertdialog" aria-modal="true" aria-describedby="modal-content">
 
 		<!-- Modal content -->
-		<div class="modal-content">
+		<div id="modal-content">
 			<span class="close">&times;</span>                                                               
 			<p>Some text in the Modal..</p>
 			<input type="text" id="test">
@@ -66,16 +67,37 @@
  // Get the <span> element that closes the modal
  var span = document.getElementsByClassName("close")[0];                                          
 
+
+ const body = document.querySelector("body");
+var scrollT;
+var bodyScroll = {
+	open : function(){
+		setTimeout(function(){
+			scrollT = window.scrollY;
+			body.classList.add("no-scroll");
+			body.style.top = -scrollT+"px";
+		},100)
+	},
+	close: function(){
+		if(!document.querySelector('.ui-layer.active') && !document.querySelector('.ui-popup.active')){
+			body.classList.remove("no-scroll");
+			body.style.top = null;
+			window.scrollTo(0, scrollT);
+		}
+	}
+}
  // When the user clicks on the button, open the modal 
  btn.onclick = function() {
 		 modal.style.display = "block";
-		 modal.querySelector('#test').focus()
-		 btn.setAttribute('aria-hidden','true')
+		//  modal.querySelector('#test').focus()
+		//  btn.setAttribute('')
+		bodyScroll.open()
  }
 
  // When the user clicks on <span> (x), close the modal
  span.onclick = function() {
 		 modal.style.display = "none";
+		 
  }
 
  // When the user clicks anywhere outside of the modal, close it
