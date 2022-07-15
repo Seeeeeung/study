@@ -14,5 +14,8 @@
 .user-id {}
 .result p+p {margin-top:10px;}
 
-/* join */
-/* 회원가입 성공 */
+/* profile */
+.user-controls {display:flex; flex-direction:column; justify-content:flex-start; align-items:center; border:1px solid red; width:100%; height:100%;}
+.user-img {width:160px; height:auto; border-radius:20px; box-shadow:0 1px 5px #b8b6b6; overflow:hidden;}
+.txt-greeting {width: 80%; height:auto; padding:0 3px; margin-bottom:20px; text-align:center; line-height:25px;}
+.txt-greeting>p {word-break:break-all;}

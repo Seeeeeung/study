@@ -10,20 +10,22 @@
 html, body {margin:0; padding:0; font-size:15px; font-family:'Nanum Gothic', sans-serif; font-weight:500; line-height:1.3}
 h1,h2,p {margin:0; padding:0; font-size:inherit;}
 ul {margin:0; padding:0; list-style-type:none; cursor:default;}
-li+li {margin-top:10px;}
+fieldset {padding:0; margin:0; border:none;}
 img {width:inherit; height:inherit;}
 #app {font-size:inherit; font-family:inherit; font-weight:inherit;}
 .color-white {color:#fff !important;}
 .color-yellow {color:gold}
 .color-dark-green {color:#43a343}
 .border-green {border:1px solid #6bb36b;}
-.bg-yellow-green {background-color:#ccddcc;}
+.border-gray-green {border:1px solid #cdcc}
+.bg-yellow-green {background-color:#98c298;}
 .bg-green {background-color:#6bb36b;}
 .bg-dark-green {background-color:#43a343;}
 .bg-gray {background-color:lightgray;}
 .mt15 {margin-top:15px !important;}
 .mt20 {margin-top:20px !important;}
 .mb15 {margin-bottom:15px !important;}
+.mb20 {margin-bottom:20px !important;}
 .ml5 {margin-left:5px !important;}
 .mr5 {margin-right:5px !important;}
 .text-center {text-align:center !important;}
@@ -41,6 +43,7 @@ input::-webkit-search-decoration,input::-webkit-search-cancel-button,input::-web
 .layer-lock.active {visibility:hidden; opacity:0;}
 main {width:100%; height:100vh; display:flex; justify-content:center; align-items:center;}
 .container-login {width:30%; max-width:300px; min-width:300px; height:40%; min-height:400px; display:flex; flex-direction:column; justify-content:space-between; align-items:center; padding:40px 20px; box-sizing:border-box; border:1px solid #ccddcc; border-radius:20px;}
+.container {width:30%; max-width:300px; height:500px;}
 
 /* BUTTON */
 button {margin:0; border:none; background-color:#fff; cursor:pointer;}
@@ -87,6 +90,14 @@ input {border:none;}
 .form-list li:last-child {margin:0;}
 .txt-info {color:gray; font-size:12px; line-height:25px; word-break:break-all;}
 .txt.warn {display:flex; justify-content:flex-start; align-items:center;}
+
+/* ui-tab */
+.ui-tab {border:1px solid green; width:100%; height:40px;}
+.tab-nav {border:1px solid orange; width:100%; height:100%;}
+.tab-nav.col3 {display:flex; justify-content:space-around; align-items:center;}
+.tab-nav.col3 li+li {margin-right:1px;}
+.tab-nav .active {background-color:#43a343}
+
 
 /* overlay */
 .bg-overlay {visibility:hidden; position:fixed; top:0; left:0; right:0; bottom:0; z-index:2; background:transparent; opacity:0; transition:visibility .5s, background .5s, opacity .5s;}

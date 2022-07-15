@@ -129,56 +129,33 @@
 			<div class="container">
 				<!-- contents -->
 				<div class="contents">
-					<div class="user-controls">
-						<fieldset class="user-img border-gray-green mb20">
-							<img src="./img/bg-bear.jpg" alt="프로필 이미지">
+					<div class="profile">
+						<fieldset>
+							<img src="./img/bg-bear.jpg" alt="프로필 이미지" class="img-user">
 						</fieldset>
 						
-						<!-- txt-greeting -->
-						<div class="txt-greeting color-white bg-yellow-green fw700 font13">
-							<p class="user-name">안녕하세요 <span id="current-user-name" class="">dafs</span> 님!</p>							
-							<p class="today">오늘은 <span class="day">금요일 이에요!dddddddddddddddddddddddddddddd</span> <br /></p>
-						</div>
-						<!-- //txt-greeting -->
+						<!-- user-info -->
+						<div class="user-info color-white bg-yellow-green font15">
+							<p class="user-name">안녕하세요! <span class="fw700">dafs</span> 님</p>
+							<button class="ui-btn col3 user-phone"><i class="material-icons">phone</i></button>
+							<button class="ui-btn col3 user-image"><i class="material-icons">photo</i></button>
+							<button class="ui-btn col3 user-music"><i class="material-icons">music_note</i></button>
 
-						<!-- ui-tab -->
-						<div class="ui-tab">
-							<ul class="tab-nav col3" role="tablist">
-								<li><button type="button" role="tab" aria-selected="true" aria-controls="tab-panel1" id="tab01" class="active"><i class="material-icons">phone</i></button></li>
-								<li><button type="button" role="tab" aria-selected="false" aria-controls="tab-panel2" id="tab02" class=""><i class="material-icons">photo</i></button></li>
-								<li><button type="button" onclick="userProfileChange()"; title="프로필 편집" class=" btn-change" role="button" aria-controls="user-setting"><i class="material-icons">settings</i></button></li>
-							</ul>
-
-							<div class="tab-contents" role="tabpanel" aria-labelledby="tab01" id="tab-panel1">
-								내용
-							</div>
-							<div class="tab-contents" role="tabpanel" aria-labelledby="tab02" id="tab-panel2">
-								내용
-							</div>
 						</div>
-						<!-- //ui-tab -->
+						<!-- //user-info -->
+
+						<!-- user-setting -->
+						<button type="button" onclick="userProfileChange()"; title="프로필 편집" class="ui-btn btn-change border-green color-dark-green"><i class="material-icons">settings</i></button>
+
+						<div id="user-setting" class="layer">
+
+						</div>
+						<!-- //user-setting -->
+						
 					</div>
 					<!-- 진행중 0713 -->
 				</div>
 				<!-- //contents -->
-
-				<!-- ui-layer -->
-				<!-- 원래는 #layer-popup 이랑 같은 기능이라 (팝업이 켜지고 bg가 깔리는) 팝업기능을 하나 가이드로 만들고 그걸로 반복해서 사용해야 하지만 다시 갈아엎어야 하기때문에 지금은 일단 별개로 구분해서 나누고 새로운 기능으로 만듦 나중에 다시 고칠때 통일해서 만들기 -->
-				<div class="ui-layer hidden">
-					<!-- layer-wrap -->
-					<div class="layer-wrap" role="dialog" aria-modal="true" aria-describedby="btn-setting-wrap" id="user-setting">
-						<div class="btn-contents" id="btn-setting-wrap">
-							<button class="ui-btn col3 user-phone"><i class="material-icons">phone</i></button>
-							<button class="ui-btn col3 user-image"><i class="material-icons">photo_camera</i></button>
-							<button class="ui-btn col3 user-image"><i class="material-icons">photo</i></button>
-							<button class="ui-btn col3 user-music"><i class="material-icons">music_note</i></button>
-						</div>
-					</div>
-					<!-- //layer-wrap -->
-					
-					<div class="bg-overlay"></div>
-				</div>
-				<!-- //ui-layer -->
 			</div>
 			<!-- //container -->
 	
