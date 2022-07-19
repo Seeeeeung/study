@@ -16,6 +16,7 @@ img {width:inherit; height:inherit;}
 .color-white {color:#fff !important;}
 .color-yellow {color:gold}
 .color-dark-green {color:#43a343}
+.color-gray {color:gray;}
 .border-green {border:1px solid #6bb36b;}
 .border-gray-green {border:1px solid #cdcc}
 .bg-yellow-green {background-color:#98c298;}
@@ -92,11 +93,13 @@ input {border:none;}
 .txt.warn {display:flex; justify-content:flex-start; align-items:center;}
 
 /* ui-tab */
-.ui-tab {border:1px solid green; width:100%; height:40px;}
-.tab-nav {border:1px solid orange; width:100%; height:100%;}
-.tab-nav.col3 {display:flex; justify-content:space-around; align-items:center;}
-.tab-nav.col3 li+li {margin-right:1px;}
-.tab-nav .active {background-color:#43a343}
+.ui-tab {display:flex; flex-direction:column; width:100%;}
+.tab-nav {display:flex; width:100%; height:40px; border-bottom:1px solid }
+.tab-nav li {display:flex; justify-content:center; align-items:center; width:calc((100% - 50px) / 2); height:100%; }
+.tab-nav li:last-child {width:50px;}
+.tab-nav li button {width:100%;}
+.tab-nav li [role='button'] {}
+
 
 
 /* overlay */
