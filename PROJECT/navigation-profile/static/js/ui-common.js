@@ -83,6 +83,9 @@ for (let i=0; i < $inp.length; i++) {
 				console.log($this)
 				console.log('로그인 성공')
 				closeLayer()
+				document.querySelector('.container-login').style.display = 'none';
+				document.querySelector('.container').style.display = 'block';
+				break;
 			} else if (!$currentUserName) {
 				removeError()
 				activeError()
