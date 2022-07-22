@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>js</title>
+</head>
+<body>
+	<script>
+		 (function () {
+  var count = 0;
+  var button = document.createElement('button');
+  
+  button.textContent = 'click';
+  
+  var clickHandler= function () {
+    console.log( ++count, 'times clicked');
+    
+    if (count <= 5) {
+      button.removeEventListener('click', clickHandler);
+      clickHandler = null; // *  clickHandler 식별자의 함수 참조 해제 *
+    }
+  }
+  
+  button.addEventListener('click', clickHandler);
+  document.body.append(button);
+})();
+	</script>
+</body>
+</html>
