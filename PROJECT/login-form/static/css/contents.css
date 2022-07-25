@@ -1,0 +1,22 @@
+@charset "UTF-8";
+/* layer-lock */
+.btn-lock.bg-dark-green {width:60px; height:60px; position:absolute; z-index:1; font-size:20px; border:0.5px solid #999; border-radius:60px; box-shadow:0px 2px 2px #5a5a5a, 2px 0px 2px #5a5a5a;}
+.btn-lock:active {box-shadow:inset 1px 1px 1px #5a5a5a65;}
+.btn-bg {width:70px; height:70px; position:absolute; z-index:0; border-radius:70px; box-shadow:1px 2px 5px #bbb;}
+
+/* layer-login */
+.logo {width:100px; height:auto;}
+.contents-login {width:100%; height:50%;}
+
+/* search-name */
+.ui-btn.btn-search {width:50px; height:35px; border-radius:30px;}
+.txt.no-result {padding-right:0;}
+.user-id {}
+.result p+p {margin-top:10px;}
+
+/* profile */
+/* .contents{border:1px solid #cdcc; border-radius:20px; padding:20px 0;} */
+.user-controls {display:flex; flex-direction:column; justify-content:flex-start; align-items:center; width:100%; height:100%;}
+.user-img {width:160px; height:auto; border-radius:20px; box-shadow:0 1px 5px #b8b6b6; overflow:hidden;}
+.txt-greeting {width: 80%; height:auto; padding:0 3px; margin-bottom:20px; text-align:center; line-height:25px;}
+.txt-greeting>p {word-break:break-all;}

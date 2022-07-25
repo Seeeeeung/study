@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>회원가입</title>
+<link rel="stylesheet" href="./static/css/common.css">
+</head>
+<body>
+	<div class="ui-popup">
+		<button type="button" class="btn-popup-open" role="button" aria-controls="dialog01">회원가입</button>
+		
+		<!-- layer-wrap -->
+		<div class="layer-wrap" role="dialog" aria-labelledby="dialog01-label" aria-describedby="dialog01-desc" aria-modal="true" id="dialog01">
+			<p class="layer-title" id="dialog01-label">회원가입</p>
+
+			<div class="layer-contents" id="dialog01-desc">
+				<fieldset>
+					<img src="" alt="사용자 이미지" />
+				</fieldset>
+
+				<ul class="form-list">
+					<li>
+						<span class="inp-label">이름</span>
+						<div class="inp-wrap">
+							<input type="text" title="이름" class="ui-input" placeholder="이름을 입력해주세요" />
+						</div>
+					</li>
+					<li>
+						<span class="inp-label">성별</span>
+						<div class="inp-wrap">
+							<input type="radio" id="radio01-1" name="radio01" /><label for="radio01-1">남성</label>
+							<input type="radio" id="radio01-2" name="radio01" /><label for="radio01-2">여성</label>
+						</div>
+					</li>
+					<li>
+						<span class="inp-label">이메일</span>
+						<div class="inp-wrap">
+							<input type="email" title="이메일" class="ui-input" placeholder="이메일을 입력해주세요" />
+						</div>
+					</li>
+					<li>
+						<span class="inp-label">비밀번호</span>
+						<div class="inp-wrap">
+							<input type="password" title="비밀번호" class="ui-input" placeholder="비밀번호를 입력해주세요" />
+						</div>
+					</li>
+					<li>
+						<span class="inp-label">비밀번호 확인</span>
+						<div class="inp-wrap">
+							<input type="password" title="비밀번호 재입력" class="ui-input" placeholder="비밀번호를 다시 입력해주세요" />
+						</div>
+					</li>
+					<li>
+						<span class="inp-label">핸드폰 인증</span>
+						<div class="inp-wrap phone-number">
+							<input type="text" size="1" maxlength="3" class="ui-input" />
+							<input type="text" size="3" maxlength="4" class="ui-input" />
+							<input type="text" size="3" maxlength="4" class="ui-input" />
+						</div>
+
+						<div class="auth">
+							<div class="send-auth">
+								<p class="auth-number">000000</p>
+								<button type="button" class="ui-btn">인증번호 전송</button>
+							</div>
+
+							<div class="time-out">
+								<p class="auth-time"></p>
+								<button type="button" class="ui-btn">인증완료</button>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="inp-wrap">
+							<p class="txt warn"><i class="iconset ico-info material-icons color-yellow">warning_amber</i><strong>WARNING</strong></p>
+							<p class="txt-info txt">개인정보를 보호하시려면 회원가입을 취소해 주세요.<br/>이 웹 페이지는 당신의 <strong>개인정보를 보호해 드릴 수 없습니다.</strong></p>
+						</div>
+					</li>
+				</ul>
+	
+				<div class="btn-wrap">
+					<button type="button" class="ui-btn">확인</button>
+					<button type="button" class="ui-btn btn-layer-close">취소</button>
+				</div>
+			</div>
+			<!-- // layer-contents -->
+		</div>
+		<!-- // layer-wrap -->
+
+		<div class="bg-overlay"></div>
+	</div>
+</body>
+</html>
