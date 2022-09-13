@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		let num;
+		do {
+			num = prompt('100보다 큰 숫자를 입력','0');
+		} while (num <= 100 && num);
+		/* 두 조건이 모두 truthy 인 경우 프롬프트 창 오픈,
+			num <= 100 
+			num 이 null이나 빈문자열인지 확인 (&&num)
+		*/
+		
+		let n = 10;
+
+		nextPrime:
+		for (let i=2; i<=n; i++) { // 각 i 에 대해 반복문
+			for (let j=2; j<i; j++) { // 제수(나눗수) 찾음
+				if (i%j == 0) continue nextPrime; // 소수가 아니므로 다음 i로 넘어감
+			}
+			alert(i) // 소수
+		}
+		/* 범위 내 모든 숫자 i에 대해 {
+			1과 i 사이에 제수가 있는지 확인
+			있으면 => 소수아님
+			없으면 => 소수이므로 출력
+			}
+		 */
+		
+		 /* https://ko.javascript.info/switch */
+		 if (browser == 'Edge') {
+			alert('Edge 를 사용하고 계시네요');
+		 } else if (browser == 'Chorm' || browser == 'Firefox' || browser == 'Safari' || browser == 'Opera' ) {
+			alert('저희 서비스가 지원하는 브라우저를 사용하고 계시네요');
+		 } else {
+			alert('현재 페이지가 괜찮아 보이길 바랍니다!');
+		 }
+
+		 let a = +prompt('a?','');
+		 switch(a) {
+			case 0:
+				alert(0);
+				break;
+			case 1:
+				alert(1);
+				break;
+			case 2:
+			case 3:
+				alert('2,3');
+				break;
+		 }
+	</script>
+</body>
+</html>

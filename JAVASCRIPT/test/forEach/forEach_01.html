@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>forEach01</title>
+<style>
+	#result {width:200px; height:200px;}
+</style>
+</head>
+<body>
+	<h1 id="title">색갈 박스</h1>
+	<article id="mission">
+		result 안에 4개의 div 를 이용하여 4가지 색깔을 가진 result박스를 만들기
+	</article>
+
+	<article id="result">
+		<div style="background-color:tomato;"></div>
+		<div style="background-color:turquoise;"></div>
+		<div style="background-color:beige;"></div>
+		<div style="background-color:rosyBrown;"></div>
+	</article>
+
+	<script>
+		const pinkbox=document.querySelector('#result');
+		if (pinkbox) {
+			Array.from(pinkbox.children).forEach(elem => elem.style.cssText += 'width:50%; height:50%; float:left;')
+		}
+	</script>
+</body>
+</html>
