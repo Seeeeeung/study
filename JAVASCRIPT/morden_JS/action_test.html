@@ -34,27 +34,27 @@
 		// let from = 'Ann'
 		// showMessage();
 
-		function showMessage(text) {
-			// if (text === undefined) {
-			// 	text = '빈 문자열';
-			// }
-			text = text || '빈문자열';
-			console.log(text);
-		}
-		showMessage();
+		// function showMessage(text) {
+		// 	// if (text === undefined) {
+		// 	// 	text = '빈 문자열';
+		// 	// }
+		// 	text = text || '빈문자열';
+		// 	console.log(text);
+		// }
+		// showMessage();
 		
-		function showCount(count) {
-			console.log(count ?? 'unknown');
-		}
-		showCount(0);
-		showCount(null);
-		showCount();
+		// function showCount(count) {
+		// 	console.log(count ?? 'unknown');
+		// }
+		// showCount(0);
+		// showCount(null);
+		// showCount();
 
-		function sum(a,b) {
-			return a + b;
-		}
-		let result = sum(1,2);
-		console.log(result);
+		// function sum(a,b) {
+		// 	return a + b;
+		// }
+		// let result = sum(1,2);
+		// console.log(result);
 
 		// function checkAge(age) {
 		// 	if (age >= 18) {
@@ -152,21 +152,21 @@
 
 		console.log('')
 
-		function ask(question, yes, no) {
-			if (confirm(question)) yes()
-			else no();
-		}
-		// 여기까진 동일
+		// function ask(question, yes, no) {
+		// 	if (confirm(question)) yes()
+		// 	else no();
+		// }
+		// // 여기까진 동일
 
-		function showOk() {
-			console.log('동의')
-		}
+		// function showOk() {
+		// 	console.log('동의')
+		// }
 
-		function showCancle() {
-			console.log('취소')
-		}
+		// function showCancle() {
+		// 	console.log('취소')
+		// }
 		// 함수 showOk와 showCancle 가 ask함수의 인수로 전달된다.
-		ask('동의?', showOk, showCancle);
+		// ask('동의?', showOk, showCancle);
 		/* 위 함수를 함수 표현식으로 사용하면 코드길이가 짧아진다.
 		ask(
 			'동의?',
@@ -174,6 +174,49 @@
 			function() {console.log('취소')}
 		);
 		*/
+
+		let sum = (a,b) => a + b;
+		/* 위 함수는 아래 함수의 축약이다.
+		let sum = function (a,b) {
+			return a + b;
+		};
+		*/
+		console.log(sum(1,2));
+
+		// 인수가 하나면 괄호 생략 가능
+		let double = n => n*2;
+		console.log(double(3))
+
+		// 인수가 하나도 없을땐 괄호를 비우면 됨 (이때 괄호를 생략할수 없다.)
+		let sayHi = () => console.log('하이!');
+		sayHi();
+
+		let age = 15;
+		let welcome = (age < 18) ?
+			() => console.log('안녕') :
+			() => console.log('안녕하세요');
+
+		welcome();
+
+		// 본문이 여러줄이면 중괄호를 사용하여 그 안에 넣어야 한다.
+		let sum2 = (a,b) => {
+			let result = a + b;
+			return result;
+		}
+		console.log(sum2(1,2));
+
+		// 예제
+		// let ask = (question, yes, no) => {
+		// 	if (confirm(question)) yes()
+		// 	else no();
+		// }
+		// // 표현식으로도 가능하지만 선언문으로 사용
+
+		// ask(
+		// 	'동의하십니까?',
+		// 	() => console.log('동의'),
+		// 	() => console.log('취소')
+		// );
 	</script>
 </body>
 </html>
