@@ -217,6 +217,61 @@
 		// 	() => console.log('동의'),
 		// 	() => console.log('취소')
 		// );
+
+		console.log('');
+
+		console.log(typeof function() {} == "function");
+
+		console.log('');
+
+		// function pow(x, n) {
+		// 	if (n < 0) {
+		// 		console.log('n은 음수가 될 수 없습니다.');
+		// 	} else {
+		// 		let result = 1;
+
+		// 		for (let i = 0; i < n; i++) {
+		// 			result *= x;
+		// 		}
+
+		// 		return console.log(result);
+		// 	}
+		// }
+		// 아래 함수가 위 함수와 같은 동작을 수행한다. if 문 안에 return문을 추가해주면서 가독성이 좋아진다.
+		// function pow(x, n) {
+		// 	if (n < 0) {
+		// 		console.log('n은 음수가 될 수 없습니다.');
+		// 		return;
+		// 	} 
+		// 	let result = 1;
+
+		// 	for (let i = 0; i < n; i++) {
+		// 		result *= x;
+		// 	}
+
+		// 	return console.log(result);
+		// }
+		//  pow(1,-1)
+
+		// 예제
+		// function pow(x, n) {
+		// 	let result = 1;
+
+		// 	for (let i = 0; i < n; i++) {
+		// 		result *= x;
+		// 	}
+
+		// 	return result;
+		// }
+
+		// let x = prompt('x?', '');
+		// let n = prompt('n?', '');
+
+		// if (n <= 0) {
+		// 	console.log(`Power ${n} is not supported, please enter an integer number greter than zero`);
+		// } else {
+		// 	console.log(pow(x, n));
+		// }
 	</script>
 </body>
 </html>
