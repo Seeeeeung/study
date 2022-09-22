@@ -148,16 +148,114 @@
 		}
 
 		// 객체 정렬방식
+		// 숫자 앞에 +, 반환하려는 코드 변수앞에+를 추가하면 정수로 취급되지 않게됨(속임수)
 		let codes = {
-			'49': '독일',
-			'41': '스위스',
-			'44': '영국',
-			'1': '미국',
+			'+49': '독일',
+			'+41': '스위스',
+			'+44': '영국',
+			'+1': '미국',
 		};
 
 		for (let code in codes) {
-			console.log(code);
+			console.log(+code);
 		}
+
+		// 예제
+		let user9 = {};
+
+		// 프로퍼티 추가방법 2가지
+		user9.name = 'John';
+		console.log(user9)
+
+		let key2 = 'surname'
+		user9['surname'] = 'Smith';
+		console.log(user9);
+		
+		// 둘중 하나 사용 (변수값변경) user9.name = 'Pete';
+		user9['name'] = 'Pete'
+		console.log(user9);
+		
+		delete user9.name;
+		console.log(user9);
+
+		// mocha_test 체크 가능 -> 빈 객체일때 true를 반환하느 코드
+		let obj1 = {};
+		console.log(isEmpty(obj1)); // true
+
+		obj1['property1'] = '1'
+		console.log(isEmpty(obj1)); // false
+		
+		function isEmpty(obj1) {
+			for (let key in obj1) {
+				return false;
+			}
+			return true;
+		}
+
+		// 프로퍼티 값 모두 더하기
+		let salaries = {
+			John: 100,
+			Ann: 160,
+			Pete:130
+		}
+		let sum = 0;
+		for (let value in salaries) {
+			sum += salaries[value];
+		}
+		console.log(sum)
+
+		// 값 두배
+		let menu = {
+			width: 200,
+			height: 300,
+			title: 'My menu'
+		};
+
+		multiplyNumeric(menu)
+		console.log(menu)
+
+		function multiplyNumeric(menu) {
+			for (let value in menu) {
+				if (typeof(menu[value]) == 'number') {
+					menu[value] *= 2
+				}
+				
+			}
+		}
+
+		let prim = null;
+		let obj4 = {say: 'hello'};
+		let copy = prim;
+		copy = false;
+		let copyObj = obj4;
+		copyObj.say = 'not hello';
+		console.log(prim);
+		console.log(obj4);
+
+		// 객체를 복제(복사X)
+		let user10 = {
+			name: 'John',
+			age: 30
+		};
+
+		let clone = {}; // 새로운 빈 객체
+		for (let key in user10) {
+			clone[key] = user10[key];
+		}
+		// 독립적인 복제본이 된 clone
+		clone.name = 'Pete';
+		console.log(user10.name);
+		console.log(clone.name);
+
+		console.log(user10 == clone); // false
+		console.log('');
+
+		
+
+		// assign 사용
+		let user11 = {name: 'John'};
+		Object.assign(user11, {name: 'Pete'});
+		console.log(user11.name);
 	</script>
 </body>
 </html>
