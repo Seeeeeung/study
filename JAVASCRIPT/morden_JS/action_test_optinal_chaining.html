@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>실행 테스트 화면_객체_4</title>
+</head>
+<body>
+	<script>
+		// 옵셔널 체이닝
+		// let user ={}; // 주소 정보가 없는 사용자
+		// console.log(user.address.street); // Error: street을 읽을 수 없다 	
+
+		// let html = document.querySelector('.my-element').innerHTML; // null
+
+		let user = {}; // 주소 정보가 없는 사용자
+		console.log(user && user.address && user.address.street); // undefined 에러발생안함
+
+		let user2 = {};
+		console.log(user?.address?.street); // undefined
+
+		let user3 = null;
+		console.log(user3?.address); // undefined
+		console.log(user3?.address.street) // undefined
+		// user가 null 이나 undefined가 아니고 값이 존재하는 경우 반드시 user.address프로퍼티가 있어야한다.
+		console.log('');
+		
+		// 단락평가 (왼쪽 평가대상에 값이 없으면 즉시 평가를 멈춤)
+		let user6 = null;
+		let x = 0;
+		user6?.sayHi(x++); // 아무일도 일어나지 않는다
+		console.log(x); // 0 , x는 증가하지 않는다.
+		
+		let user4 = {
+			admin() {
+				console.log('관리자 계정입니다');
+			}
+		}
+		let user5 = {};
+
+		user4.admin?.(); // 관리자 계정입니다.
+		user5.admin?.();
+		
+		let user7 = {
+			firstName: 'Violet'
+		};
+
+		let user8 = null; // user8은 권한이 없는 사용자라고 가정
+		let key = 'firstName';
+
+		console.log(user7?.[key]); // Violet
+		console.log(user8?.[key]); // undefined
+		console.log(user7?.[key]?.somthing?.not?.existing); // undefined
+
+		// delete와 조합해서 사용가능
+		delete user7?.firstName;
+		console.log(user7);
+
+		// 쓰기엔 사용 불가능
+		// user7?.name = 'Violet'; // SyntaxError : undefined = 'violet'은 성립하지 않는다
+		
+	</script>
+</body>
+</html>

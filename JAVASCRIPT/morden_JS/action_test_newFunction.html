@@ -115,6 +115,20 @@
 		// console.log('Mul = ' + calculator.mul());
 		
 		// 누산기
+
+		function Accmulator(startingValue) {
+			this.value = startingValue;
+
+			this.read = function() {
+				this.value += +prompt('입력값', '');
+			};
+		}
+
+		let accmulator = new Accmulator(1);
+		accmulator.read();
+		accmulator.read();
+		console.log(accmulator.value);
+
 	</script>
 </body>
 </html>
