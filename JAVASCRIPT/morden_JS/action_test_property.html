@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>실행 테스트 화면</title>
+	<title>실행 테스트 화면_객체_1</title>
 </head>
 <body>
 	<script>
@@ -250,12 +250,87 @@
 		console.log(user10 == clone); // false
 		console.log('');
 
-		
+		let user11 = {name: 'John'};
+
+		let permissions1 = {canView: true};
+		let permissions2 = {canEdit: true};
+
+		Object.assign(user11, permissions1, permissions2);
+		console.log(user11)
 
 		// assign 사용
-		let user11 = {name: 'John'};
-		Object.assign(user11, {name: 'Pete'});
-		console.log(user11.name);
+		let user12 = {name: 'John'};
+		Object.assign(user12, {name: 'Pete'});
+		console.log(user12.name);
+
+		// 반복문 없이 객체 복사
+		let user13 = {
+			name: 'John',
+			age: 30
+		};
+		let clone2 = Object.assign({}, user13);
+		console.log(clone2);
+
+		// 중첩 객체 복사
+		let user14 = {
+			name: 'John',
+			sizes: {
+				height: 182,
+				width: 50
+			}
+		};
+		console.log(user14.sizes.height)
+
+		let clone3 = Object.assign({}, user14);
+		clone3.sizes = user14.sizes;
+		console.log(clone3);
+		console.log( clone3.sizes === user14.sizes)
+
+		user14.sizes.width++;
+		console.log(clone3.sizes.width);
+		// sizes는 user객체에서 참조 (복제가 안되고 복사만 했음 -> 깊은복사를 해야 단독적인 객체가 될 수 있다.)
+
+		// 가비지 컬렉션 https://ko.javascript.info/garbage-collection
+		/*
+		mother = {
+			woman: { // family 함수에서 대입 -> name: 'Ann'
+				name: 'Ann',
+				husband: man
+			}
+		}
+		father = {
+			man: {
+				name: 'John',
+				wife: woman
+			}
+		}
+		*/
+		// 위 식을 함수로 만들어 풀면
+		function marry(man, woman) {
+			woman.husband = man;
+			man.wife = woman;
+			/* 위 식을 대입 (서로 참조하게 만들었음)
+			{name: 'Ann'}.husband = {name: 'John'};
+			{name: 'John'}.wife = {name: 'Ann'};
+			*/
+
+			return { // 대입된 매개변수에 역할(결혼시켜서 father, mother을 부여)을 부여하기 위해 return문으로 반환해준다 -> 서로를 참조하는 (wife, husband) 새로운 객체가 만들어짐
+				father: man,
+				mother: woman
+				/*
+				father: {name: 'John'},
+				mother: {name: 'Ann'}
+				*/
+			}
+		}
+
+		let family = marry({name: 'John'}, {name: 'Ann'}); // man, woman으로 된 매개변수에 대입한다
+
+		delete family.father;
+		delete family.mother.husband;
+		// name: 'John' 객체를 참조하고있는(참조당하는) 모든 화살표가 사라졌기때문에 휴지통으로 삭제된다 ** 객체에서 외부로 나가는 참조는 도달 가능한 상태에 영향을 주지 않는다 , (외부로 들어오는 참조만 (참조당할때만) 도달 가능한 상태에 영향을 준다.)
+
+		// 코드가 길어져 action_test_method.html로 분리
 	</script>
 </body>
 </html>
