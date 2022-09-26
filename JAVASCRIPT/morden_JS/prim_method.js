@@ -67,4 +67,43 @@ console.log(num4.toFixed(5)); // 12.34000
 console.log(typeof num4.toFixed(5)); // string
 console.log(typeof +num4.toFixed(5)); // number
 console.log(typeof Number(num4.toFixed(5))); // number
+console.log('')
+
+// 부정확한 계산
+console.log(1e500); // infinity
+console.log(0.1 + 0.2 == 0.3); // false
+console.log(0.1 + 0.2); // 0.3000000000000004
+
+console.log(9999999999999999999); // 100000000000000000000이 출력
+
+console.log(isNaN(NaN)); // true
+console.log(isNaN('str')); // true
+console.log(NaN === NaN) // false
+console.log(isFinite('15')); // true
+console.log(isFinite('str')); // false -> NaN 이기때문
+console.log(isFinite(Infinity)); // false -> Infinity 이기 때문
+
+// let numValidate = +prompt('숫자 입력', '');
+// console.log(isFinite(numValidate)); 숫자입력시 true, 그 외 false
+
+console.log(+'100px'); //NaN
+console.log(parseInt('100px')); // 100
+console.log(parseFloat('12.5em')); // 12.5
+console.log(parseInt('12.3')); // 12 , 정수 부분만 반환
+console.log(parseFloat('12.3.4')); // 12.3, 두번째 점에서 숫자읽기 멈춤
+console.log(parseInt('a123')); // NaN
+
+// 문자열 파싱
+console.log(parseInt('0xff', 16)); // 255
+console.log(parseInt('ff', 16)); // 255, 0x가 없어도 동작
+console.log(parseInt('2n9c', 36)); // 123456
+
+// 예제
+// let firstNumber = +prompt('첫번째숫자 입력', '');
+// let secondNumber = +prompt('두번째 숫자 입력', '');
+// let resultSum = firstNumber + secondNumber;
+// console.log(resultSum);
+// console.log(typeof resultSum); // number
+
+console.log( Math.round(6.35 * 10) / 10); 
 
