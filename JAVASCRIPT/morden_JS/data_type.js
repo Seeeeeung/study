@@ -1,4 +1,8 @@
-console.log(' ** 모던자바스크립트 자료구조_숫자 ** ');
+console.log(` 
+			********
+ 모던자바스크립트 자료구조_원시값, 숫자
+ 			********
+			 `);
 let str = 'Hello';
 console.log(str.toUpperCase()); // HELLO
 
@@ -107,3 +111,64 @@ console.log(parseInt('2n9c', 36)); // 123456
 
 console.log( Math.round(6.35 * 10) / 10); 
 
+// 예제
+/*
+function readNumber() {
+	let promptNum;
+	// do while 반복문을 사용해 숫자를 입력할때까지 반복함
+	do {
+		promptNum = prompt('숫자 입력', 0);
+	} while (!isFinite(promptNum));
+	// isFinite → 인수를 숫자로 변환하고 변환한 숫자가 NaN/Infinity/-Infinity 가 아닌 일반 숫자인 경우 true 반환
+	// 문자열이 일반 숫자인지 검증하는데 사용
+
+	// 취소나 공백을 넣었을때 null을 반환하고
+	if (promptNum === null || promptNum === '') return null;
+	// 아닐때는 사용자가 입력한 값을 (숫자로) 반환함
+	return +promptNum; // else 생략
+}
+console.log(`Read: ${readNumber()}`); */
+
+function random(min, max) {
+	return min + Math.random() * (max - min);
+	// max에서 min사이 랜덤숫자를 뽑는경우
+	// Math.random() 은 소수점까지 나옴
+	// Math.random() 에 max-min을 하면 사이 범위를 한정시킬수 있음
+	// 출발점이 0 이라 사이범위를 계산한 식에 min을 더해줘야 출발선이 min이되고 마지막점이 max가 된다
+}
+console.log(random(1,5));
+console.log(random(1,5));
+console.log(random(1,5));
+
+function randomInteger(min, max) {
+	// rand from min-0.5, to max+0.5
+	let rand = min - 0.5 + Math.random() * (max-min + 1);
+	return Math.round(rand);
+
+	//  다른 방법 min to max+1
+	// let rand = min + Math.random() * (max + 1 - min);
+	// return Math.floor(rand);
+}
+console.log(randomInteger(1,5));
+console.log(randomInteger(1,5));
+console.log(randomInteger(1,5));
+
+console.log(` 
+			********
+ 모던자바스크립트 자료구조_문자열
+			 ******** 
+			 `);
+console.log(`여기는 
+	안되나
+		오 되네
+		`)
+function bTSum(a,b) {
+	return a + b;
+}
+console.log(`1 + 2 = ${bTSum(1,2)}.`);
+let guestList = `손님:
+	* John
+	* Pete
+	* Mary
+	`;
+	console.log(guestList);

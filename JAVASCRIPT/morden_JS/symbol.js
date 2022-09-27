@@ -1,4 +1,8 @@
-console.log(' ** 모던자바스크립트 객체_심볼 ** ');
+console.log(` 
+			********
+ 모던자바스크립트 객체_심볼
+ 			********
+			 `);
 let id1 = Symbol('id');
 let id2 = Symbol('id');
 console.log(id1 == id2); // false

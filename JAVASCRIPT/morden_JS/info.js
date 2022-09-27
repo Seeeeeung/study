@@ -1,4 +1,8 @@
-console.log(' ** 모던자바스크립트 info ** ');
+console.log(`
+			 ********
+ 모던자바스크립트 info
+ 			******** 
+			`);
 // function showColnsole(from, text) {
 // 	console.log(from + ': ' + text);
 // }

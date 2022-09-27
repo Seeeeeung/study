@@ -1,4 +1,8 @@
-console.log(' ** 모던자바스크립트 객체_체이닝 ** ');
+console.log(` 
+			********
+ 모던자바스크립트 객체_체이닝
+ 			********
+			 `);
 // 옵셔널 체이닝
 // let user29 ={}; // 주소 정보가 없는 사용자
 // console.log(user29.address.street); // Error: street을 읽을 수 없다 	

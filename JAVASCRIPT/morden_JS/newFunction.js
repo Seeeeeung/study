@@ -1,4 +1,8 @@
-console.log(' ** 모던자바스크립트 객체_생성자함수 ** ');
+console.log(` 
+			********
+ 모던자바스크립트 객체_생성자함수
+ 			******** 
+			`);
 // new연산자, 생성자 함수
 function User(name) {
 	this.name = name;
