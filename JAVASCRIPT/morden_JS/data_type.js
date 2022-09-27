@@ -158,17 +158,69 @@ console.log(`
  모던자바스크립트 자료구조_문자열
 			 ******** 
 			 `);
-console.log(`여기는 
-	안되나
-		오 되네
-		`)
 function bTSum(a,b) {
 	return a + b;
 }
 console.log(`1 + 2 = ${bTSum(1,2)}.`);
+
 let guestList = `손님:
 	* John
 	* Pete
 	* Mary
 	`;
 	console.log(guestList);
+
+let guestList2 = '손님:\n *John\n *Pete\n *Mary';
+console.log(guestList2);
+
+let str1 = 'Hello\nWorld';
+let str3 = `Hello
+World`;
+console.log(str1 == str3);
+
+console.log('\u00A9');
+console.log('\u{20331}');
+console.log('\u{1F60D}');
+
+console.log(`My\n`.length); // 3
+
+console.log(str1[0]); // H
+console.log(str1.charAt(0)); // H
+console.log(str1[str1.length - 1]); // d
+console.log(str[1000]); // undefined
+console.log(str1.charAt(1000)); // ' '
+
+for (let char of 'Hello') {
+	console.log(char); // H , e, l, l, o
+}
+console.log('');
+
+// 문자열 불변성
+let str4 = 'Hi';
+
+str4[0] = 'h' // Error?????
+console.log(str4[0]); // 동작하지 않는다 ????? H 반환함
+
+str4 = 'h' + str4[1]; // 문자열 전체 교체
+console.log(str4); // hi
+
+// 부분 문자열
+let str5 = 'Widget with id';
+console.log(str5.indexOf('Widget')); // 0 , str5는 Widget으로 시작
+console.log(str5.indexOf('widget')); // -1 , 대소문자를 따지므로 원하는 문자열 찾지못함
+console.log(str5.indexOf('id')); // 1 , id는 첫번째 위치에서 발견 -> Widget의 id 임
+
+console.log(str5.indexOf('id', 2)) // 12
+console.log('');
+
+// 반복문 내 indexOf
+let str6 = 'As sly as a fox, as strong as an ox';
+let targetStr = 'as'; //  as 찾기
+let pos = 0;
+while (true) {
+	let foundPos = str6.indexOf(targetStr, pos);
+	if (foundPos == -1) break;
+	console.log(`위치: ${foundPos}`);
+	pos = foundPos + 1; // 다음 위치를 기준으로 검색을 이어감
+	
+}
