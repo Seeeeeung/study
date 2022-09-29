@@ -222,5 +222,140 @@ while (true) {
 	if (foundPos == -1) break;
 	console.log(`위치: ${foundPos}`);
 	pos = foundPos + 1; // 다음 위치를 기준으로 검색을 이어감
-	
 }
+console.log('코드단축')
+// 코드 단축
+let pos2 = -1;
+while ((pos2 = str6.indexOf(targetStr, pos2 + 1)) != -1) {
+	console.log(`위치: ${pos2}`);
+}
+
+// 주의점
+let str7 = 'Widget with id';
+if (str7.indexOf('Widget')) {
+	console.log('동작안함')
+}
+if (str7.indexOf('Widget') != -1) {
+	console.log('정상동작');
+}
+console.log('');
+
+// 비트NOT연산자 사용
+console.log(~2); // -(2+1)
+console.log(~1); // -(1+1)
+console.log(~0); // -(0+1)
+console.log(~-1); // -(-1+1)
+
+let str8 = "Widget";
+if (~str8.indexOf('Widget')) {
+	console.log('작동!')
+}
+
+// 최근 나온 메서드
+console.log('Widget with id'.includes('Widget')); // true
+console.log('Hello'.includes('bye')); // false
+console.log('Widget'.includes('id')); // true
+console.log('Widget'.includes('id', 3)); // false ->세번째 위치엔 id가 없음
+console.log('Widget'.startsWith('Wid')); // true -> Widget은 Wid로 시작
+console.log('Widget'.endsWith('get')); // true -> get 으로 끝남
+
+console.log('');
+// 부분 문자열 추출
+let str9 = 'stringify';
+console.log(str9.slice(0,5)); // strin, 0번째 부터 5번째 위치까지 반환 -> 5번째 위치의 글자 미포함
+console.log(str9.slice(0,1)); // s, 0번째 부터 1번째 위치까지 반환
+console.log(str9.slice(2)); // ringify, 2번째부터 끝까지 반환
+console.log(str9.slice(-4, -1)); // gif
+
+console.log('');
+
+// 동일 부분 문자열 반환
+console.log(str9.substring(2, 6)); // ring
+console.log(str9.substring(6, 2)); // ring
+
+// slice를 사용하면 결과가 다름
+console.log(str9.slice(2, 6)); // ring
+console.log(str9.slice(6, 2) + '빈 문자열 반환'); // ' ' 빈 문자열
+
+console.log('');
+
+console.log(str9.substr(2, 4)); // ring , 두번째 부터 글자 네개
+console.log(str9.substr(-4, 2)); // gi , 끝에서 네번째 위치부터 글자 두개
+
+console.log('');
+
+// 문자열 비교
+console.log('a' > 'Z'); // true
+console.log('Österreich' > 'Zealand'); // true
+
+console.log('');
+
+console.log('z'.codePointAt(0)); // 122
+console.log('Z'.codePointAt(0)); // 90
+
+console.log('');
+
+console.log(String.fromCodePoint(90)); //Z
+// 90을 16진수로 변환하면 5a 이다
+console.log('\u005a'); // Z
+
+let str10 = '';
+for (let i = 65; i <= 220; i++) {
+	str10 += String.fromCodePoint(i);
+}
+console.log(str10);
+
+console.log('Österreich'.localeCompare('Zealand')); // -1
+
+// 심화
+console.log('𝒳'.length); // 2
+console.log('𝒳'[0]); // 이상한 기호 출력
+console.log('𝒳'[1]); // ??
+console.log('😀'.length); // 2
+console.log('𩷶'.length); // 2
+
+// 정규화
+console.log('A\u0307\u0323'.normalize() == 'A\u0323\u0307'.normalize()); // true
+// -> 두 유니코드를 normalize() 하지 않으면 false 반환
+console.log('A\u0307\u0323'.normalize().length); // 1
+console.log('A\u0307\u0323'.normalize()); // Ạ̇
+console.log('A\u0307\u0323'.normalize() == '\u1e68'); // true
+// -> 세 유니코드 글자를 1개로 합쳐줌
+
+// 예제
+function ucFirst(result) {
+	if (!result) return result;
+	return result[0].toUpperCase() + result.slice(1);
+}
+console.log(ucFirst('john') == 'John');
+
+function truncate(str, maxlength) {
+	/* 내 답안
+	if (str.length > maxlength) {
+		let over = str.slice(maxlength - 1)
+		over = '…';
+		return str.slice(0, maxlength) + over;
+	}
+	return str; */
+	return (str.length > maxlength) ? str.slice(0, maxlength - 1) + '…' : str;
+}
+console.log(truncate('What I\'d like to tell on this topic is: ', 20));
+console.log(truncate('Hi everyon!', 20));
+
+function extractCurrencyValue(str) {
+	// return Number(str.slice(1)); // 내 정답
+	return +str.slice(1);
+}
+console.log(extractCurrencyValue('$120') === 120)
+
+
+
+console.log(` 
+			********
+ 모던자바스크립트 자료구조_배열
+			 ******** 
+			 `);
+
+let arr = ['사과', {name: '이보라'}, true, function() { console.log('하이');} ];
+console.log(arr[1].name); // 이보라
+arr[3]();
