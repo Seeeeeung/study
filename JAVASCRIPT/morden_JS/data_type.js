@@ -358,4 +358,98 @@ console.log(`
 
 let arr = ['사과', {name: '이보라'}, true, function() { console.log('하이');} ];
 console.log(arr[1].name); // 이보라
-arr[3]();
+arr[3](); // 하이
+
+// trailing 쉼표
+let fruits = [
+	'사과',
+	'오렌지',
+	'자두',
+]
+
+// pop 배열 끝 요소 제거, 제거한 요소 반환
+console.log(fruits.pop()); // 자두 제거, 자두 반환
+console.log(fruits); // 사과, 오렌지
+
+// push
+fruits.push('배');
+console.log(fruits); // 사과, 오렌지, 배
+
+// shift
+console.log(fruits.shift()); // 사과 제거, 사과 반환
+console.log(fruits); // 오렌지, 배
+
+// unshift
+fruits.unshift('사과'); 
+console.log(fruits); // 사과, 오렌지, 배
+
+// push + unshift
+fruits.push('자두', '레몬');
+fruits.unshift('파인애플', '바나나');
+console.log(fruits); // 파인애플, 바나나, 사과, 오렌지, 배, 자두 , 레몬
+
+// 객체처럼 참조를 통한 복사
+let arr1 = ['바나나'];
+let cloneArr = arr1; // 참조 복사
+console.log(cloneArr === arr1); // true
+cloneArr.push('배'); // 배열 수정
+console.log(cloneArr); // 요소가 변경됨
+console.log(arr1); // 똑같이 변경됨
+
+// 반복문
+console.log('** for **')
+for (let i = 0; i < fruits.length; i++) {
+	console.log(fruits[i]);
+}
+console.log('** for..of **')
+for (let fruit of fruits) {
+	console.log(fruit);
+}
+console.log('** for..in **');
+for (let key in fruits) {
+	console.log(fruits[key]);
+}
+
+// length 프로퍼티
+console.log('** length **');
+let arr2 = [1, 2, 3, 4, 5];
+arr2.length = 2;
+console.log(arr2); // [1,2]
+arr2.length = 5;
+console.log(arr2[3]); // undefined -> 삭제된 기존 요소들은 복구되지않는다
+
+// new Array()
+let arr3 = new Array(2); // 배열 [2] 가 만들어지는지?
+console.log(arr3[0]); // undefined
+console.log(arr3); // 빈 배열
+console.log(arr3.length); // 2
+
+// 다차원 배열
+let matrix = [
+	[1,2,3],
+	[4,5,6],
+	[7,8,9]
+];
+console.log(matrix[1][1]); // 5
+
+// toString
+let arr4 = [1,2,3];
+console.log(arr4); // 1,2,3
+console.log(String(arr4) === '1,2,3'); // true
+// 아래 전부 숫자가 아닌 문자열
+console.log([] + 1); // 1
+console.log([1] + 1); // 11
+console.log([1,2] + 1); // 1,21 
+
+// 예제
+let styles = ['Jazz', 'Blues'];
+console.log(styles);
+styles.push('Rock-n-Roll');
+console.log(styles);
+// 배열이 홀수개일때 중앙의 것의 값을 바꾸기
+styles[Math.floor((styles.length - 1) / 2)] = 'Classics';
+console.log(styles);
+console.log(styles.shift());
+console.log(styles);
+styles.unshift('Rap', 'Reggae');
+console.log(styles);

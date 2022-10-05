@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="title" content="스마트 위택스">
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="No-Cache" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
+<title>스마트 위택스</title>
+ 
+<!-- CSS :: CSS 파일 수정하지 마세요. -->
+<link type="text/css" rel="stylesheet" href="../../static/css/import.css" media="all" />
+<script type="text/javascript" src="../@guide/@가이드내부에위치/jquery-3.6.0.js"></script>
+<script type="text/javascript" src="../@guide/@가이드내부에위치/ui.common.js" defer></script><!-- @ 퍼블 가이드 화면 기능 확인용 입니다. 개발시 불필요한 경우 삭제하고 사용해주세요. -->
+</head>
+
+<body class="no-scroll">
+	<!-- app -->
+	<div id="app">
+
+		<!-- ui-wrap -->
+		<div class="ui-wrap">
+
+			<!-- ui-header -->
+			<header class="ui-header active">
+				<h1 class="logo"><a href="">wetax</a></h1>
+				<div class="btn-group">
+					<a href="" class="ui-btn btn-notice">알림 메세지</a>
+					<button type="button" class="ui-btn btn-search">검색</button>
+					<button type="button" class="ui-btn btn-allmenu">전체메뉴 열기</button> <!-- click 시 ui-allmenu class active 추가 -->
+				</div>
+
+				<!-- ui-allmenu -->
+				<div class="ui-allmenu active">
+					<h2 class="blind">전체메뉴</h2>
+
+					<div class="btn-group">
+						<a href="" class="ui-btn btn-home">HOME</a>
+						<a href="" class="ui-btn btn-notice">알림 메세지</a>
+						<a href="" class="ui-btn btn-setting">셋팅</a>
+						<button type="button" class="ui-btn btn-close">전체메뉴 닫기</button> <!-- click 시 ui-allmenu class active 삭제 -->
+					</div>
+
+					<div class="allmenu-cont">
+						<div class="login-before">
+							<p>회원가입을 하시면 더 많은<br />서비스를 이용하실 수 있습니다.</p>
+							<a href="" class="ui-btn round white">로그인</a>
+							<a href="" class="ui-btn round white">회원가입</a>
+						</div>
+
+						<!-- <div class="input-search"> 2022-06-09 개발 요청 삭제
+							<input type="text" placeholder="검색어를 입력하세요." title="검색어를 입력하세요." class="ui-input"/>
+						</div> -->
+
+						<div class="quick-menu">
+							<a href=""><i class="iconset ico-quick01"></i> My위택스</a>
+							<a href=""><i class="iconset ico-quick02"></i> 즐겨찾기</a>
+							<a href=""><i class="iconset ico-quick03"></i> 전자사서함</a>
+							<a href=""><i class="iconset ico-quick04"></i> 인증센터</a>
+						</div>
+
+						<div class="gnb-wrap">
+							<div class="gnb-tab">
+								<h3 class="blind">GNB 1depth 퀵메뉴</h3>
+								<button type="button" class="prev hide">이전메뉴 보기</button>
+								<div class="tab-inner">
+									<a href="#gnb-panel1" class="active">신고</a> <!-- href = .gnb-list li의 #id  -->
+									<a href="#gnb-panel2">신청</a>
+									<a href="#gnb-panel3">납부</a>
+									<a href="#gnb-panel4">환급</a>
+									<a href="#gnb-panel5">발급</a>
+									<a href="#gnb-panel6">권리보호</a>
+									<a href="#gnb-panel7">위임</a>
+									<a href="#gnb-panel8">지방세 정보</a>
+									<a href="#gnb-panel9">국민참여</a>
+									<a href="#gnb-panel10">고객센터</a>
+									<a href="#gnb-panel11">설정</a>
+									<a href="#gnb-panel12">나의 위택스</a>
+								</div>
+								<button type="button" class="next">다음메뉴 보기</button>
+							</div>
+
+							<ul class="gnb-list">
+								<li id="gnb-panel1"><span>신고</span> <!-- li 의 id 값 = .tab-inner a의 href -->
+									<ul>
+										<li><a href="">취득세</a>
+											<ul>
+												<li><a href="">취득세 신고</a></li>
+												<li><a href="">취득세 신고내역 조회</a></li>
+											</ul>
+										</li>
+										<li><a href="">등록면허세 (등록분)</a>
+											<ul>
+												<li><a href="">등록분 신고</a></li>
+												<li><a href="">등록분 신고내역</a></li>
+											</ul>
+										</li>
+										<li><a href="">등록면허세 (면허분)</a>
+											<ul>
+												<li><a href="">면허분 신고</a></li>
+												<li><a href="">면허분 신고내역</a></li>
+											</ul>
+										</li>
+										<li><a href="">주민세 (종업원분)</a>
+											<ul>
+												<li><a href="">종업원분 신고</a></li>
+												<li><a href="">종업원분 신고내역</a></li>
+											</ul>
+										</li>
+										<li><a href="">주민세 (사업소분)</a>
+											<ul>
+												<li><a href="">사업소분 신고</a></li>
+												<li><a href="">사업소분 신고내역</a></li>
+											</ul>
+										</li>
+										<li><a href="">지방소득세 (종합소득분)</a>
+											<ul>
+												<li><a href="">종합소득분 신고</a></li>
+												<li><a href="">확정신고 내역조회</a></li>
+												<li><a href="">토지등매매차익예정신고 내역조회</a></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li id="gnb-panel2"><span>신청</span>
+									<ul>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li id="gnb-panel3"><span>납부</span>
+									<ul>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li id="gnb-panel4"><span>환급</span>
+									<ul>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li id="gnb-panel5"><span>발급</span>
+									<ul>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li id="gnb-panel6"><span>권리보호</span>
+									<ul>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li id="gnb-panel7"><span>위임</span>
+									<ul>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li id="gnb-panel8"><span>지방세정보</span>
+									<ul>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li id="gnb-panel9"><span>국민참여</span>
+									<ul>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li id="gnb-panel10"><span>고객센터</span>
+									<ul>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li id="gnb-panel11"><span>설정</span>
+									<ul>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li id="gnb-panel12"><span>나의위택스</span>
+									<ul>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+										<li><a href="">2뎁스 메뉴</a>
+											<ul>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+												<li><a href="">3뎁스 메뉴</a></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+				<!-- //ui-allmenu -->
+			</header>
+			<!-- //ui-header -->
+
+			<!-- container -->
+			<div class="container">
+				<div class="contents">
+					메인컨텐츠
+				</div>
+			</div>
+			<!-- //container -->
+
+			<!-- ui-footer -->
+			<footer class="ui-footer">
+				<p>정부민원안내 콜센터 : <span class="roboto">110</span>번</p>
+				<p>&#169; Ministry of the Interior and Safety. All rights reserved.</p>
+			</footer>
+			<!-- //ui-footer -->
+
+		</div>
+		<!-- //ui-wrap -->
+
+	</div>
+	<!-- // app -->
+
+</body>
+</html>
