@@ -11,7 +11,7 @@ $(function() {
 	}
 
 	function close() {
-		body.removeClass('no-scroll');
+		body.removeClass('no-scroll'); 
 		console.log('닫기')
 		body.css('top', null);
 		$(document).scrollTop(scrollT);
@@ -53,43 +53,32 @@ $(function() {
 			fixHeight;
 			// ???? input-search 기능은 무엇인가..!
 
-			var bookmarkOffsetLeft = bookmark.outerHeight();
-			var allMenuOffsetLeft = allMenu.find('.btn-group').outerHeight();
-			console.log(bookmarkOffsetLeft)
-			console.log(allMenuOffsetLeft)
-
+			// input-search 콘텐츠 유무 확인
 			if ($('.input-search').length) {
-				// console.log( allMenu.find('.input-search'))
-				 allMenu.find('.input-search').outerHeight()
-				//  console.log(allMenu.find('.input-search').offsetHeight)
-				console.log('???왜 작동해...?')
+				 allMenu.find('.input-search').outerHeight();
 			} else {
-				fixHeight = bookmarkOffsetLeft + allMenuOffsetLeft;
-				console.log('작동동')
-				console.log(fixHeight)
+				fixHeight = bookmark.outerHeight() + allMenu.find('.btn-group').outerHeight();
 			}
 
 			// gnb-list 내부 아코디언 토글
-			gnb.find('.gnb-list a').each(function() {
-				$(this).on('click', function(e){
+			$('.gnb-list>li>ul>li').children('a').on('click', function(e){
+				if ($(this).next().length) {
 					e.preventDefault();
-					if ($(this).next() != null) {
-						$(this).parent().toggleClass('active');
-					}
-				});
+					$(this).parent().toggleClass('active');
+				}
 			});
 
-			// 좌우탭 버튼 클릭시 스크롤 위치이동
+			// 좌우탭 버튼 클릭시 북마크 좌우 위치 이동
 			bookmark.find('button').each(function() {
 				console.log($(this).hasClass('prev'))
 				$(this).on('click', function(e) {
-					var left = bmInner.scrollLeft();
+					var getBmInnerLocation = bmInner.scrollLeft();
 					switch(true) {
 						case $(this).hasClass('prev'):
-							left -= bookmark.innerWidth
+							getBmInnerLocation -= bookmark.innerWidth()
 							break;
 						case $(this).hasClass('next'):
-							left += bookmark.innerWidth
+							getBmInnerLocation += bookmark.innerWidth()
 							break;
 					}
 
@@ -97,12 +86,11 @@ $(function() {
 				});
 			});
 
-			// 버튼 클릭시 좌우 스크롤 기능
+			// a태그 클릭시 좌우 스크롤 기능
 			for (var i = 0; i < bmBtn.length; i++) {
 				bmBtn.eq(i).on('click', function(e) {
-					// console.log(this)
 					e.preventDefault()
-					// 아이디 # 이후로 자르기
+					// 아이디 # 이후로 자르기 (리스트 아이디 링크)
 					var linkId = $(this).attr('href').split('#')[1];
 
 					// 버튼 클릭시 모든 a 태그 active제거
@@ -113,34 +101,32 @@ $(function() {
 					$(this).addClass('active');
 
 					// 클릭한 버튼이 탭부분 맨 앞으로 이동
-					// ??????작동이유 알아내기
-					var tabLeft = this.offsetLeft - parseInt(bmInner.css('padding-left'));
-					$(this).closest('.tab-inner').scrollLeft(tabLeft);
+					// 스크롤 기준을 bmBtn으로 지정해서 적용이 안되었던것
+					bmInner.scrollLeft(0);
+					bmInner.scrollLeft($(this).offset().left - parseInt(bmInner.css('padding-left')));
 
-					// 버튼 클릭시 스크롤 탑 이동, 리스트 탑 이동
-					var moveTop = gnb.children('.gnb-list').children('li#'+linkId).outerHeight(true);
-					console.log(moveTop + ' : 1')
-					allMenu.scrollTop(moveTop + 1);
-					console.log(moveTop + ' : 2')
-					console.log(allMenu.scrollTop())
-					console.log(gnb.children('.gnb-list').children('li#'+linkId))
-					// 왜 스크롤ㄹ이 두번 먹고.. 조금	밖에 안내려가?
-					// console.log(this)
-					// console.log(allMenu.offsetTop)
-					
-					// console.log(gnb.find(".gnb-list li[id*=" + linkId + "]").offset().top)
-					// console.log( gnb.find(".gnb-list li[id*=" + linkId + "]"))
-					// a링크 작동해서 scroll이벤트 안먹혔음 ^^ ㅗㅗㅗ
+					// 클릭시 해당 리스트로 스크롤 이동
+					// 1. 현재 스크롤 위치 0으로 고정
+					allMenu.scrollTop(0);
+					// 2. 클릭한 버튼과 연동된 해당 리스트의 top에서부터의 위치 찾기
+					// 3. 해당 리스트의 위치에서 헤더높이값 빼기
+					allMenu.scrollTop(gnb.children('.gnb-list').children('li#'+linkId).offset().top - fixHeight + 1);
 				});
 			}
-
+			console.log(bmInner.prop('scrollWidth'))
+			console.log(bmInner[0].scrollWidth + ' : width')
+			console.log(bmInner[0].offsetWidth + ' : width')
+			console.log($(document).innerWidth())
+			console.log($(window).innerWidth())
+			console.log($(document).innerWidth() + $(window).innerWidth())
+			console.log($(this).scrollLeft())
 			// 좌우 버튼 활성화, 비활성화
-			// function tabScrollX() {
-			// 	var bmIScrollT = bmInner.scrollTop()
-			// 	var bmIW = bmInner.innerWidth();
-			// 	left == 0 ? bookmark.find('.prev').addClass('hide') : bookmark.find('.prev').removeClass('hide');
-			// 	left == bmIScrollT - bmIW ? bookmark.find('.next').addClass('hide') : bookmark.find('.next').removeClass('hide');
-			// }
+			function tabScrollX() {
+				var bmIScrollT = bmInner.scrollTop()
+				var bmIW = bmInner.height();
+				bmlnner.scrollLeft() == 0 ? bookmark.find('.prev').addClass('hide') : bookmark.find('.prev').removeClass('hide');
+				// bmlInner.scrollLeft() == bmInner.scrollWidth - bmIW ? bookmark.find('.next').addClass('hide') : bookmark.find('.next').removeClass('hide');
+			}
 
 
 			// bmInner.on('scroll', tabScrollX);
