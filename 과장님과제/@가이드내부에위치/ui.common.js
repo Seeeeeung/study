@@ -85,106 +85,213 @@ $(function() {
 				});
 			});
 
-			// a태그 클릭시 좌우 스크롤 기능
-			for (var i = 0; i < bmBtn.length; i++) {
-				bmBtn.eq(i).on('click', function(e) {
-					e.preventDefault()
-					// 아이디 # 이후로 자르기 (리스트 아이디 링크)
-					var linkId = $(this).attr('href').split('#')[1];
-
-					// 버튼 클릭시 모든 a 태그 active제거
-					bmBtn.each(function() {
-						$(this).removeClass('active');
-					});
-					// 클릭한 버튼에만 active 추가
-					$(this).addClass('active');
-
-					// 클릭한 버튼이 탭부분 맨 앞으로 이동
-					// 스크롤 기준을 bmBtn으로 지정해서 적용이 안되었던것
-					bmInner.scrollLeft(0);
-					bmInner.scrollLeft($(this).offset().left - parseInt(bmInner.css('padding-left')));
-
-					// 클릭시 해당 리스트로 스크롤 이동
-					// 1. 현재 스크롤 위치 0으로 고정
-					allMenu.scrollTop(0);
-					// 2. 클릭한 버튼과 연동된 해당 리스트의 top에서부터의 위치 찾기
-					// 3. 해당 리스트의 위치에서 헤더높이값 빼기
-					allMenu.scrollTop(gnb.children('.gnb-list').children('li#'+linkId).offset().top - fixHeight + 1);
-					console.log(bmInner.scrollLeft())
-				});
-			}
+			
 
 			// 좌우 버튼 활성화, 비활성화
 			function tabScrollX() {
 				bmInner.scrollLeft() == 0 ? bookmark.find('.prev').addClass('hide') : bookmark.find('.prev').removeClass('hide');
-				bmInner.scrollLeft() >= bmInner[0].scrollWidth - bmInner.scrollLeft() ? bookmark.find('.next').addClass('hide') : bookmark.find('.next').removeClass('hide');
+				Math.floor(bmInner.scrollLeft() + 1) >= Math.floor(bmInner[0].scrollWidth - bmInner.innerWidth()) ? bookmark.find('.next').addClass('hide') : bookmark.find('.next').removeClass('hide');
+				// console.log(bmInner[0].scrollWidth - bmInner.outerWidth())
+				// console.log(bmInner.scrollLeft()) 
 			}
+			// 클릭, 스크롤 동일기능
+			// = left 스크롤 이동 밖으로 빼내기
+			function moveLeftBmInner () {
+			
+				bmInner.scrollLeft(0);
+				bmInner.scrollLeft(gnb.find('.tab-inner a.active').offset().left - parseInt(bmInner.css('padding-left')));
+			}
+			
+			// 1-1. sections 위치 반환 (list 10 ->국민참여까지 작동)
+			function moveScrollBar() {
+				// e.preventDefault()
+				for (let i = 0; i < sections.length - 2; i++) {
+					// 1-2. scroll 위치 반환
+					var scrollY = allMenu.scrollTop() ,
+					section = sections.eq(i),
+					thisBmBtn = bmBtn.eq(i)
+					sectionHeight = section.innerHeight() + 30,
+					sectionsLocation = section.offset().top + sectionHeight - fixHeight,
+					btnHref = thisBmBtn.attr('href').split('#')[1],
+					listId = section.attr('id'),
+					// 1-4. bmBtn href / sections id 값이 같은지 확인하는 변수선언
+					checkEle = btnHref == listId;
+					// currentSectionsLocation = sectionsLocation.top 
+					// ******여기부터 다시 
+					if (scrollY < gnb.offset().top) {
+						console.log('첫번째 리스트')
+						bmBtn.removeClass('active')
+						bmBtn.eq(0).addClass('active')
+						// 1-3. 1,2비교 근접 위치 지정
+					} else if (scrollY - sectionsLocation >= sectionsLocation - 15 && sectionsLocation > 0 && (sections.eq(i+1).offset().top + sectionHeight) - sectionsLocation > 0 && sectionsLocation < sectionHeight && scrollY < 2292) {
+						console.log('**시작 근접')
+						console.log(sections.eq(i).first(), '$(this)')
+						console.log(btnHref, listId)
+						console.log(thisBmBtn)
+						if (checkEle) {
+							bmBtn.removeClass('active')
+							thisBmBtn.addClass('active')
+							moveLeftBmInner()
+							// 클릭이벤트와 같이 동작함
+							console.log($(this),'this')
+						}
 
+					} 
+					console.log(section)
+					console.log(sectionHeight)
+					console.log(sectionsLocation,$(this).index())
+					console.log(scrollY)
+					console.log(scrollY - sectionsLocation >= sectionsLocation - 15 && sectionsLocation > 0 && (sections.eq(i+1).offset().top + sectionHeight) - sectionsLocation > 0 && sectionsLocation < sectionHeight && scrollY < 2192, '마지막')
+
+				}
+			}
+			
+			bmBtn.on('click', function(e) {
+				e.preventDefault();
+				var index = $(this).index()
+				listTop = sections.eq(index).offset().top - fixHeight
+				console.log(listTop)
+				console.log(index)
+				//  ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ
+				if (!$(this).eq(9) || !$(this).eq(10) || !$(this).eq(11)) {
+					allMenu.scrollTop(0)
+					allMenu.scrollTop(listTop)
+
+				}
+				// clickMoveScroll()
+				console.log($(this))
+				bmBtn.removeClass('active')
+				$(this).addClass('active')
+				moveLeftBmInner()
+				allMenu.on('scroll', function() {
+					moveScrollBar()
+				})
+			})
+			
+			// ******* 버튼 클릭시 위아래로 이동하는 것만 안댐
+			function clickMoveScroll() {
+			}
+	
 			// 상하 스크롤 이동시 탭이너 하이라이트
 			function navHighlighter() {
-				allMenu.on('scroll', function() {
-					var scrollY = allMenu.scrollTop();
+				var scrollY = Math.floor(allMenu.scrollTop());
 
-					scrollY >= gnb.offset().top - (fixHeight - bookmark.height()) ? bookmark.addClass('active') : bookmark.removeClass('active');
+				scrollY >= gnb.offset().top - (fixHeight - bookmark.height()) ? bookmark.addClass('active') : bookmark.removeClass('active');
+				// default = bookmark에 class active 없을시 하이라이트 없음 (스크롤시 추가)
 
-					sections.each(function() {
-						var sectionHeight = $(this).height(),
-						sectionTop = $(this).offset().top - fixHeight,
-						sectionId = $(this).attr('id');
-	
-						// 리스트 위치가 안맞아서 스크롤과 버튼 클릭 기능이 다르게작동함
-						// ** 여기서부터 다시 하기
-						console.log(sectionTop)
-
-						if (scrollY < gnb.offset().top) {
-							bmInner.eq(0).addClass('active');
-							console.log('작동')
-						} else if (scrollY > sectionTop - 30 && scrollY <= sectionTop + sectionHeight + 15) {
-							// 1. 현재 리스트의 아이디 찾기 -> sectionId
-							console.log(sectionId + ' : 리스트 아이디')
-							// 2. 1번과 같은 탭메뉴 버튼의 href찾기
-							// 2-1. 탭메뉴버튼 전체 href 속성 반환
-							const bmHref = bmInner.children().map(function() {
-								return $(this).attr('href').split('#')[1]
-							})
-							console.log(bmHref)
-							// 2-2. 그중에 리스트 아이디와 같은것 반환
-							for (let i = 0; i < bmHref.length; i++) {
-								if (bmHref[i] == sectionId) {
-
-									bmInner.children().removeClass('active')
-									bmInner.children().eq(i).addClass('active')
-								} 
-							}
-							//2-3. 그 속성을 가진 객체 반환 .... 결론적으로 그 href의 객체를 반환하려면 검색을 해야하는데 어캐함
-							// 다른방법이 있나
-							// 인덱스 연동시키기?
-
-
-							// 3. 찾은 버튼에 active 추가하기
-							// 4. 나머지 버튼에 active제거하기
-
-							
-							bmInner.scrollLeft(gnb.find('.gnb-tab a.active').offset().left - parseInt(bmInner.attr('padding-left')))
-						} else {
-							// gnb.children('.gnb-tab').find('a').attr('href', sectionId).removeClass('active');
-							// console.log($(this))
-						}
-					});
-
-				});
-
-
+			
 				
-				console.log(bookmark.height())
-				console.log(gnb.offset().top)
-				console.log(scrollY)
+				function addActive () {
 
+				}
+
+				// 1-5. bmBtn 에 class active 추가시 bmInner 이동 (moveLeftBmInner fn)
+
+				// 1. 1-3으로 스크롤+스크롤바 드래그앤드롭 시 fn 활성화
+				// fn = 1-1.과 동일한 href를 가지고 있는 버튼에 class active 추가
+				// 		 + 1-5 실행
+
+				// 2. bmBtn 클릭시 fn활성화
+				// fn = 클릭한 this에 class active 추가 
+				//		 + 1-5 실행
+				//		 + 선택한 bmBtn의 href와 동일한 id를 가지고있는 sections의 1-3으로 스크롤이동
+
+				// a태그 클릭시 좌우 스크롤 기능
+				function clickBmBtn() {
+					// for (var i = 0; i < bmBtn.length; i++) {
+					// 	bmBtn.eq(i).on('click', function(e) {
+					// 		e.preventDefault()
+
+					// 		// 아이디 # 이후로 자르기 (리스트 아이디 링크)
+					// 		var linkId = $(this).attr('href').split('#')[1];
+							
+					// 		// 버튼 클릭시 모든 a 태그 active제거
+					// 		$('.tab-inner a').removeClass('active')
+					// 		// bmInner.find('a').each(function() {
+					// 		// 	console.log($(this))
+					// 		// })
+					// 		// 클릭한 버튼에만 active 추가
+					// 		$(this).addClass('active')
+					// 		// **********스크롤 안되는 부분 class추가 안됨 ************
+							
+					// 		// 클릭한 버튼이 탭부분 맨 앞으로 이동
+					// 		// 스크롤 기준을 bmBtn으로 지정해서 적용이 안되었던것
+					// 		bmInner.scrollLeft(0);
+					// 		bmInner.scrollLeft($(this).offset().left - parseInt(bmInner.css('padding-left')));
+	
+					// 		// 클릭시 해당 리스트로 스크롤 이동
+					// 		// 1. 현재 스크롤 위치 0으로 고정
+					// 		allMenu.scrollTop(0);
+					// 		// 2. 클릭한 버튼과 연동된 해당 리스트의 top에서부터의 위치 찾기
+					// 		// 3. 해당 리스트의 위치에서 헤더높이값 빼기
+					// 		allMenu.scrollTop(gnb.children('.gnb-list').children('li#'+linkId).offset().top - fixHeight + 1);
+					// 		// console.log(bmInner.scrollLeft())
+					// 	});
+					// }
+					console.log('클릭이벤트 실행')
+				}
+
+				function moveScrollBar() {
+					console.log('스크롤 이동 이벤트 실행')
+				}
+				
+				// 1. 스크롤+스크롤바 드래그&드롭 시 리스트 위치 반환
+				// 2. 그 위치와 근접한 리스트 아이디와 bmBtn href 속성값이 동일하면
+				// -> 전체 인덱스 검색 해당 객체 반환
+				// 3. bmBtn 에 class active 추가
+				// 4. class active 인 bmBtn이 bmInner left 0 으로 설정
+				// 5. 리스트는 상위로 지정
+				// -> bmBtn onclick function과는 별개로 작동해야함
+
+				// for (let i = 0; i <= sections.length; i++) {
+				// 	var $this = sections.eq(i),
+				// 	sectionHeight = $this.height(),
+				// 	sectionTop = scrollY + $this.offset().top - fixHeight,
+				// 	sectionId = $(this).attr('id');
+				// 	sectionIndex = $this.index();
+				// 	console.log(sectionIndex)
+				// 	// 스크롤 시작점 0으로 지정(고정)
+				// 	// 0을 고정하지 않으면 현재 스크롤 위치에서부터 시작하기때문에 코드작동에 오류가 있다.
+					
+				// 	if (scrollY < gnb.offset().top) {
+				// 		bmInner.find('a').eq(0).addClass('active');
+						
+				// 	} else if (scrollY > sectionTop - 15 && scrollY <= sectionTop + sectionHeight + 15) {
+				// 		// bmInner.find('a').eq(sectionIndex - 1).removeClass('active')
+				// 		bmInner.find('a').eq(sectionIndex).addClass('active')
+				// bmInner.scrollLeft(0)
+				// 		bmInner.scrollLeft(gnb.find('.gnb-tab a.active').offset().left - parseInt(bmInner.css('padding-left')))
+
+				// 		// 반복문이 문제인거같은데.......................
+				// 	} else {
+				// 		bmInner.find('a').removeClass('active')
+				// 		// return false
+						
+				// 	}
+				// 	// return false
+				// 	console.log(Math.floor(sectionTop-15))
+				// 	console.log(Math.floor(sectionTop + sectionHeight + 15))
+				// 	console.log(scrollY)
+
+				// }
+				// sections.each(function() {
+				// });
 				tabScrollX();
 			}
 
-			bmInner.on('scroll', tabScrollX());
-			allMenu.on('scroll', navHighlighter());
-		}
+			bmInner.on('scroll', tabScrollX);
+
+			// if ($._data(bmBtn[0], 'events')) {
+			// 	console.log('이벤트 있음')
+			// 	allMenu.off('scroll', navHighlighter)
+			// } else if ($._data(allMenu[0], 'events')) {
+			// 	allMenu.on('scroll', navHighlighter)
+			// 	console.log('?')
+
+			// }
+			allMenu.on('scroll', navHighlighter);
+			// allMenu.on('scroll', moveScrollBar);
+
+		} // //allMenu
 	}
 }); 
