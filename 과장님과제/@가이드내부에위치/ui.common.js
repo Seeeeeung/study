@@ -104,68 +104,132 @@ $(function() {
 			
 			// 1-1. sections 위치 반환 (list 10 ->국민참여까지 작동)
 			function moveScrollBar() {
-				// e.preventDefault()
-				for (let i = 0; i < sections.length - 2; i++) {
-					// 1-2. scroll 위치 반환
-					var scrollY = allMenu.scrollTop() ,
-					section = sections.eq(i),
-					thisBmBtn = bmBtn.eq(i)
-					sectionHeight = section.innerHeight() + 30,
-					sectionsLocation = section.offset().top + sectionHeight - fixHeight,
-					btnHref = thisBmBtn.attr('href').split('#')[1],
-					listId = section.attr('id'),
-					// 1-4. bmBtn href / sections id 값이 같은지 확인하는 변수선언
-					checkEle = btnHref == listId;
-					// currentSectionsLocation = sectionsLocation.top 
-					// ******여기부터 다시 
-					if (scrollY < gnb.offset().top) {
-						console.log('첫번째 리스트')
-						bmBtn.removeClass('active')
-						bmBtn.eq(0).addClass('active')
-						// 1-3. 1,2비교 근접 위치 지정
-					} else if (scrollY - sectionsLocation >= sectionsLocation - 15 && sectionsLocation > 0 && (sections.eq(i+1).offset().top + sectionHeight) - sectionsLocation > 0 && sectionsLocation < sectionHeight && scrollY < 2292) {
-						console.log('**시작 근접')
-						console.log(sections.eq(i).first(), '$(this)')
-						console.log(btnHref, listId)
-						console.log(thisBmBtn)
-						if (checkEle) {
-							bmBtn.removeClass('active')
-							thisBmBtn.addClass('active')
-							moveLeftBmInner()
-							// 클릭이벤트와 같이 동작함
-							console.log($(this),'this')
-						}
 
-					} 
-					console.log(section)
-					console.log(sectionHeight)
-					console.log(sectionsLocation,$(this).index())
-					console.log(scrollY)
-					console.log(scrollY - sectionsLocation >= sectionsLocation - 15 && sectionsLocation > 0 && (sections.eq(i+1).offset().top + sectionHeight) - sectionsLocation > 0 && sectionsLocation < sectionHeight && scrollY < 2192, '마지막')
+				var list = sections.map(function() {
+					var listIndex = console.log(sections)
+					return listIndex
+				})
+				$('.tab-inner a').on('click', function() {
+					var activeIndex = $('.tab-inner a.active').index(),
+					thisSection = Math.ceil(sections.eq(activeIndex).offset().top - fixHeight + 1)
+					$('.tab-inner a').removeClass('active')
+					$(this).addClass('active')
+					moveLeftBmInner()
+					allMenu.scrollTop(0)
+					allMenu.scrollTop(thisSection)
+					allMenu.on('scroll', function() {
+					})
+					console.log(activeIndex)
+					console.log(sections.eq(activeIndex))
+				})
+				// console.log(activeIndex)
+				// // e.preventDefault()
+				// for (let i = 0; i < sections.length - 2; i++) {
+				// 	// 1-2. scroll 위치 반환
+				// 	var scrollY = allMenu.scrollTop() ,
+				// 	section = sections.eq(i),
+				// 	thisBmBtn = bmBtn.eq(i),
+				// 	sectionHeight = section.innerHeight() + 30,
+				// 	sectionsLocation = section.offset().top + sectionHeight - fixHeight,
+				// 	btnHref = thisBmBtn.attr('href').split('#')[1],
+				// 	listId = section.attr('id'),
+				// 	// 1-4. bmBtn href / sections id 값이 같은지 확인하는 변수선언
+				// 	checkEle = btnHref == listId;
+				// 	// currentSectionsLocation = sectionsLocation.top 
+				// 	// ******여기부터 다시 
+				// 	if (scrollY < gnb.offset().top) {
+				// 		console.log('첫번째 리스트')
+				// 		bmBtn.removeClass('active')
+				// 		bmBtn.eq(0).addClass('active')
+				// 		// 1-3. 1,2비교 근접 위치 지정
+				// 	} else if (scrollY - sectionsLocation >= sectionsLocation - 15 && sectionsLocation > 0 && (sections.eq(i+1).offset().top + sectionHeight) - sectionsLocation > 0 && sectionsLocation < sectionHeight && scrollY < 2292) {
+				// 		// console.log('**시작 근접')
+				// 		// console.log(sections.eq(i).first(), '$(this)')
+				// 		// console.log(btnHref, listId)
+				// 		// console.log(thisBmBtn)
+				// 		if (checkEle) {
+				// 			bmBtn.removeClass('active')
+				// 			thisBmBtn.addClass('active')
+				// 			moveLeftBmInner()
+							
+				// 			// 클릭이벤트와 같이 동작함
+				// 			$('.tab-inner a.active').on('click', function() {
+				// 				var thisBmBtnIndex = $(this).index(),
+				// 				thisSection = Math.ceil(sections.eq(thisBmBtnIndex).offset().top - fixHeight + 1)
+				// 				// console.log(thisBmBtnIndex, 'thisbtnindex')
+				// 				// console.log($(this))
+				// 				// allMenu.scrollTop(thisSection)
+				// 				console.log(scrollY, 'Y')
+				// 				allMenu.scrollTop(0)
+				// 				// if (thisSection == 0 || thisSection == -0 || thisSection == 1) {
+				// 				// 	allMenu.scrollTop(scrollY - thisSection)
+				// 				// 	console.log(thisSection, 'thisSection 위ㅣ치 == 0')
+				// 				// 	// return false
+				// 				// 	} else if (thisSection < 0 ) {
+				// 				// 		allMenu.scrollTop(thisSection - scrollY)
+				// 				// 		console.log(thisSection, 'thisSection 위ㅣ치 < 0')
+				// 				// // 	// return false
+				// 				// } else {
+				// 				// 	// allMenu.scrollTop(0)
+				// 				// 	allMenu.scrollTop(thisSection)
+				// 				// 	console.log(thisSection, 'thisSection 위ㅣ치 else')
+				// 				// 	// return false
+				// 				// }
+				// 				if (thisSection < 0 ) {
+				// 					allMenu.scrollTop(thisSection - scrollY)
+				// 					console.log(thisSection, 'thisSection 위ㅣ치 < 0')
+				// 					// return false
+				// 				// } else if () {
+				// 					// 	// return false
+				// 				} else {
+				// 					allMenu.scrollTop(thisSection)
+				// 					console.log(thisSection, 'thisSection 위ㅣ치 == 0')
+				// 					// allMenu.scrollTop(0)
+				// 					// allMenu.scrollTop(thisSection)
+				// 					// console.log(thisSection, 'thisSection 위ㅣ치 else')
+				// 					// // return false
+				// 				}
 
-				}
-			}
+				// 				// return false
+				// 				// 반복문 멈추는법..?
+								
+				// 				// allMenu.scrollTop(0);
+				// 				// if ($(this).hasClass('active')) {
+				// 				// 	console.log(thisSection, 'thisSection 위ㅣ치')
+				// 				// 	console.log(scrollY, 'scroll 위ㅣ치')
+				// 				// 	console.log('현재 클릭한 버튼과 스크롤 active 가 같을때')
+				// 				// } else {
+				// 				// 	console.log('아닐떄')
+				// 				// } 
+								
+				// 				// console.log(Math.floor(sections.eq(thisBmBtnIndex).offset().top), 'thisSectio 만')
+				// 				// console.log(sections.eq(thisBmBtnIndex), 'section index')
+								
+								
+				// 			}) // click
+				// 		} // check 
+
+				// 	}  // scrollY
+				// 	// console.log(section)
+				// 	// console.log(sectionHeight)
+				// 	// console.log(sectionsLocation,$(this).index())
+				// 	// console.log(scrollY)
+				// 	// console.log(scrollY - sectionsLocation >= sectionsLocation - 15 && sectionsLocation > 0 && (sections.eq(i+1).offset().top + sectionHeight) - sectionsLocation > 0 && sectionsLocation < sectionHeight && scrollY < 2192, '마지막')
+
+				// } // for
+			} // function
 			
 			bmBtn.on('click', function(e) {
 				e.preventDefault();
-				var index = $(this).index()
-				listTop = sections.eq(index).offset().top - fixHeight
-				console.log(listTop)
-				console.log(index)
-				//  ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ
-				if (!$(this).eq(9) || !$(this).eq(10) || !$(this).eq(11)) {
-					allMenu.scrollTop(0)
-					allMenu.scrollTop(listTop)
-
-				}
-				// clickMoveScroll()
-				console.log($(this))
-				bmBtn.removeClass('active')
-				$(this).addClass('active')
-				moveLeftBmInner()
-				allMenu.on('scroll', function() {
-					moveScrollBar()
-				})
+				// var index = $(this).index()
+				// listTop = sections.eq(index).offset().top - fixHeight
+				// console.log(listTop)
+				// // console.log(index)
+				// // // clickMoveScroll()
+				// // console.log($(this))
+				// bmBtn.removeClass('active')
+				// $(this).addClass('active')
+				// moveLeftBmInner()
 			})
 			
 			// ******* 버튼 클릭시 위아래로 이동하는 것만 안댐
@@ -290,7 +354,7 @@ $(function() {
 
 			// }
 			allMenu.on('scroll', navHighlighter);
-			// allMenu.on('scroll', moveScrollBar);
+			allMenu.on('scroll', moveScrollBar);
 
 		} // //allMenu
 	}
