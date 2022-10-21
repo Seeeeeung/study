@@ -13,9 +13,13 @@
 <link type="text/css" rel="stylesheet" href="../../static/css/import.css" media="all" />
 <script type="text/javascript" src="../@guide/@가이드내부에위치/jquery-3.6.0.js"></script>
 <script type="text/javascript" src="../@guide/@가이드내부에위치/ui.common.js" defer></script><!-- @ 퍼블 가이드 화면 기능 확인용 입니다. 개발시 불필요한 경우 삭제하고 사용해주세요. -->
+
+<style>
+	h1,h2,h3,h4 {color:red; font-size:2rem; margin:10px; padding:10px;}
+</style>
 </head>
 
-<body class="no-scroll">
+<body>
 	<!-- app -->
 	<div id="app">
  
@@ -23,7 +27,7 @@
 		<div class="ui-wrap">
 
 			<!-- ui-header -->
-			<header class="ui-header active">
+			<header class="ui-header">
 				<h1 class="logo"><a href="">wetax</a></h1>
 				<div class="btn-group">
 					<a href="" class="ui-btn btn-notice">알림 메세지</a>
@@ -32,7 +36,7 @@
 				</div>
 
 				<!-- ui-allmenu -->
-				<div class="ui-allmenu active">
+				<div class="ui-allmenu">
 					<h2 class="blind">전체메뉴</h2>
 
 					<div class="btn-group">
@@ -530,9 +534,439 @@
 
 			<!-- container -->
 			<div class="container">
+
 				<div class="contents">
-					메인컨텐츠
+					<!-- ui-accordion-->
+					<ul class="ui-accordion">
+						<li>
+							<button type="button" class="btn-toggle active" role="button" aria-expanded="true" aria-controls="acc01-panel1" id="acc01-1">기본 타입입니다.</button>
+							<div class="toggle-target active" role="region" aria-labelledby="acc01-1" id="acc01-panel1">
+								<ul class="dot-list">
+									<li>파일은 한 번에 0장씩, 최대 00장까지 업로드하 실 수 있습니다. 파일 확장자는 jpg 파일만 가능하며, 파일 용량은 2MB보다 작아야 합니다.</li>
+									<li>구비서류는 1번부터 차례대로 입력하시기 바랍니다.</li>
+									<li>서류를 겹쳐서 촬영하거나, 다른 서류와 함께 촬영하지 마십시오.</li>
+								</ul>
+							</div>
+						</li>
+
+						<li>
+							<button type="button" class="btn-toggle req active" role="button" aria-expanded="true" aria-controls="acc01-panel2" id="acc01-2">이것은 필수 입력 정보일때</button>
+							<div class="toggle-target active" role="region" aria-labelledby="acc01-2" id="acc01-panel2">
+								<ul class="dot-list">
+									<li>파일은 한 번에 0장씩, 최대 00장까지 업로드하 실 수 있습니다. 파일 확장자는 jpg 파일만 가능하며, 파일 용량은 2MB보다 작아야 합니다.</li>
+									<li>구비서류는 1번부터 차례대로 입력하시기 바랍니다.</li>
+									<li>서류를 겹쳐서 촬영하거나, 다른 서류와 함께 촬영하지 마십시오.</li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+					<!-- // ui-accordion -->
+					
+					<!-- ui-accordion -->
+					<ul class="ui-accordion type-faq">
+						<li>
+							<button type="button" class="btn-toggle" role="button" aria-expanded="false" aria-controls="acc02-panel1" id="acc02-1">
+								<span class="badge-group"><span class="badge blue">가입/인증/접속</span></span>
+								<span class="desc">이건 뱃지가 있는 타입입니다. FAQ 에서 사용됩니다</span>
+							</button>
+							<div class="toggle-target" role="region" aria-labelledby="acc02-1" id="acc02-panel1">
+								<ul class="dot-list">
+									<li>크롬 및 엣지 브라우저 보안정책 변경으로 인해 해당 브라우저에서 간편결제 납부 진행 시 "999세션만료" 오류가 발생하고 있습니다. </li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<button type="button" class="btn-toggle" role="button" aria-expanded="false" aria-controls="acc02-panel2" id="acc02-2">
+								<span class="badge-group"><span class="badge blue">전자신청</span></span>
+								<span class="desc">이건 뱃지가 있는 타입입니다. FAQ 에서 사용됩니다</span>
+							</button>
+							<div class="toggle-target" role="region" aria-labelledby="acc02-2" id="acc02-panel2">
+								<ul class="dot-list">
+									<li>크롬 및 엣지 브라우저 보안정책 변경으로 인해 해당 브라우저에서 간편결제 납부 진행 시 "999세션만료" 오류가 발생하고 있습니다. </li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+					<!-- // ui-accordion -->
+
+					<button type="button" class="ui-btn blue btn-confirm-open" role="button " aria-controls="confirm01">CONFIRM 열기111</button>
+
+					<!-- ui-confirm -->
+					<div class="ui-confirm">
+						<div class="confirm-wrap" role="alertdialog" aria-modal="true" aria-labelledby="confirm01-label" aria-describedby="confirm01-desc" id="confirm01"> <!-- 타이틀이 없을 경우 aria-labelledby 삭제 -->
+							<p class="confirm-title" id="confirm01-label">타이틀 영역입니다.</p><!--  타이틀이 없을 경우 해당 영역 삭제 -->
+							<div class="confirm-contents" id="confirm01-desc">
+								이건 버튼을 클릭해야 열리는 confirm 입니다<br />
+								취소를 누르면 닫힙니다.
+							</div>
+							<div class="btn-wrap">
+								<button type="button" class="ui-btn" onClick="confirmClose(this)">취소</button>
+								<button type="button" class="ui-btn blue">확인</button>
+							</div>
+						</div>
+						<div class="bg-overlay"></div>
+					</div>
+					<!-- //ui-confirm -->
+
+					<!-- form-list -->
+					<ul class="form-list">
+						<li>
+							<span class="inp-label req">허가일자</span>
+							<div class="input-wrap">
+								<input type="text" title="날짜선택" placeholder="YYYY-MM-DD" class="ui-input">
+							</div>
+						</li>
+						<li>
+							<span class="inp-label req">조회기간</span>
+							<div class="input-wrap col">
+								<input type="text" title="날짜선택" placeholder="YYYY-MM-DD" class="ui-input">
+								<input type="text" title="날짜선택" placeholder="YYYY-MM-DD" class="ui-input">
+							</div>
+						</li>
+						<li>
+							<span class="inp-label req">필수항목</span> 
+							<div class="input-wrap">
+								<input type="text" title="타이틀 입력" placeholder="입력해주세요" class="ui-input">
+								<button type="button" class="btn-del">삭제</button>
+							</div>
+						</li>
+						<li>
+							<span class="inp-label req">입력시간 제한</span>
+							<div class="input-wrap time">
+								<input type="text" title="타이틀 입력" placeholder="입력해주세요" class="ui-input">
+								<button type="button" class="btn-del">삭제</button>
+								<span class="roboto">3:00</span>
+							</div>
+						</li>
+						<li>
+							<span class="inp-label req">필수항목</span> 
+							<div class="input-wrap" data-placeholder="원">
+								<input type="text" title="타이틀 입력" placeholder="입력해주세요" class="ui-input">
+								<button type="button" class="btn-del">삭제</button>
+							</div>
+						</li>
+						<li>
+							<span class="inp-label req">영업장 소재지</span>
+							<div class="input-wrap">
+								<input type="text" title="우편번호 입력" placeholder="우편번호" class="ui-input">
+								<button type="button" class="btn-search">검색</button>
+							</div>
+							<div class="input-wrap">
+								<input type="text" title="상세주소 입력" placeholder="상세주소" class="ui-input">
+							</div>
+						</li>
+						<li>
+							<span class="inp-label req">납세자유형</span>
+							<!-- ui-layer -->
+							<div class="ui-layer type-auto">
+								<button type="button" class="btn-layer-open" role="button" aria-controls="dialog01">납세자유형 선택</button>
+
+								<!-- layer-wrap -->
+								<div class="layer-wrap" role="dialog" aria-labelledby="dialog01-label" aria-describedby="dialog01-desc" aria-modal="true" id="dialog01">
+									<p class="layer-title" id="dialog01-label">납세자유형 선택</p>
+
+									<!-- layer-contents -->
+									<div class="layer-contents" id="dialog01-desc">
+										<ul class="select-list" role="listbox" aria-labelledby="dialog01-label">
+											<li><button type="button" class="active">개인</button></li>
+											<li><button type="button">개인사업자</button></li>
+											<li><button type="button">법인사업자</button></li>
+											<li><button type="button">단체</button></li>
+										</ul>
+									</div>
+									<!-- //layer-contents -->
+
+									<!-- btn-wrap -->
+									<div class="btn-wrap">
+										<button type="button" class="ui-btn blue">확인</button>
+										<!-- <button type="button" class="ui-btn blue" disabled>확인</button> -->
+									</div>
+									<!-- // btn-wrap -->
+
+									<button type="button" class="btn-layer-close">닫기</button>
+								</div>
+								<!-- //layer-wrap -->
+								<div class="bg-overlay"></div>
+							</div>
+							<!-- //ui-layer -->
+						</li>
+					</ul>
+					<!-- //form-list -->
+
+					<!-- ui-layer -->
+					<div class="ui-layer">
+						<button type="button" class="ui-btn blue btn-layer-open" role="button" aria-controls="dialog01">풀 팝업 열기</button>
+
+						<!-- layer-wrap -->
+						<div class="layer-wrap" role="dialog" aria-labelledby="dialog01-label" aria-describedby="dialog01-desc" aria-modal="true" id="dialog01">
+							<p class="layer-title" id="dialog01-label">레이어팝업 타이틀</p>
+
+							<!-- layer-contents -->
+							<div class="layer-contents" id="dialog01-desc">
+								여기는 레이어 팝업의 컨텐츠
+							</div>
+							<!-- //layer-contents -->
+
+							<div class="btn-wrap">
+								<button type="button" class="ui-btn size-s">취소</button>
+								<button type="button" class="ui-btn blue">확인</button>
+							</div>
+
+							<button type="button" class="btn-layer-close">닫기</button>
+						</div>
+						<!-- // layer-wrap -->
+						<div class="bg-overlay"></div>
+					</div>
+					<!-- //ui-layer -->
+
+					<!-- ui-layer -->
+					<div class="ui-layer type-auto">
+						<button type="button" class="btn-layer-open" role="button" aria-controls="dialog02">줄있는 레이어 팝업 열기</button>
+	
+						<!-- layer-wrap -->
+						<div class="layer-wrap" role="dialog" aria-labelledby="dialog02-label" aria-describedby="dialog02-desc" aria-modal="true" id="dialog02">
+							<p class="layer-title" id="dialog02-label">타이틀을 입력하세요</p>
+	
+							<!-- layer-contents -->
+							<div class="layer-contents" id="dialog02-desc">
+								<!-- 이 영역은 컨텐츠영역 입니다 -->
+	
+								<ul class="border-list justify-list">
+									<li>
+										<span class="title">선택건수</span>
+										<span><em class="roboto color-blue fw700">2</em>건</span>
+									</li>
+									<li>
+										<span class="title">총 납부금액</span>
+										<span><em class="roboto color-blue fw700">288,000</em>원</span>
+									</li>
+								</ul>
+							</div>
+							<!-- //layer-contents -->
+	
+							<!-- btn-wrap -->
+							<div class="btn-wrap">
+								<button type="button" class="ui-btn blue">확인</button>
+								<!-- <button type="button" class="ui-btn blue" disabled>확인</button> -->
+							</div>
+							<!-- // btn-wrap -->
+	
+							<button type="button" class="btn-layer-close">닫기</button>
+						</div>
+						<!-- //layer-wrap -->
+						<div class="bg-overlay"></div>
+					</div>
+					<!-- //ui-layer -->
+	
+					<!-- ui-layer -->
+					<div class="ui-layer type-auto">
+						<button type="button" class="btn-layer-open" role="button" aria-controls="dialog03">전체</button>
+	
+						<!-- layer-wrap -->
+						<div class="layer-wrap" role="dialog" aria-labelledby="dialog03-label" aria-describedby="dialog03-desc" aria-modal="true" id="dialog03">
+							<p class="layer-title" id="dialog03-label">분류선택</p>
+	
+							<!-- layer-contents -->
+							<div class="layer-contents" id="dialog03-desc">
+								<ul class="select-list" role="listbox" aria-labelledby="dialog03-label">
+									<li><button type="button" class="active">전체</button></li>
+									<li><button type="button">공통</button></li>
+									<li><button type="button">가입/인증/접속</button></li>
+									<li><button type="button">전자신고납부</button></li>
+									<li><button type="button">전자조회</button></li>
+									<li><button type="button">전자신청</button></li>
+									<li><button type="button">기타</button></li>
+									<li><button type="button">기타1</button></li>
+									<li><button type="button">기타2</button></li>
+									<li><button type="button">기타3</button></li>
+								</ul>
+							</div>
+							<!-- //layer-contents -->
+	
+							<!-- btn-wrap -->
+							<div class="btn-wrap">
+								<button type="button" class="ui-btn blue">확인</button>
+								<!-- <button type="button" class="ui-btn blue" disabled>확인</button> -->
+							</div>
+							<!-- // btn-wrap -->
+	
+							<button type="button" class="btn-layer-close">닫기</button>
+						</div>
+						<!-- //layer-wrap -->
+						<div class="bg-overlay"></div>
+					</div>
+					<!-- //ui-layer -->
+	
+					<!-- textarea -->
+					<span class="inp-label req">글자수 제한</span>
+					<div class="ui-textarea"><!-- textarea에 focus in 일때 class on 추가 -->
+						<textarea name="" cols="" rows="" placeholder="입력해주세요." title="어떤 입력 폼인지 타이틀 입력"></textarea>
+						<span class="txt-length roboto">(<em>45</em>/500)</span>
+					</div>
+					<!-- //textarea -->
+	
+					<!-- ui-selectbox -->
+					<div class="ui-selectbox">
+						<button type="button" class="btn-select-open" role="button" aria-controls="select01-dialog">선택해주세요.</button>
+	
+						<!-- select-wrap -->
+						<div class="select-wrap" role="dialog" aria-labelledby="select01-label" aria-modal="true" id="select01-dialog">
+							<p class="select-title" id="select01-label">타이틀 타이틀</p>
+	
+							<ul class="select-list" role="listbox" aria-labelledby="select01-label">
+								<li><button type="button">옵션111111111111</button></li>
+								<!-- <li><button type="button active">옵션111111111111</button></li> --> <!-- 활성 -->
+								<li><button type="button">옵션222</button></li>
+								<li><button type="button">옵션33333</button></li>
+								<li><button type="button">옵션44444444444</button></li>
+								<li><button type="button">옵션5</button></li>
+								<li><button type="button">옵션6</button></li>
+								<li><button type="button">옵션7</button></li>
+							</ul>
+	
+							<div class="btn-wrap">
+								<button type="button" class="ui-btn size-s" onClick="selectClose(this)">취소</button>
+								<button type="button" class="ui-btn blue">확인</button>
+							</div>
+						</div>
+						<!-- //select-wrap -->
+	
+						<div class="bg-overlay"></div>
+					</div>
+					<!-- //ui-selectbox -->
+	
+					<!-- ui-selectbox -->
+					<div class="ui-selectbox">
+						<button type="button" class="btn-select-open" role="button" aria-controls="select02-dialog">선택해주세요.</button>
+	
+						<!-- select-wrap -->
+						<div class="select-wrap" role="dialog" aria-labelledby="select02-label" aria-modal="true" id="select02-dialog">
+							<p class="select-title" id="select02-label">허가종류 선택</p>
+	
+							<ul class="select-list" role="listbox" aria-labelledby="select02-label">
+								<li><button type="button">제조업</button></li>
+								<!-- <li><button type="button active">옵션111111111111</button></li> --> <!-- 활성 -->
+								<li><button type="button">판매입히기</button></li>
+								<li><button type="button">화약류 양도*양수허가</button></li>
+								<li><button type="button">화약류제보인책임자 면허 및 화약류관리보안 책임자면허</button></li>
+								<li><button type="button">판매입히기</button></li>
+								<li><button type="button">화약류 양도*양수허가</button></li>
+								<li><button type="button">화약류제보인책임자 면허 및 화약류관리보안 책임자면허화약류제보인책임자 면허 및 화약류관리보안 책임자면허</button></li>
+							</ul>
+	
+							<!-- info-box -->
+							<div class="info-box">
+								<p class="info-txt text-right">민원처리기관 : 경찰청 / 경찰서</p>
+							</div>
+							<!-- //info-box -->
+	
+							<div class="btn-wrap">
+								<button type="button" class="ui-btn size-s" onClick="selectClose(this)">취소</button>
+								<button type="button" class="ui-btn blue">확인</button>
+							</div>
+						</div>
+						<!-- //select-wrap -->
+	
+						<div class="bg-overlay"></div>
+					</div>
+					<!-- //ui-selectbox -->
+					
+					<!-- ui-tab -->
+					<h4>탭 개수 = 컨텐츠 개수</h4>
+					<div class="ui-tab">
+						<ul class="tab-nav" role="tablist">
+							<li><button type="button" role="tab" aria-selected="true" aria-controls="tab-panel1-1" id="tab01-1" class="active">1번 탭</button></li> <!-- 활성화 시 class active 추가 -->
+							<li><button type="button" role="tab" aria-selected="false" aria-controls="tab-panel1-2" id="tab01-2">2번 탭</button></li>
+						</ul>
+						<div class="tab-contents active" role="tabpanel" aria-labelledby="tab01-1" id="tab-panel1-1"> <!-- 활성화 시 class active 추가 -->
+							1번 내용<br>
+							1번 내용<br>
+							1번 내용<br>
+						</div>
+		 
+						<div class="tab-contents" role="tabpanel" aria-labelledby="tab01-2" id="tab-panel1-2">
+							2번 내용 2번 내용 2번 내용 2번 내용 2번 내용 2번 내용<br>
+							2번 내용<br>
+							2번 내용<br>
+						</div>
+					</div>
+					<!-- // ui-tab -->
+					<!-- ui-tab -->
+					<h4>탭 N개, 컨텐츠 1개</h4>
+					<div class="ui-tab">
+						<ul class="tab-nav" role="tablist">
+							<li><button type="button" role="tab" aria-selected="true" aria-controls="tab-panel2-1" id="tab02-1" class="active">1번 탭</button></li> <!-- 활성화 시 class active 추가 -->
+							<li><button type="button" role="tab" aria-selected="false" aria-controls="tab-panel2-2" id="tab02-2">2번 탭</button></li>
+						</ul>
+						<div class="tab-contents active" role="tabpanel" aria-labelledby="tab02-1" id="tab-panel2-1"> <!-- 활성화 시 id / aria-labelledby 값도 button의 활성 값과 동일하게 변경해주세요. -->
+							탭 컨텐츠 영역이 하나입니다<br />
+							탭 컨텐츠 영역이 하나입니다<br />
+							탭 컨텐츠 영역이 하나입니다<br />
+						</div>
+					</div>
+					<!-- // ui-tab -->
+
+					<h3>popup이나 bottom sheet 안의 tab</h3>
+					<h4>탭 개수 = 컨텐츠 개수</h4>
+					<!-- ui-tab -->
+					<div class="ui-tab">
+						<ul class="tab-nav" role="tablist">
+							<li><button type="button" role="tab" aria-selected="true" aria-controls="tab-panel3-1" id="tab03-1" class="active">신규</button></li>
+							<li><button type="button" role="tab" aria-selected="false" aria-controls="tab-panel3-2" id="tab03-2">변경</button></li>
+						</ul>
+						<div class="tab-contents active" role="tabpanel" aria-labelledby="tab03-1" id="tab-panel3-1">
+							111
+						</div>
+						<div class="tab-contents" role="tabpanel" aria-labelledby="tab03-2" id="tab-panel3-2">
+							222
+						</div>
+					</div>
+					<!-- //ui-tab -->
+					<!-- ui-tab -->
+					<h4>탭 N개, 컨텐츠 1개</h4>
+					<div class="ui-tab">
+						<ul class="tab-nav" role="tablist">
+							<li><button type="button" role="tab" aria-selected="true" aria-controls="tab-panel4-1" id="tab04-1" class="active">신규</button></li>
+							<li><button type="button" role="tab" aria-selected="false" aria-controls="tab-panel4-2" id="tab04-2">변경</button></li>
+						</ul>
+						<div class="tab-contents active" role="tabpanel" aria-labelledby="tab04-1" id="tab-panel4-1">
+							탭 컨텐츠 영역이 하나입니다
+						</div>
+					</div>
+					<!-- //ui-tab -->
+					
+					<!-- ui-tooltip -->
+					<h3 class="tit-guide">기본 (버튼 기준 포지션이 가운데)</h3>
+					<div>
+						<div class="ui-tooltip">
+							<button class="btn-tooltip-open" role="button" aria-label="tooltip01-label" aria-describedby="tooltip01-desc" aria-controls="tooltip01">툴팁열기</button><!-- 타이틀 없을 경우 aria-label 삭제 -->
+							<div class="tooltip-wrap" role="tooltip" id="tooltip01">
+								<p class="tooltip-tit" id="tooltip01-label">툴팁타이틀</p> <!-- 타이틀 없을 경우 해당 영역 삭제 -->
+								<div class="tooltip-contents" id="tooltip01-desc">
+									툴팁 컨텐츠 툴팁 컨텐츠<br />
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- //ui-tooltip -->
+					<!-- ui-tooltip -->
+					<h4 class="tit-guide">버튼 기준 포지션이 좌측</h4>
+					<div>
+						<div class="ui-tooltip left">
+							<button class="btn-tooltip-open" role="button" aria-label="tooltip02-label" aria-describedby="tooltip02-desc" aria-controls="tooltip02">툴팁열기</button><!-- 타이틀 없을 경우 aria-label 삭제 -->
+							<div class="tooltip-wrap" role="tooltip" id="tooltip02">
+								<p class="tooltip-tit" id="tooltip02-label">툴팁타이틀툴팁타이틀툴팁타이틀</p> <!-- 타이틀 없을 경우 해당 영역 삭제 -->
+								<div class="tooltip-contents" id="tooltip02-desc">
+									툴팁 컨텐츠 툴팁 컨텐츠 툴팁 컨텐츠 툴팁 컨텐츠 툴팁 컨텐츠 툴팁 컨텐츠 툴팁 컨텐츠 툴팁 컨텐츠 
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- //ui-tooltip -->
+
 				</div>
+				<!-- contents -->
+
 			</div>
 			<!-- //container -->
 

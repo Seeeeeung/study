@@ -22,6 +22,10 @@ $(function() {
 		// }
 	}
 
+	// html 파일의 onclick 연동은 제이쿼리에서 할수 없는 기능?
+	const button = $('button:not(.blue)')
+	button.removeAttr('onclick')
+
 	// 전체메뉴
 	const allMenuBtn = $('.ui-header .btn-allmenu');
 	if(allMenuBtn) {
@@ -57,7 +61,7 @@ $(function() {
 			if ($('.input-search').length) {
 				 allMenu.find('.input-search').outerHeight();
 			} else {
-				fixHeight = bookmark.outerHeight() + allMenu.find('.btn-group').outerHeight();
+				fixHeight = bookmark.outerHeight() + Math.ceil(allMenu.find('.btn-group').outerHeight());
 			}
 
 			// gnb-list 내부 아코디언 토글
@@ -70,7 +74,6 @@ $(function() {
 
 			// 좌우탭 버튼 클릭시 북마크이너탭 좌우 위치 이동
 			bookmark.find('button').each(function() {
-				console.log($(this).hasClass('prev'))
 				$(this).on('click', function(e) {
 					let currentBmInner = bmInner.scrollLeft();
 					switch(true) {
@@ -91,271 +94,341 @@ $(function() {
 			function tabScrollX() {
 				bmInner.scrollLeft() == 0 ? bookmark.find('.prev').addClass('hide') : bookmark.find('.prev').removeClass('hide');
 				Math.floor(bmInner.scrollLeft() + 1) >= Math.floor(bmInner[0].scrollWidth - bmInner.innerWidth()) ? bookmark.find('.next').addClass('hide') : bookmark.find('.next').removeClass('hide');
-				// console.log(bmInner[0].scrollWidth - bmInner.outerWidth())
-				// console.log(bmInner.scrollLeft()) 
 			}
 			// 클릭, 스크롤 동일기능
 			// = left 스크롤 이동 밖으로 빼내기
 			function moveLeftBmInner () {
-			
 				bmInner.scrollLeft(0);
 				bmInner.scrollLeft(gnb.find('.tab-inner a.active').offset().left - parseInt(bmInner.css('padding-left')));
+				// if (bmBtn.hasClass('active')) {
+				// }
 			}
 			
-			// 1-1. sections 위치 반환 (list 10 ->국민참여까지 작동)
-			function moveScrollBar() {
 
-				var list = sections.map(function() {
-					var listIndex = console.log(sections)
-					return listIndex
-				})
-				$('.tab-inner a').on('click', function() {
-					var activeIndex = $('.tab-inner a.active').index(),
-					thisSection = Math.ceil(sections.eq(activeIndex).offset().top - fixHeight + 1)
-					$('.tab-inner a').removeClass('active')
-					$(this).addClass('active')
-					moveLeftBmInner()
-					allMenu.scrollTop(0)
-					allMenu.scrollTop(thisSection)
-					allMenu.on('scroll', function() {
-					})
-					console.log(activeIndex)
-					console.log(sections.eq(activeIndex))
-				})
-				// console.log(activeIndex)
-				// // e.preventDefault()
-				// for (let i = 0; i < sections.length - 2; i++) {
-				// 	// 1-2. scroll 위치 반환
-				// 	var scrollY = allMenu.scrollTop() ,
-				// 	section = sections.eq(i),
-				// 	thisBmBtn = bmBtn.eq(i),
-				// 	sectionHeight = section.innerHeight() + 30,
-				// 	sectionsLocation = section.offset().top + sectionHeight - fixHeight,
-				// 	btnHref = thisBmBtn.attr('href').split('#')[1],
-				// 	listId = section.attr('id'),
-				// 	// 1-4. bmBtn href / sections id 값이 같은지 확인하는 변수선언
-				// 	checkEle = btnHref == listId;
-				// 	// currentSectionsLocation = sectionsLocation.top 
-				// 	// ******여기부터 다시 
-				// 	if (scrollY < gnb.offset().top) {
-				// 		console.log('첫번째 리스트')
-				// 		bmBtn.removeClass('active')
-				// 		bmBtn.eq(0).addClass('active')
-				// 		// 1-3. 1,2비교 근접 위치 지정
-				// 	} else if (scrollY - sectionsLocation >= sectionsLocation - 15 && sectionsLocation > 0 && (sections.eq(i+1).offset().top + sectionHeight) - sectionsLocation > 0 && sectionsLocation < sectionHeight && scrollY < 2292) {
-				// 		// console.log('**시작 근접')
-				// 		// console.log(sections.eq(i).first(), '$(this)')
-				// 		// console.log(btnHref, listId)
-				// 		// console.log(thisBmBtn)
-				// 		if (checkEle) {
-				// 			bmBtn.removeClass('active')
-				// 			thisBmBtn.addClass('active')
-				// 			moveLeftBmInner()
-							
-				// 			// 클릭이벤트와 같이 동작함
-				// 			$('.tab-inner a.active').on('click', function() {
-				// 				var thisBmBtnIndex = $(this).index(),
-				// 				thisSection = Math.ceil(sections.eq(thisBmBtnIndex).offset().top - fixHeight + 1)
-				// 				// console.log(thisBmBtnIndex, 'thisbtnindex')
-				// 				// console.log($(this))
-				// 				// allMenu.scrollTop(thisSection)
-				// 				console.log(scrollY, 'Y')
-				// 				allMenu.scrollTop(0)
-				// 				// if (thisSection == 0 || thisSection == -0 || thisSection == 1) {
-				// 				// 	allMenu.scrollTop(scrollY - thisSection)
-				// 				// 	console.log(thisSection, 'thisSection 위ㅣ치 == 0')
-				// 				// 	// return false
-				// 				// 	} else if (thisSection < 0 ) {
-				// 				// 		allMenu.scrollTop(thisSection - scrollY)
-				// 				// 		console.log(thisSection, 'thisSection 위ㅣ치 < 0')
-				// 				// // 	// return false
-				// 				// } else {
-				// 				// 	// allMenu.scrollTop(0)
-				// 				// 	allMenu.scrollTop(thisSection)
-				// 				// 	console.log(thisSection, 'thisSection 위ㅣ치 else')
-				// 				// 	// return false
-				// 				// }
-				// 				if (thisSection < 0 ) {
-				// 					allMenu.scrollTop(thisSection - scrollY)
-				// 					console.log(thisSection, 'thisSection 위ㅣ치 < 0')
-				// 					// return false
-				// 				// } else if () {
-				// 					// 	// return false
-				// 				} else {
-				// 					allMenu.scrollTop(thisSection)
-				// 					console.log(thisSection, 'thisSection 위ㅣ치 == 0')
-				// 					// allMenu.scrollTop(0)
-				// 					// allMenu.scrollTop(thisSection)
-				// 					// console.log(thisSection, 'thisSection 위ㅣ치 else')
-				// 					// // return false
-				// 				}
-
-				// 				// return false
-				// 				// 반복문 멈추는법..?
-								
-				// 				// allMenu.scrollTop(0);
-				// 				// if ($(this).hasClass('active')) {
-				// 				// 	console.log(thisSection, 'thisSection 위ㅣ치')
-				// 				// 	console.log(scrollY, 'scroll 위ㅣ치')
-				// 				// 	console.log('현재 클릭한 버튼과 스크롤 active 가 같을때')
-				// 				// } else {
-				// 				// 	console.log('아닐떄')
-				// 				// } 
-								
-				// 				// console.log(Math.floor(sections.eq(thisBmBtnIndex).offset().top), 'thisSectio 만')
-				// 				// console.log(sections.eq(thisBmBtnIndex), 'section index')
-								
-								
-				// 			}) // click
-				// 		} // check 
-
-				// 	}  // scrollY
-				// 	// console.log(section)
-				// 	// console.log(sectionHeight)
-				// 	// console.log(sectionsLocation,$(this).index())
-				// 	// console.log(scrollY)
-				// 	// console.log(scrollY - sectionsLocation >= sectionsLocation - 15 && sectionsLocation > 0 && (sections.eq(i+1).offset().top + sectionHeight) - sectionsLocation > 0 && sectionsLocation < sectionHeight && scrollY < 2192, '마지막')
-
-				// } // for
-			} // function
-			
-			bmBtn.on('click', function(e) {
-				e.preventDefault();
-				// var index = $(this).index()
-				// listTop = sections.eq(index).offset().top - fixHeight
-				// console.log(listTop)
-				// // console.log(index)
-				// // // clickMoveScroll()
-				// // console.log($(this))
-				// bmBtn.removeClass('active')
-				// $(this).addClass('active')
-				// moveLeftBmInner()
+			bmBtn.on('click', function() {
+				let index = $(this).index(),
+				linkList = sections.eq(index).offset().top - fixHeight;
+				// allMenu.off('scroll');
+				bookmark.addClass('active')
+				bmBtn.removeClass('active')
+				$(this).addClass('active')
+				// 클릭으로 스크롤시 오류
+				allMenu.scrollTop(0)
+				allMenu.scrollTop(linkList)
+				moveLeftBmInner()
+				tabScrollX()
 			})
+
 			
-			// ******* 버튼 클릭시 위아래로 이동하는 것만 안댐
-			function clickMoveScroll() {
-			}
-	
 			// 상하 스크롤 이동시 탭이너 하이라이트
 			function navHighlighter() {
 				var scrollY = Math.floor(allMenu.scrollTop());
 
 				scrollY >= gnb.offset().top - (fixHeight - bookmark.height()) ? bookmark.addClass('active') : bookmark.removeClass('active');
 				// default = bookmark에 class active 없을시 하이라이트 없음 (스크롤시 추가)
-
-			
 				
-				function addActive () {
-
-				}
-
-				// 1-5. bmBtn 에 class active 추가시 bmInner 이동 (moveLeftBmInner fn)
-
-				// 1. 1-3으로 스크롤+스크롤바 드래그앤드롭 시 fn 활성화
-				// fn = 1-1.과 동일한 href를 가지고 있는 버튼에 class active 추가
-				// 		 + 1-5 실행
-
-				// 2. bmBtn 클릭시 fn활성화
-				// fn = 클릭한 this에 class active 추가 
-				//		 + 1-5 실행
-				//		 + 선택한 bmBtn의 href와 동일한 id를 가지고있는 sections의 1-3으로 스크롤이동
-
-				// a태그 클릭시 좌우 스크롤 기능
-				function clickBmBtn() {
-					// for (var i = 0; i < bmBtn.length; i++) {
-					// 	bmBtn.eq(i).on('click', function(e) {
-					// 		e.preventDefault()
-
-					// 		// 아이디 # 이후로 자르기 (리스트 아이디 링크)
-					// 		var linkId = $(this).attr('href').split('#')[1];
-							
-					// 		// 버튼 클릭시 모든 a 태그 active제거
-					// 		$('.tab-inner a').removeClass('active')
-					// 		// bmInner.find('a').each(function() {
-					// 		// 	console.log($(this))
-					// 		// })
-					// 		// 클릭한 버튼에만 active 추가
-					// 		$(this).addClass('active')
-					// 		// **********스크롤 안되는 부분 class추가 안됨 ************
-							
-					// 		// 클릭한 버튼이 탭부분 맨 앞으로 이동
-					// 		// 스크롤 기준을 bmBtn으로 지정해서 적용이 안되었던것
-					// 		bmInner.scrollLeft(0);
-					// 		bmInner.scrollLeft($(this).offset().left - parseInt(bmInner.css('padding-left')));
-	
-					// 		// 클릭시 해당 리스트로 스크롤 이동
-					// 		// 1. 현재 스크롤 위치 0으로 고정
-					// 		allMenu.scrollTop(0);
-					// 		// 2. 클릭한 버튼과 연동된 해당 리스트의 top에서부터의 위치 찾기
-					// 		// 3. 해당 리스트의 위치에서 헤더높이값 빼기
-					// 		allMenu.scrollTop(gnb.children('.gnb-list').children('li#'+linkId).offset().top - fixHeight + 1);
-					// 		// console.log(bmInner.scrollLeft())
-					// 	});
-					// }
-					console.log('클릭이벤트 실행')
-				}
-
-				function moveScrollBar() {
-					console.log('스크롤 이동 이벤트 실행')
-				}
-				
-				// 1. 스크롤+스크롤바 드래그&드롭 시 리스트 위치 반환
-				// 2. 그 위치와 근접한 리스트 아이디와 bmBtn href 속성값이 동일하면
-				// -> 전체 인덱스 검색 해당 객체 반환
-				// 3. bmBtn 에 class active 추가
-				// 4. class active 인 bmBtn이 bmInner left 0 으로 설정
-				// 5. 리스트는 상위로 지정
-				// -> bmBtn onclick function과는 별개로 작동해야함
-
-				// for (let i = 0; i <= sections.length; i++) {
-				// 	var $this = sections.eq(i),
-				// 	sectionHeight = $this.height(),
-				// 	sectionTop = scrollY + $this.offset().top - fixHeight,
-				// 	sectionId = $(this).attr('id');
-				// 	sectionIndex = $this.index();
-				// 	console.log(sectionIndex)
-				// 	// 스크롤 시작점 0으로 지정(고정)
-				// 	// 0을 고정하지 않으면 현재 스크롤 위치에서부터 시작하기때문에 코드작동에 오류가 있다.
+				var scrollY = Math.floor(allMenu.scrollTop());
+				sections.each(function(index, element) {
+					var sectionTop = Math.floor($(element).offset().top - fixHeight),
+					sectionHeight = $(element).height()
+					// console.log(sectionTop, index)
+					// scrollY = 0;
+					if (sectionTop <= 0) {
+						bmBtn.removeClass('active')
+						bmBtn.eq(index).addClass('active')
+						// console.log(scrollY, 'y')
+					} else if (sectionTop > 0 && scrollY == 2318) {
+						// bmBtn.on('click', function() {
+							console.log('작동')
+							bmBtn.removeClass('active')
+							bmBtn.eq(index-3).addClass('active')
+							// clickfn()
+						// })
+					} else {
+						bmBtn.on('click', function() {
+							bmBtn.removeClass('active')
+							$(this).addClass('active')
+						})
+					}
 					
-				// 	if (scrollY < gnb.offset().top) {
-				// 		bmInner.find('a').eq(0).addClass('active');
-						
-				// 	} else if (scrollY > sectionTop - 15 && scrollY <= sectionTop + sectionHeight + 15) {
-				// 		// bmInner.find('a').eq(sectionIndex - 1).removeClass('active')
-				// 		bmInner.find('a').eq(sectionIndex).addClass('active')
-				// bmInner.scrollLeft(0)
-				// 		bmInner.scrollLeft(gnb.find('.gnb-tab a.active').offset().left - parseInt(bmInner.css('padding-left')))
+				});
 
-				// 		// 반복문이 문제인거같은데.......................
-				// 	} else {
-				// 		bmInner.find('a').removeClass('active')
-				// 		// return false
-						
-				// 	}
-				// 	// return false
-				// 	console.log(Math.floor(sectionTop-15))
-				// 	console.log(Math.floor(sectionTop + sectionHeight + 15))
-				// 	console.log(scrollY)
-
-				// }
-				// sections.each(function() {
-				// });
-				tabScrollX();
+				moveLeftBmInner()
+				tabScrollX()
 			}
 
+			bmBtn.on('click', function(e) {e.preventDefault()});
 			bmInner.on('scroll', tabScrollX);
+			allMenu.on('mousewheel', navHighlighter);
 
-			// if ($._data(bmBtn[0], 'events')) {
-			// 	console.log('이벤트 있음')
-			// 	allMenu.off('scroll', navHighlighter)
-			// } else if ($._data(allMenu[0], 'events')) {
-			// 	allMenu.on('scroll', navHighlighter)
-			// 	console.log('?')
+		}// gnbwrap
+		//  스크롤+버튼클릭 포기
+		
+	}// //allMenu
 
-			// }
-			allMenu.on('scroll', navHighlighter);
-			allMenu.on('scroll', moveScrollBar);
 
-		} // //allMenu
+	// ui-accordion
+	const accordion = $('.ui-accordion');
+	accordion.each(function(index, element) {
+		var $this = $(element),
+			$btn = $this.find('.btn-toggle'),
+			$cont = $btn.siblings('.toggle-target')
+
+			function btnClickEvt(i) {
+				$btn.eq(i).on('click', function() {
+					if ($(this).hasClass('active')) {
+						$(this).removeClass('active');
+						$(this).attr('aria-expanded', 'false')
+						$cont.eq(i).removeClass('active')
+					} else {
+						$(this).addClass('active');
+						$(this).attr('aria-expanded','true');
+						$cont.eq(i).addClass('active')
+					}
+				}); // click
+			} // fn
+			for (var i = 0; i < $btn.length; i++) btnClickEvt(i)
+	})
+	// //ui-accordion
+
+	// ui-confirm
+	const confirm = $('.btn-confirm-open'),
+		closeConfirm = $('.ui-confirm button:not(.blue)');
+
+	confirm.each(function(index, element) {
+		$(element).on('click', function() {
+			var $layer = $('.ui-confirm:not(.auto)');
+			$layer.eq(index).addClass('active');
+			open();
+		})
+	})
+	
+	closeConfirm.each(function(index, element) {
+		$(element).on('click', function() {
+			var $closeLayer = $('.ui-confirm');
+			$closeLayer.eq(index).removeClass('active');
+			close();
+		})
+	})
+	// //ui-confirm
+
+	// text field
+	const inp = $('.input-wrap')
+	inp.each(function(index, element) {
+		var $delete = $(element).find('.btn-del'),
+			$inp = $(element).find('.ui-input')
+
+			for (var i = 0; i < $inp.length; i++) {
+				$inp.eq(i).on('focus', function() {
+					if ($(this).closest('.input-wrap').siblings('.inp-label')) $(this).closest('.input-wrap').siblings('.inp-label').addClass('on')
+				})
+
+				$inp.eq(i).on('blur', function() {
+					if ($(this).closest('.input-wrap').siblings('.inp-label')) $(this).closest('.input-wrap').siblings('.inp-label').removeClass('on')
+				})
+			}
+
+		if ($delete) {
+			$delete.on('click', function() {
+				console.log($(this).closest('.input-wrap').children('.ui-input').val())
+				$(this).closest('.input-wrap').children('.ui-input').val('');
+				$(this).closest('.input-wrap').children('.ui-input').focus();
+			});
+
+			$delete.on('mousedown, focus', deleteFocus)
+		} 
+
+		function deleteFocus() {
+			if ($(element).prevAll() && $(element).prevAll().hasClass('.inp-label')) {
+				setTimeout(function() {
+					$delete.parent().prev().addClass('on')
+					// 왜 있는 기능..?
+				},0)
+			}
+		}
+	})
+	// //text field
+
+	// textarea
+	const textArea = $('.ui-textarea');
+	textArea.each(function(index,element) {
+		var $textArea = $(element).children('textarea');
+
+		$textArea.on('focus', function() {
+			$(element).addClass('on');
+			if ($(element).prevAll() && $(element).prevAll().hasClass('inp-label')) $(this).parent().prev().addClass('on')
+		});
+
+		$textArea.on('blur', function() {
+			$(element).removeClass('on');
+			if ($(element).prevAll() && $(element).prevAll().hasClass('inp-label')) $(this).parent().prev().removeClass('on');
+		});
+	})
+	// //textarea
+
+	// selectbox
+	const selectOpen = $('.btn-select-open'),
+		closeSelectbox = $('.ui-selectbox button.ui-btn:not(.blue)');
+
+	selectOpen.each(function(index, element) {
+		var $this = $(element),
+			$layer = $this.parent();
+			// console.log($layer)
+
+		$this.on('click', function() {
+			$layer.addClass('active')
+		});
+
+		var $btn = $layer.find('.select-list button');
+		for (var i = 0; i < $btn.length; i++) {
+			$btn.eq(i).on('click', function() {
+				if ($(this).closest('.select-list').parent().hasClass('select-wrap')) {
+					if ($(this).closest('.select-list').find('.active')) $(this).closest('.select-list').find('.active').removeClass('active');
+
+					$(this).addClass('active')
+					$this.text($(this).text());
+					$this.addClass('has-value')
+				}
+			})
+		}
+	});
+
+	closeSelectbox.each(function(index, element) {
+		$(element).on('click', function() {
+			var $closeLayer = $('.ui-selectbox');
+			$closeLayer.eq(index).removeClass('active');
+			// close();
+		})
+	})
+	// //selectbox
+
+	// layer popup (botton sheet)
+	const layerOpen = $('.btn-layer-open');
+	layerOpen.each(function(index, element) {
+		var $this = $(element),
+			$layer = $this.parent(),
+			$close = $this.next().children().last();
+
+		$this.on('click', function() {
+			$layer.addClass('active');
+			open();
+		});
+
+		var $btn = $layer.find('.select-list button');
+		for (var i = 0; i < $btn.length; i++) {
+			$btn.eq(i).on('click', function() {
+				if ($(this).closest('.select-list').parent().hasClass('layer-contents')) {
+					if ($(this).closest('.select-list').find('.active').length) $(this).closest('.select-list').find('.active').removeClass('active')
+					$(this).addClass('active');
+					$this.text($(this).text());
+					$this.addClass('has-value');
+				}
+			});
+		}
+
+		$close.on('click', function() {
+			$(this).closest('.ui-layer.active').removeClass('active');
+			close();
+		});
+	});
+
+	$('.ui-layer.auto').each(function(index, element) {
+		if ($(element).hasClass('active')) {
+			open();
+			var $close = $(element).children().first().children().last();
+
+			$close.on('click', function() {
+				$(element).removeClass('active');
+				close()
+			})
+		}
+	})
+	// //layer popup (botton sheet)
+
+	// tab
+	const tabMenu = $('.ui-tab');
+	tabMenu.each(function(index, element) {
+		var $nav = $(element).first().children(),
+			$li = $nav.find('[role="tab"]'),
+			$cont = [],
+			$only = false;
+
+		// 노드를 얻어내서 하는 이유는..? 노드타입이 text인 것을 제거하기 위해서..?
+		for (var i = 0; i < $(element).children().length; i++) {
+			if ($(element).children().hasClass('tab-contents')) {
+				$cont = $(element).children('.tab-contents')
+			}
+		}
+
+		if ($cont.length <= 1) $only = true;
+
+		for (var j = 0; j < $li.length; j++) {
+			// (콘텐츠가 1개 이상)탭버튼 속성,설정
+			$li.eq(j).on('click', function() {
+				for (var k = 0; k < $li.length; k++) {
+					$li.eq(k).removeClass('active');
+					$li.eq(k).attr('aria-selected','false');
+					if (!$only) $cont.eq(k).removeClass('active');
+				}
+
+				$(this).addClass('active');
+				$(this).attr('aria-selected','true');
+				
+				if (!$only) {
+					// 콘텐츠 1개이상 콘텐츠 내용 변경
+					$cont.eq($(this).parent().index()).addClass('active');
+				} else {
+					// 콘텐츠 1개일때 콘텐츠 속성설정 (내용변동없음)
+					$cont.eq(0).attr('aria-labelledby',$(this).attr('id'))
+					$cont.eq(0).attr('id',$(this).attr('aria-controls'))
+				}
+			})
+		}
+
+	}) // each
+	// //tab
+
+	// tooltip
+	const tooltip = $('.ui-tooltip');
+	tooltip.each(function(index, element) {
+		// find(자식+손자 태그에서 검색) , children(자식태그에서만)
+		// element 의 자식중에 (손자X) 태그가 존재하면 find 말고 children으로 검색
+		var $open = $(element).children('.btn-tooltip-open');
+		console.log($open)
+		
+		$open.on('click', function() {
+			console.log($(element))
+			if ($(element).hasClass('active')) {
+				$(element).removeClass('active');
+			} else {
+				for (var i = 0; i < tooltip.length; i++) tooltip.eq(i).removeClass('active');
+				$(element).addClass('active')
+			}
+		})
+	})
+ 
+	body.on('click', clickBodyTooltip);
+	function clickBodyTooltip(e) {
+		var _target = $(e.target)
+		var $open = $('.btn-tooltip-open');
+
+		// [] 를 붙이이 않으면 모두 false 반환
+		// 둘중에 하나만 붙여도 작동함
+		// 왜..?......??????????????????
+		for (var i = 0; i < $open.length; i++) {
+			if ($open.eq(i) == _target) return;
+			console.log($open.eq(i))
+			console.log(_target)
+			console.log($open.eq(i) == _target)
+			
+			var tags = $open.eq(i).parent().find('*');
+			for (var j = 0; j < tags.length; j++) {
+				console.log(typeof tags.eq(j))
+				console.log(typeof _target)
+				console.log(tags.eq(j) == $(this))
+				if (tags.eq(j) == _target) return;}
+		}
+		for (var i = 0; i < tooltip.length; i++) tooltip.eq(i).removeClass('active')
 	}
+	// //tooltip
 }); 
