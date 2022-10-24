@@ -16,10 +16,13 @@ $(function() {
 		body.css('top', null);
 		$(document).scrollTop(scrollT);
 
-		// if (!$('.ui-layer.active') && !$('.ui-layer.active')) { // 현재 결과값이 false기때문에 작동하지 않는다.
-		// } else {
-		// 	console.log('??')
-		// }
+		if (!$('.ui-layer.active') && !$('.ui-layer.active')) { // 현재 결과값이 false기때문에 작동하지 않는다.
+			body.removeClass('no-scroll');
+			body.css('top',null);
+			$(window).scrollTo(0, scrollT)
+		} else {
+			console.log('??')
+		}
 	}
 
 	// html 파일의 onclick 연동은 제이쿼리에서 할수 없는 기능?
@@ -104,30 +107,31 @@ $(function() {
 				// }
 			}
 			
-
+			
 			bmBtn.on('click', function() {
 				let index = $(this).index(),
 				linkList = sections.eq(index).offset().top - fixHeight;
 				// allMenu.off('scroll');
-				bookmark.addClass('active')
-				bmBtn.removeClass('active')
-				$(this).addClass('active')
+				// bookmark.addClass('active')
+				// bmBtn.removeClass('active')
+				// $(this).addClass('active')
+				// moveLeftBmInner()
+				// tabScrollX()
 				// 클릭으로 스크롤시 오류
-				allMenu.scrollTop(0)
-				allMenu.scrollTop(linkList)
-				moveLeftBmInner()
-				tabScrollX()
+				// allMenu.scrollTop() = linkList
+				allMenu.scrollTop(allMenu.scrollTop() + linkList)
+
+				return false
 			})
 
 			
 			// 상하 스크롤 이동시 탭이너 하이라이트
 			function navHighlighter() {
-				var scrollY = Math.floor(allMenu.scrollTop());
+				var scrollY = Math.floor(allMenu.scrollTop())
 
 				scrollY >= gnb.offset().top - (fixHeight - bookmark.height()) ? bookmark.addClass('active') : bookmark.removeClass('active');
 				// default = bookmark에 class active 없을시 하이라이트 없음 (스크롤시 추가)
 				
-				var scrollY = Math.floor(allMenu.scrollTop());
 				sections.each(function(index, element) {
 					var sectionTop = Math.floor($(element).offset().top - fixHeight),
 					sectionHeight = $(element).height()
@@ -147,11 +151,12 @@ $(function() {
 					} else {
 						bmBtn.on('click', function() {
 							bmBtn.removeClass('active')
+							// bmBtn.eq(-index).addClass('active')
 							$(this).addClass('active')
 						})
 					}
 					
-				});
+				}); // each
 
 				moveLeftBmInner()
 				tabScrollX()
@@ -159,7 +164,8 @@ $(function() {
 
 			bmBtn.on('click', function(e) {e.preventDefault()});
 			bmInner.on('scroll', tabScrollX);
-			allMenu.on('mousewheel', navHighlighter);
+			// on scroll 로 하면 버튼 클릭시 (뒤에 3개) 클릭이벤트 작동안함
+			allMenu.on('scroll', navHighlighter);
 
 		}// gnbwrap
 		//  스크롤+버튼클릭 포기
@@ -394,10 +400,10 @@ $(function() {
 		// find(자식+손자 태그에서 검색) , children(자식태그에서만)
 		// element 의 자식중에 (손자X) 태그가 존재하면 find 말고 children으로 검색
 		var $open = $(element).children('.btn-tooltip-open');
-		console.log($open)
+		// console.log($open)
 		
 		$open.on('click', function() {
-			console.log($(element))
+			// console.log($(element))
 			if ($(element).hasClass('active')) {
 				$(element).removeClass('active');
 			} else {
@@ -409,26 +415,47 @@ $(function() {
  
 	body.on('click', clickBodyTooltip);
 	function clickBodyTooltip(e) {
-		var _target = $(e.target)
+		var _target = $(e.target).get(0)
 		var $open = $('.btn-tooltip-open');
+		// console.log(_target)
 
 		// [] 를 붙이이 않으면 모두 false 반환
 		// 둘중에 하나만 붙여도 작동함
 		// 왜..?......??????????????????
 		for (var i = 0; i < $open.length; i++) {
-			if ($open.eq(i) == _target) return;
-			console.log($open.eq(i))
-			console.log(_target)
-			console.log($open.eq(i) == _target)
+			if ($open.eq(i)[0] == _target) return;
+			// console.log($open.eq(i))
+			// console.log(_target)
+			// console.log($open.eq(i) == _target)
 			
-			var tags = $open.eq(i).parent().find('*');
+			var tags = $open.eq(i).parent().find('*')[0];
 			for (var j = 0; j < tags.length; j++) {
-				console.log(typeof tags.eq(j))
-				console.log(typeof _target)
-				console.log(tags.eq(j) == $(this))
-				if (tags.eq(j) == _target) return;}
+				// console.log(typeof tags.eq(j))
+				// console.log(typeof _target)
+				// console.log(tags.eq(j) == $(this))
+				if (tags.eq(j) == _target) return;
+			}
 		}
 		for (var i = 0; i < tooltip.length; i++) tooltip.eq(i).removeClass('active')
 	}
 	// //tooltip
+
+	// input file
+	const inpFile = $('.input-wrap.file');
+	inpFile.each(function(index, element) {
+		$(element).children('input').on('change', function() {
+			$(this).val() == undefined || $(this).val() == '' ? $(this).parent().removeClass('has-value') : $(this).parent().addClass('has-value')
+		})
+	});
+	// //input file
+
+	// font resize
+	var defaultFont = 10;
+	if ($('#fontResize').length > 0) {
+		$('#fontResize').on('click', function() {
+			$(':checked').length == true ? defaultFont = 12 : defaultFont = 10
+			body.css('font-size',defaultFont + 'px')
+			$('html').css('font-size',defaultFont + 'px')
+		})
+	}
 }); 
