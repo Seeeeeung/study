@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="title" content="스마트 위택스">
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="No-Cache" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
+<title>스마트 위택스</title>
+
+<!-- CSS :: CSS 파일 수정하지 마세요. -->
+<link type="text/css" rel="stylesheet" href="../../static/css/import.css" media="all" />
+<script type="text/javascript" src="../@guide/@가이드내부에위치/jquery-3.6.0.js" defer></script><!-- @ 퍼블 가이드 화면 기능 확인용 입니다. 개발시 불필요한 경우 삭제하고 사용해주세요. -->
+<script type="text/javascript" src="../@guide/@가이드내부에위치/ui.common.js" defer></script><!-- @ 퍼블 가이드 화면 기능 확인용 입니다. 개발시 불필요한 경우 삭제하고 사용해주세요. -->
+</head>
+
+<body>
+	<!-- app -->
+	<div id="app">
+
+		<!-- ui-wrap -->
+		<div class="ui-wrap">
+			<!-- ui-header -->
+			<header class="ui-header">
+				<button type="button" class="btn-back">뒤로가기</button>
+				<h1 class="header-tit">설정</h1>
+			</header>
+			<!-- //ui-header -->
+
+			<!-- container -->
+			<div class="container">
+
+				<!-- contents -->
+				<div class="contents">
+					<ul class="setting-list">
+						<li>
+							<i class="iconset ico-setting01"></i>
+							<div class="txt-wrap">
+								<p class="txt">글자 크게 보기</p>
+							</div>
+
+							<label class="ui-check switch">
+								<input type="checkbox" id="fontResize">
+								<span class="slider"></span>
+							</label>
+						</li>
+						<li>
+							<i class="iconset ico-setting02"></i>
+							<div class="txt-wrap">
+								<p class="txt">PUSH 알림 설정</p>
+								<p class="sub-txt">알림 수신 여부</p>
+							</div>
+
+							<label class="ui-check switch">
+								<input type="checkbox">
+								<span class="slider"></span>
+							</label>
+						</li>
+						<li>
+							<i class="iconset ico-setting03"></i>
+							<div class="txt-wrap">
+								<p class="txt">간편 로그인 설정</p>
+							</div>
+							<a href="" class="btn">페이지 이동</a>
+						</li>
+
+						<li>
+							<i class="iconset ico-setting04"></i>
+							<div class="txt-wrap">
+								<p class="txt">앱 권한 관리</p>
+							</div>
+							<a href="" class="btn">페이지 이동</a>
+						</li>
+
+						<li>
+							<i class="iconset ico-setting05"></i>
+							<div class="txt-wrap">
+								<p class="txt">앱 초기화</p>
+							</div>
+
+							<button type="button" class="btn btn-confirm-open" role="button " aria-controls="confirm01">초기화</button>
+
+							<!-- ui-confirm -->
+							<div class="ui-confirm" aria-controls="toast-msg01"><!-- toast 메세지 사용 안 할 경우 aria-controls 삭제 -->
+								<div class="confirm-wrap" role="alertdialog" aria-modal="true" aria-describedby="confirm01-desc" id="confirm01">
+									<div class="confirm-contents" id="confirm01-desc">
+										앱 초기화 하시겠습니까? 
+									</div>
+									<div class="btn-wrap">
+										<button type="button" class="ui-btn" onClick="confirmClose(this)">취소</button>
+										<button type="button" class="ui-btn blue">확인</button>
+									</div>
+								</div>
+								<div class="bg-overlay"></div>
+							</div>
+							<!-- //ui-confirm -->
+
+							<!-- ui-toast -->
+							<div class="ui-toast" aria-live="toast-msg01">초기화 되었습니다. </div>
+						</li>
+
+						<li>
+							<i class="iconset ico-setting06"></i>
+							<div class="txt-wrap">
+								<p class="txt">버전 정보</p>
+							</div>
+							<span class="ver">Ver 0.0.0.1</span>
+						</li>
+					</ul>
+
+				</div>
+				<!-- //contents -->
+
+			</div>
+			<!-- //container -->
+
+		</div>
+		<!-- //ui-wrap -->
+
+	</div>
+	<!-- // app -->
+</body>
+</html>
