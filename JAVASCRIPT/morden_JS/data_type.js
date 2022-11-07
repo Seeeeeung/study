@@ -453,3 +453,52 @@ console.log(styles.shift());
 console.log(styles);
 styles.unshift('Rap', 'Reggae');
 console.log(styles);
+// 배열 컨텍스트에서 함수 호출하기
+let arr5 = ['a', 'b', 'c'];
+console.log(arr5.length == 3)
+arr5.push(function() {
+	console.log(this);
+})
+arr5[3]()
+// obj[method]()
+// method == obj.length 가 true여야 식반환
+console.log(arr5.length)
+
+// 배열 숫자 합하기
+function sumInput() {
+	 let numbers = [];
+	 while(true) {
+		let value = prompt('숫자 입력', 0);
+		if(value === '' || value === null || !isFinite(value)) break;
+
+		// 입력받은 값을 숫자로변환한 이후엔 빈문자열과 0을 구분할 수 없기때문에 마지막에 변환
+		numbers.push(+value)
+	 }
+
+	 let sum = 0;
+	 // 배열을 반복작업하는 문법
+	 for (let number of numbers) {
+		sum += number;
+	 }
+	 return sum;
+}
+// console.log(sumInput())
+
+console.log('최대합 부분배열')
+// 최대합 부분배열
+function getMaxSubSum(arr) {
+	let maxSum = 0;
+	for(let i=0; i<arr.length; i++) {
+		let sumFixedStart = 0;
+		for(let j=i; j<arr.length;j++) {
+			sumFixedStart += arr[j];
+			console.log(i,j)
+			// console.log(sumFixedStart)
+			maxSum = Math.max(maxSum, sumFixedStart)
+			// console.log(maxSum)
+		}
+	}
+	return maxSum;
+}
+console.log('결과')
+console.log(getMaxSubSum([-1,2,3,-9]))
