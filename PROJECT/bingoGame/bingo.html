@@ -17,7 +17,12 @@
 		.btn-search {color:#888; padding:4px; font-size:0.7rem; border:1px solid #ccc; border-radius:9px; outline:none; cursor:pointer}
 		.topic {max-width:300px; word-break:break-all}
 		.contents {margin-top: 2rem;}
-		table {border-spacing:0; border-collapse:collapse; line-height:1.4rem; table-layout:fixed;}
+		.bingo-score.hidden {display:none;}
+		.bingo-score {text-align:right; margin-bottom:10px;}
+		.bingo-score .btn-wrap {display:inline; width:60px; }
+		.btn-wrap .btn-bingo {width:60px; height:30px; font-size:1rem; font-weight:700; color:yellow; border-radius:50px; background-color:yellowgreen; box-shadow:1px 1px 3px #ddd, -2px -1px #ddd}
+		.btn-wrap .btn-bingo:active {color:yellowgreen; background-color:yellow;}
+		table {position:relative; border-spacing:0; border-collapse:collapse; line-height:1.4rem; table-layout:fixed;}
 		.table-wrap {border:1px solid #ccc; padding:1rem;}
 		caption {position:absolute; left:-9999px; font-size:0; line-height:0;}
 		caption, td {text-align:center; border:1px solid #ccc;}
@@ -48,6 +53,14 @@
 
 				<!-- contents -->
 				<div class="contents">
+					<div class="bingo-score hidden">
+						<span class="score">score : <strong>0</strong></span>
+
+						<div class="btn-wrap">
+							<button type="button" class="btn-bingo">빙고!</button>
+						</div>
+					</div>
+
 					<!-- table-wrap -->
 					<div class="table-wrap">
 						<table>
@@ -194,7 +207,7 @@
 					<!-- //table-wrap -->
 
 					<div class="btn-wrap">
-						<button type="button" class="btn-done">입력완료</button>
+						<button type="button" class="btn-done">게임시작</button>
 						<button type="button" class="btn-reset">새 게임하기</button>
 					</div>
 				</div>
@@ -233,7 +246,7 @@
 		const btnSearch = document.querySelector('.btn-search');
 		btnSearch.addEventListener('click', checkTopic)
 
-		var inps = document.querySelectorAll('.input-wrap input');
+		var inps = document.querySelectorAll('.input-wrap input:not(.type-long)');
 		function checkValue() {
 			for (let i=0; i<inps.length; i++) {
 				const inp = inps[i];
@@ -266,6 +279,8 @@
 			}
 
 			function startBingo() {
+				const score = document.querySelector('.bingo-score.hidden');
+				score.classList.remove('hidden')
 				for (let i=0; i<inpDone.length; i++) {
 					const bingo = inpDone[i];
 					bingo.addEventListener('click', function() {
@@ -286,6 +301,14 @@
 		const reset = document.querySelector('.btn-reset');
 		reset.addEventListener('click', resetValue)
 
+		var count = 0;
+		const scoreBtn = document.querySelector('.btn-bingo');
+		function upScore() {
+			count = count+1;
+			document.querySelector('.score strong').innerText = count;
+		}
+
+		scoreBtn.addEventListener('click', upScore);
 	</script>
 </body>
 </html>
