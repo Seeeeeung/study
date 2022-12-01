@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<style>
+	.shown{
+		display:block;
+	}
+	.hidden{
+		display:none;
+	}
+	button { width:50px; height:20px;}
+</style>
+</head>
+<body>
+	<ul id="dataList">
+    <li class="hidden">One</li>
+    <li class="hidden">Two</li>
+    <li class="hidden">Three</li>
+    <li class="hidden">Four</li>
+    <li class="hidden">Five</li>
+    <li class="hidden">Six</li>
+    <li class="hidden">Seven</li>
+    <li class="hidden">Eight</li>
+    <li class="hidden">Nine</li>
+    <li class="hidden">Ten</li>
+    <li class="hidden">Eleven</li>
+</ul>
+<button id="moreButton" type="button" onclick="showMore()">More</button>
+<button id="lessButton" type="button" onclick="showLess()">Less</button>
+
+<script>
+	function showMore() {
+	
+			var listData = Array.prototype.slice.call(document.querySelectorAll('#dataList li:not(.shown)')).slice(0, 3);
+	
+		for (var i=0; i < listData.length; i++)
+		{
+			listData[i].className  = 'shown';
+		}
+		switchButtons();
+	}
+	
+	function showLess() {
+			var listData = Array.prototype.slice.call(document.querySelectorAll('#dataList li:not(.hidden)')).slice(-3);
+		for (var i=0; i < listData.length; i++)
+		{
+			listData[i].className  = 'hidden';
+		}
+		switchButtons();
+	}
+	
+	function switchButtons() {
+			var hiddenElements = Array.prototype.slice.call(document.querySelectorAll('#dataList li:not(.shown)'));
+		if(hiddenElements.length == 0)
+		{
+			document.getElementById('moreButton').style.display = 'none';
+		}
+		else
+		{
+			document.getElementById('moreButton').style.display = 'block';
+		}
+	
+		var shownElements = Array.prototype.slice.call(document.querySelectorAll('#dataList li:not(.hidden)'));
+		if(shownElements.length == 0)
+		{
+			document.getElementById('lessButton').style.display = 'none';
+		}
+		else
+		{
+			document.getElementById('lessButton').style.display = 'block';
+		}
+	}
+	
+	onload= function(){
+			showMore();
+	}
+	</script>
+</body>
+</html>
