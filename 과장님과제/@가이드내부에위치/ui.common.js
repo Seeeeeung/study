@@ -54,7 +54,7 @@ $(function() {
 			bookmark = gnb.children('.gnb-tab'),
 			bmInner = bookmark.children('.tab-inner'),
 			bmBtn = bmInner.children('a'),
-			sections = gnb.children('.gnb-list li[id]'),
+			sections = gnb.find('.gnb-list li[id]'),
 			fixHeight;
 
 			// input-search 콘텐츠 유무 확인
