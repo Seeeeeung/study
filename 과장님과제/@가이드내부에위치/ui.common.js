@@ -1,31 +1,44 @@
+// 전역에서 쓰이거나 html 상에서 onClick="" 이벤트로 동작이 일어날경우 document.ready 밖으로 빠져야함
+const body = $('body');
+var scrollT;
+
+function open() {
+	setTimeout(function() {
+		scrollT = $(document).scrollTop(); 
+		body.addClass('no-scroll');
+		body.css('top', (-scrollT+'px'));
+	},100)
+}
+
+function close() {
+	body.removeClass('no-scroll'); 
+	body.css('top', null);
+	$(document).scrollTop(scrollT);
+
+	if (!$('.ui-layer.active') && !$('.ui-layer.active')) { 
+		body.removeClass('no-scroll');
+		body.css('top',null);
+		$(window).scrollTo(0, scrollT)
+	}
+}
+
+//confirm 닫기
+function confirmClose(e){
+	$(e).closest('.ui-confirm').removeClass('active');
+	close();
+}
+
+function selectClose(e){
+	$(e).closest('.ui-selectbox').removeClass('active');
+}
+
+
 $(function() {
-	const body = $('body');
-	var scrollT;
 
-	function open() {
-		setTimeout(function() {
-			scrollT = $(document).scrollTop(); 
-			body.addClass('no-scroll');
-			body.css('top', (-scrollT+'px'));
-		},100)
-	}
-
-	function close() {
-		body.removeClass('no-scroll'); 
-		console.log('닫기')
-		body.css('top', null);
-		$(document).scrollTop(scrollT);
-
-		if (!$('.ui-layer.active') && !$('.ui-layer.active')) { 
-			body.removeClass('no-scroll');
-			body.css('top',null);
-			$(window).scrollTo(0, scrollT)
-		}
-	}
-
+	// 왜 제거..?
 	// javascript 호출 onclick 제거
-	const button = $('button:not(.blue)')
-	button.removeAttr('onclick')
+	/*const button = $('button:not(.blue)')
+	button.removeAttr('onclick')*/
 
 	// 전체메뉴
 	const allMenuBtn = $('.ui-header .btn-allmenu');
@@ -54,7 +67,7 @@ $(function() {
 			bookmark = gnb.children('.gnb-tab'),
 			bmInner = bookmark.children('.tab-inner'),
 			bmBtn = bmInner.children('a'),
-			sections = gnb.find('.gnb-list li[id]'),
+			sections = gnb.children('.gnb-list').children('li[id]'),
 			fixHeight;
 
 			// input-search 콘텐츠 유무 확인
@@ -147,29 +160,62 @@ $(function() {
 
 	// ui-accordion
 	const accordion = $('.ui-accordion');
-	accordion.each(function(index, element) {
-		var $this = $(element),
-			$btn = $this.find('.btn-toggle'),
-			$cont = $btn.siblings('.toggle-target');
+	accordion.each(function() {
+		var $this = $(this),
+			$btn = $this.find('.btn-toggle');
+			//$cont = $btn.siblings('.toggle-target');
 
-			function btnClickEvt(i) {
-				$btn.eq(i).on('click', function() {
-					if ($(this).hasClass('active')) {
-						$(this).removeClass('active');
-						$(this).attr('aria-expanded', 'false');
-						$cont.eq(i).removeClass('active');
-					} else {
-						$(this).addClass('active');
-						$(this).attr('aria-expanded','true');
-						$cont.eq(i).addClass('active');
-					}
-				}); // click
-			} // each
-			for (var i = 0; i < $btn.length; i++) btnClickEvt(i);
+		$btn.each(function(){
+			$(this).on("click", function(){
+				if ($(this).hasClass('active')) {
+					$(this).removeClass('active');
+					$(this).attr('aria-expanded', 'false');
+					$(this).next('.toggle-target').removeClass('active');
+				} else {
+					$(this).addClass('active');
+					$(this).attr('aria-expanded','true');
+					$(this).next('.toggle-target').addClass('active');
+				}
+
+				// type-toggle
+				if ($this.hasClass('type-toggle')) {
+					var $toggle = $(this).parent().siblings().children('.btn-toggle');$toggle.removeClass('active');
+					$toggle.next().removeClass('active');
+					$toggle.attr('aria-expanded', 'false');
+					$toggle.next('.toggle-target').removeClass('active');
+				}
+			})
+		})
+
+
+		/*
+		function btnClickEvt(i) {
+			$btn.eq(i).on('click', function() {
+				if ($(this).hasClass('active')) {
+					$(this).removeClass('active');
+					$(this).attr('aria-expanded', 'false');
+					$cont.eq(i).removeClass('active');
+				} else {
+					$(this).addClass('active');
+					$(this).attr('aria-expanded','true');
+					$cont.eq(i).addClass('active');
+				}
+			}); // click
+		} // each
+		for (var i = 0; i < $btn.length; i++) btnClickEvt(i);*/
 	});
 	// //ui-accordion
 
 	// ui-confirm
+	const confirm = $('.btn-confirm-open');
+	confirm.each(function(){
+		$(this).on('click', function(){
+			var $layer = $(this).attr('aria-controls');
+			$("#"+$layer).parent().addClass('active');
+			open()
+		});
+	});
+	/*
 	const confirm = $('.btn-confirm-open'),
 		closeConfirm = $('.ui-confirm button:not(.blue)');
 
@@ -187,10 +233,47 @@ $(function() {
 			$closeLayer.eq(index).removeClass('active');
 			close();
 		});
-	});
+	});*/
 	// //ui-confirm
 
 	// text field
+	const inp = $('.input-wrap');
+	inp.each(function() {
+		var $delete = $(this).children('.btn-del'),
+			$inp = $(this).children('.ui-input');
+
+			$inp.each(function() {
+				$(this).on('focus', function() {
+					if ($(this).closest('.input-wrap').siblings('.inp-label').length) $(this).closest('.input-wrap').siblings('.inp-label').addClass('on');
+				});
+
+				$(this).on('blur', function() {
+					if ($(this).closest('.input-wrap').siblings('.inp-label').length) $(this).closest('.input-wrap').siblings('.inp-label').removeClass('on');
+				});
+
+			})
+			// for (var i = 0; i < $inp.length; i++) {
+			// }
+
+		if ($delete.length) {
+			$delete.on('click', function() {
+				$(this).closest('.input-wrap').children('.ui-input').val('');
+				$(this).closest('.input-wrap').children('.ui-input').focus();
+			});
+
+			$delete.on('mousedown focus', deleteFocus);
+		} 
+
+		function deleteFocus() {
+			if ($(this).prev().length && $(this).prev().hasClass('inp-label')) {
+				setTimeout(function() {
+					$delete.parent().prev().addClass('on');
+				},0);
+			}
+		}
+	});
+
+	/*
 	const inp = $('.input-wrap');
 	inp.each(function(index, element) {
 		var $delete = $(element).children('.btn-del'),
@@ -222,7 +305,7 @@ $(function() {
 				},0);
 			}
 		}
-	});
+	});*/
 	// //text field
 
 	// textarea
@@ -243,6 +326,29 @@ $(function() {
 	// //textarea
 
 	// selectbox
+	var select = $('.ui-selectbox');
+	select.each(function(){
+		var _this = $(this);
+		var selectOpen = _this.children('.btn-select-open');
+
+		selectOpen.on("click", function(){
+			_this.addClass('active');
+		})
+
+		var $btn = _this.find('.select-list button');
+		$btn.each(function(){
+			$(this).on('click', function(){
+				if ($(this).closest('.select-list').parent().hasClass('select-wrap')) {
+					if ($(this).closest('.select-list').find('.active').length) $(this).closest('.select-list').find('.active').removeClass('active');
+
+					$(this).addClass('active');
+					$this.text($(this).text());
+					$this.addClass('has-value');
+				}
+			})
+		})
+	})
+				/*
 	const selectOpen = $('.btn-select-open'),
 		closeSelectbox = $('.ui-selectbox button.ui-btn:not(.blue)');
 
@@ -274,10 +380,53 @@ $(function() {
 			$closeLayer.eq(index).removeClass('active');
 			// close();
 		})
-	});
+	});*/
 	// //selectbox
 
 	// layer popup (botton sheet)
+
+	const layerOpen = $('.btn-layer-open');
+	layerOpen.each(function() {
+		var $this = $(this),
+			$layer = $this.parent(),
+			$close = $this.next().children().last();
+
+		$this.on('click', function() {
+			$layer.addClass('active');
+			open();
+		});
+
+		var $btn = $layer.find('.select-list button');
+		$btn.each(function() {
+			$(this).on('click', function() {
+				if ($(this).closest('.select-list').parent().hasClass('layer-contents')) {
+					if ($(this).closest('.select-list').find('.active').length) $(this).closest('.select-list').find('.active').removeClass('active');
+					$(this).addClass('active');
+					$this.text($(this).text());
+					$this.addClass('has-value');
+				}
+			})
+		})
+
+		$close.on('click', function() {
+			$(this).closest('.ui-layer.active').removeClass('active');
+			close();
+		});
+	});
+
+	$('.ui-layer.auto').each(function() {
+		if ($(this).hasClass('active')) {
+			open();
+			var $close = $(this).children().first().children().last();
+
+			$close.on('click', function() {
+				$(this).removeClass('active');
+				close();
+			});
+		}
+	});
+
+	/*
 	const layerOpen = $('.btn-layer-open');
 	layerOpen.each(function(index, element) {
 		var $this = $(element),
@@ -318,9 +467,50 @@ $(function() {
 			});
 		}
 	});
+	*/
 	// //layer popup (botton sheet)
 
 	// tab
+
+	const tabMenu = $('.ui-tab');
+	tabMenu.each(function() {
+		var $nav = $(this).first().children(),
+			$li = $nav.find('[role="tab"]'),
+			$cont = [],
+			$only = false;
+
+		if ($(this).children().hasClass('tab-contents')) {
+			$cont = $(this).children('.tab-contents');
+		}
+
+		if ($cont.length <= 1) $only = true;
+
+		$li.each(function() {
+			// (콘텐츠가 1개 이상)탭버튼 속성,설정
+			$(this).on('click', function() {
+				$li.removeClass('active');
+				$li.attr('aria-selected','false');
+				$(this).addClass('active');
+				$(this).attr('aria-selected','true');
+				
+				if (!$only) {
+					$cont.removeClass('active');
+					// 콘텐츠 1개이상 콘텐츠 내용 변경
+					$cont.eq($(this).parent().index()).addClass('active');
+				} else {
+					// 콘텐츠 1개일때 콘텐츠 속성설정 (내용변동없음)
+					$cont.eq(0).attr('aria-labelledby',$(this).attr('id'));
+					$cont.eq(0).attr('id',$(this).attr('aria-controls'));
+				}
+
+			});
+		})
+		// for (var j = 0; j < $li.length; j++) {
+		// }
+
+	}); // each
+
+	/*
 	const tabMenu = $('.ui-tab');
 	tabMenu.each(function(index, element) {
 		var $nav = $(element).first().children(),
@@ -359,10 +549,42 @@ $(function() {
 			});
 		}
 
-	}); // each
+	}); // each */
 	// //tab
 
 	// tooltip
+	const tooltip = $('.ui-tooltip');
+	tooltip.each(function() {
+		var _this = $(this);
+		var tooltipOpen = _this.children('.btn-tooltip-open');
+
+		tooltipOpen.on('click', function() {
+			// console.log($(this))
+			if (_this.hasClass('active')) {
+				_this.removeClass('active');
+			} else {
+				tooltip.each(function() {
+					$(this).removeClass('active');
+					_this.addClass('active')
+				})
+			}
+		})
+	})
+
+	body.on('click', clickBodyTooltip);
+	function clickBodyTooltip(e) {
+		var tooltipOpen = $('.btn-tooltip-open')
+		var _target = $(e.target).attr('aria-controls')
+		tooltipOpen.each(function() {
+			var $cont = $(this).attr('aria-controls')
+			if ($cont == _target) {
+				return;
+			} else {
+				$(this).parent().removeClass('active')
+			}
+		})
+	}
+	/*
 	const tooltip = $('.ui-tooltip');
 	tooltip.each(function(index, element) {
 		// find(자식+손자 태그에서 검색) , children(자식태그에서만)
@@ -393,7 +615,7 @@ $(function() {
 			}
 		}
 		for (var i = 0; i < tooltip.length; i++) tooltip.eq(i).removeClass('active');
-	}
+	}*/
 	// //tooltip
 
 	// input file
@@ -415,3 +637,5 @@ $(function() {
 		});
 	}
 }); 
+
+	
