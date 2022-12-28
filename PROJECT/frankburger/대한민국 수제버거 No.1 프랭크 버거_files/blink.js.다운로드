@@ -1,0 +1,3 @@
+setInterval(function(){
+  $(".blinkEle").toggle();
+}, 400);

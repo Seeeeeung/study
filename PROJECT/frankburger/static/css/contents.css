@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+/* header */
+#header {position:relative; width:100vw; min-width:860px; height:70px; background-color:#000; opacity:.7; overflow:hidden;}
+.header-wrap {border:1px solid white; position:absolute; top:calc(50% - 25px); left:50%; transform:translate(-50%); display:flex; justify-content:space-between; align-items:center; width:1400px; min-width:800px; height:50px;}
+.logo a {display:block; overflow:hidden; width:220px; height:50px; text-indent:-9999px; background:url('http://frankburger.co.kr/img/common/bi.png') no-repeat 0 50%; background-size:220px;}
+.gnb {border:1px solid orange; display:flex; justify-content:space-around; align-items:center; width:80%; min-width:850px;}
+.gnb li {display:inline-block; font-weight:700; font-size:16px; vertical-align:top;}
+.gnb li:not(.lighting) {color:#fff;}
+.gnb li.lighting {color:#8fd940; opacity:1; animation:light 1s infinite; animation-timing-function:steps(2, start)}
+.gnb li.lighting:hover {animation-play-state:paused}
+@keyframes light {to {opacity:.5;}}
+
+.lnb {display:none;}
+
+.header-wrap>.btn-brand {border:1px solid red; display:inline-block; font-weight:700; font-size:16px; text-align:center; vertical-align:center; width:220px; height:50px; color:#8fd940; }

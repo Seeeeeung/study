@@ -1,0 +1,857 @@
+// top10
+      var top10_slide = new Swiper(".top10_slide", {
+        effect: "coverflow",
+		grabCursor: true,
+		centeredSlides: true,
+        slidesPerView: 2,
+		spaceBetween: 0,
+        coverflowEffect: {
+          rotate: 0,
+          stretch: 0,
+          depth: 600,
+          modifier: 1,
+          slideShadows: false,
+        },
+		loop:true,
+		autoplay: {
+		delay:2000,
+		disableOnInteraction: false,
+		},
+		speed : 500,
+        pagination: {
+          el: ".swiper-pagination",
+          type: "fraction",
+        },
+		navigation: {
+			prevEl: '.tt_prev',
+			nextEl: '.tt_next'
+		},
+      });
+
+// all_store_slide
+      var all_store_slide = new Swiper(".all_store_slide", {
+        direction: "vertical",
+        slidesPerView: "auto",
+        freeMode: true,
+        scrollbar: {
+          el: ".swiper-scrollbar",
+          draggable: true,
+        },
+        mousewheel: true,
+      });
+
+// daily_sales
+      var daily_sales_slide = new Swiper(".daily_sales_slide", {
+        loop: true,
+		autoplay: {
+		delay:3000,
+		disableOnInteraction: false,
+		},
+		speed : 500,
+        pagination: {
+          el: ".swiper-pagination",
+			    clickable: true,
+          type: "fraction",
+        },
+		navigation: {
+			nextEl: '.ds-button-next',
+			prevEl: '.ds-button-prev',
+		},
+      });
+
+	$(".daily_sales_slide").each(function(elem, target){
+		var swp = target.swiper;
+		$(this).hover(function() {
+			swp.autoplay.stop();
+		}, function() {
+			swp.autoplay.start();
+		});
+	});
+
+//twobillon_con
+      var twobillon = new Swiper(".twobillon", {
+		slidesPerView: 2,
+		spaceBetween: 18,
+		/*autoplay: {
+		delay:3000,
+		disableOnInteraction: false,
+		},
+		loop:true,
+		navigation: {
+		nextEl: '.swiper-button-next',
+		prevEl: '.swiper-button-prev',
+		},*/
+	});
+
+//billon_con
+      var billon = new Swiper(".billon", {
+		slidesPerView: 5,
+		spaceBetween: 18,
+		autoplay: {
+		delay:3000,
+		disableOnInteraction: false,
+		},
+		loop:true,
+		pagination: {
+			el: ".swiper-pagination",
+			clickable: true,
+		},
+		navigation: {
+			nextEl: '.bl-button-next',
+			prevEl: '.bl-button-prev',
+		},
+	});
+	$(".billon").each(function(elem, target){
+		var swp = target.swiper;
+		$(this).hover(function() {
+			swp.autoplay.stop();
+		}, function() {
+			swp.autoplay.start();
+		});
+	});
+// store3_con_slide
+      var store3 = new Swiper(".store3", {
+        loop: false,
+		autoplay: {
+		delay:3000,
+		disableOnInteraction: false,
+		},
+		speed : 500,
+		pagination: {
+			el: ".swiper-pagination",
+			clickable: true,
+		},
+		navigation: {
+			nextEl: '.ms3-button-next',
+			prevEl: '.ms3-button-prev',
+		},
+      });
+
+	$(".store2_con_slide").each(function(elem, target){
+		var swp = target.swiper;
+		$(this).hover(function() {
+			swp.autoplay.stop();
+		}, function() {
+			swp.autoplay.start();
+		});
+	});
+
+// store2_con_slide
+      var store2_con_slide = new Swiper(".store2_con_slide", {
+        loop: true,
+		autoplay: {
+		delay:3000,
+		disableOnInteraction: false,
+		},
+		speed : 500,
+		pagination: {
+			el: ".swiper-pagination",
+			clickable: true,
+		},
+		navigation: {
+			nextEl: '.ms2-button-next',
+			prevEl: '.ms2-button-prev',
+		},
+      });
+
+	$(".store2_con_slide").each(function(elem, target){
+		var swp = target.swiper;
+		$(this).hover(function() {
+			swp.autoplay.stop();
+		}, function() {
+			swp.autoplay.start();
+		});
+	});
+
+//open_store_slide
+      var open_store_slide = new Swiper(".open_store_slide", {
+		slidesPerView: 3,
+		spaceBetween: 10,
+		autoplay: {
+		delay:3000,
+		disableOnInteraction: false,
+		},
+		loop:true,
+		pagination: {
+			el: ".swiper-pagination",
+			clickable: true,
+		},
+		  		navigation: {
+			nextEl: '.os-button-next',
+			prevEl: '.os-button-prev',
+		},
+	});
+	$(".open_store_slide").each(function(elem, target){
+		var swp = target.swiper;
+		$(this).hover(function() {
+			swp.autoplay.stop();
+		}, function() {
+			swp.autoplay.start();
+		});
+	});
+
+// interview
+		var interview_slide = new Swiper(".interview_slide", {
+		effect: "coverflow",
+		grabCursor: true,
+		centeredSlides: true,
+		slidesPerView: 2,
+		spaceBetween: 0,
+		coverflowEffect: {
+			rotate: 0,
+			stretch: 0,
+			depth: 120,
+			modifier: 5,
+			slideShadows: false,
+		}, 
+		loop:true,
+		pagination: {
+			el: ".swiper-pagination",
+			clickable: true,
+		},
+		navigation: {
+			nextEl: '.iv-button-next',
+			prevEl: '.iv-button-prev',
+		},
+		// function to stop youtube video on slidechange
+		on: {
+			slideChange: function (el) {
+					$(".swiper-slide").each(function () {
+						var youtubePlayer = $(this).find("iframe").get(0);
+							if (youtubePlayer) {
+							youtubePlayer.contentWindow.postMessage(
+							  '{"event":"command","func":"pauseVideo","args":""}',
+							  "*"
+							);
+						}
+					});
+				}
+			}
+		});
+
+// success
+		var success_slide = new Swiper(".success_slide", {
+		effect: "coverflow",
+		grabCursor: true,
+		centeredSlides: true,
+		slidesPerView: 2,
+		spaceBetween: 0,
+		coverflowEffect: {
+			rotate: 0,
+			stretch: 0,
+			depth: 107,
+			modifier: 5,
+			slideShadows: false,
+		}, 
+		loop:true,
+		autoplay: {
+		delay:3000,
+		disableOnInteraction: false,
+		},
+		speed : 500,
+        pagination: {
+          el: ".swiper-pagination",
+          type: "fraction",
+        },
+		navigation: {
+		prevEl: '.sc_prev',
+		nextEl: '.sc_next'
+		},
+      });
+
+// awards_history_slide
+	var awards_history_slide = new Swiper('.awards_history_slide', {
+		centeredSlides: true,
+		slidesPerView: 3,
+		spaceBetween: 1,
+		autoplay: {
+		delay:3000,
+		disableOnInteraction: false,
+		},
+		loop:true,
+		pagination: {
+			el: ".swiper-pagination",
+			clickable: true,
+		},
+		navigation: {
+		nextEl: '.ah-button-next',
+		prevEl: '.ah-button-prev',
+		},
+	});
+	$(".awards_history_slide").each(function(elem, target){
+		var swp = target.swiper;
+		$(this).hover(function() {
+			swp.autoplay.stop();
+		}, function() {
+			swp.autoplay.start();
+		});
+	});
+
+//franchise_con
+      var bullet = ['가맹절차', '창업비용', '인테리어'];
+      var franchise = new Swiper(".franchise", {
+		slidesPerView: 1,
+		spaceBetween: 0,
+		autoplay: {
+		delay:3000,
+		disableOnInteraction: false,
+		},
+		loop:true,
+		pagination: {
+			el: '.swiper-pagination',
+			clickable: true,
+			renderBullet: function (index, className) {
+			return '<div class="' + className + '"><span>' + (bullet[index]) + '</span></div>';
+			}
+		},
+
+	});
+	$(".franchise").each(function(elem, target){
+		var swp = target.swiper;
+		$(this).hover(function() {
+			swp.autoplay.stop();
+		}, function() {
+			swp.autoplay.start();
+		});
+	});
+
+
+// gsap ani
+gsap.registerPlugin(ScrollTrigger);
+	gsap.from(".mv_particle", {
+	  scrollTrigger: {
+		trigger: ".mv_particle",
+		toggleActions: "restart pause resume none"
+	  },
+	  x: -200,
+	  duration: 2,
+		opacity: 0
+	});
+	gsap.from(".mv_trophy", {
+	  scrollTrigger: {
+		trigger: ".mv_trophy",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 350,
+	  duration: 1.5,
+		opacity: 0
+	});
+	gsap.from(".mv_title01", {
+	  scrollTrigger: {
+		trigger: ".mv_title01",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 150,
+	  duration: 0.5,
+		opacity: 0
+	});
+/*
+	gsap.from(".mv_title02", {
+	  scrollTrigger: {
+		trigger: ".mv_title01",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 150,
+	  duration: 0.7,
+		opacity: 0
+	});
+*/
+	gsap.from(".mv_title03", {
+	  scrollTrigger: {
+		trigger: ".mv_title01",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 150,
+	  duration: 0.7,
+		opacity: 0
+	});
+	gsap.from(".mv_title04", {
+	  scrollTrigger: {
+		trigger: ".mv_title01",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 150,
+	  duration: 1,
+		opacity: 0
+	});
+	gsap.from(".mv_btn_box", {
+	  scrollTrigger: {
+		trigger: ".mv_btn_box",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 150,
+	  duration: 1.3,
+		opacity: 0
+	});
+
+	gsap.from(".accumulate_title01", {
+	  scrollTrigger: {
+		trigger: ".accumulate_title02",
+		toggleActions: "restart pause resume none"
+	  },
+	  x: 150,
+	  duration: 0.7,
+		opacity: 0
+	});
+
+	gsap.from(".accumulate_title02", {
+	  scrollTrigger: {
+		trigger: ".accumulate_title02",
+		toggleActions: "restart pause resume none"
+	  },
+	  x: -150,
+	  duration: 0.7,
+		opacity: 0
+	});
+
+	gsap.from(".graph", {
+	  scrollTrigger: {
+		trigger: ".accumulate_title02",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 150,
+	  duration: 1.0,
+		opacity: 0
+	});
+
+	gsap.from(".list", {
+	  scrollTrigger: {
+		trigger: ".list",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 200,
+	  duration: 0.7,
+		opacity: 0
+	});
+
+	gsap.from(".tit_accumulation", {
+	  scrollTrigger: {
+		trigger: ".tit_accumulation",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 150,
+	  duration: 0.7,
+		opacity: 0
+	});
+
+	gsap.from(".al_percent", {
+	  scrollTrigger: {
+		trigger: ".al_percent",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: -50,
+	  duration: 0.5,
+		opacity: 0
+	});
+
+    gsap.fromTo('.al_graph01', {
+        width: 0
+    },{
+        scrollTrigger: {
+            trigger: '.al_graph01',
+			toggleActions: "restart pause resume none"
+        },
+        width: $('.al_graph01').width(), 
+		duration: 2.5, 
+		ease: 'none'
+    });
+    gsap.fromTo('.al_graph02', {
+        height: 0
+    },{
+        scrollTrigger: {
+            trigger: '.al_graph01',
+			toggleActions: "restart pause resume none"
+        },
+        height: $('.al_graph02').height(), 
+		duration: 2.5, 
+		ease: 'none'
+    });
+
+
+	gsap.from(".all_store_title", {
+	  scrollTrigger: {
+		trigger: ".all_store_list",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 150,
+	  duration: 0.7,
+		opacity: 0
+	});
+	gsap.from(".all_store_list", {
+	  scrollTrigger: {
+		trigger: ".all_store_list",
+		toggleActions: "restart pause resume none"
+	  },
+	  x: 150,
+	  duration: 1.5,
+		opacity: 0
+	});
+	gsap.from(".all_store_pc", {
+	  scrollTrigger: {
+		trigger: ".pin_jb",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: -150,
+	  duration: 1,
+		opacity: 0
+	});
+
+	gsap.from(".top10_tit", {
+	  scrollTrigger: {
+		trigger: ".top10_tit",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 200,
+	  duration: 1,
+		opacity: 0
+	});
+	
+	gsap.from(".top10_slide", {
+	  scrollTrigger: {
+		trigger: ".top10_slide",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 300,
+	  duration: 1.5,
+		opacity: 0
+	});
+
+
+	gsap.from(".ds_title01", {
+	  scrollTrigger: {
+		trigger: ".ds_title01",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 200,
+	  duration: 0.5,
+		opacity: 0
+	});
+	gsap.from(".ds_title02", {
+	  scrollTrigger: {
+		trigger: ".ds_title02",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 250,
+	  duration: 1,
+		opacity: 0
+	});
+	gsap.from(".daily_sales_slide", {
+	  scrollTrigger: {
+		trigger: ".daily_sales_slide",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 250,
+	  duration: 1.5,
+		opacity: 0
+	});
+
+	gsap.from(".twobillon", {
+	  scrollTrigger: {
+		trigger: ".twobillon",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 150,
+	  duration: 0.7,
+		opacity: 0
+	});
+	gsap.from(".billon", {
+	  scrollTrigger: {
+		trigger: ".billon",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 250,
+	  duration: 1,
+		opacity: 0
+	});
+
+	gsap.from(".tit_store3", {
+	  scrollTrigger: {
+		trigger: ".store3",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 150,
+	  duration: 0.7,
+		opacity: 0
+	});
+
+	gsap.timeline({
+		scrollTrigger: {
+			trigger: ".s3_101",
+			toggleActions: "restart pause resume none"
+		},
+	})
+	.from(".s3_101", {x: 100, opacity: 0})
+	.from(".s3_102", {x: 130, opacity: 0})
+	.from(".s3_103", {x: 160, opacity: 0})
+	.from(".s3_104", {x: 190, opacity: 0});
+/*
+	gsap.from(".store3", {
+	  scrollTrigger: {
+		trigger: ".store3",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 150,
+	  duration: 1,
+		opacity: 0
+	});
+*/
+	gsap.from("#store2_text", {
+	  scrollTrigger: {
+		trigger: ".store2_con_slide",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 150,
+	  duration: 0.7,
+		opacity: 0
+	});
+	gsap.from(".store2_con_slide", {
+	  scrollTrigger: {
+		trigger: ".store2_con_slide",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 150,
+	  duration: 1,
+		opacity: 0
+	});
+
+
+	gsap.from(".img_open_store", {
+	  scrollTrigger: {
+		trigger: ".open_store_slide",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 150,
+	  duration: 1.5,
+		opacity: 0
+	});
+
+	gsap.from(".tit_open_store", {
+	  scrollTrigger: {
+		trigger: ".open_store_slide",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 150,
+	  duration: 0.7,
+		opacity: 0
+	});
+
+	gsap.from(".open_store_slide", {
+	  scrollTrigger: {
+		trigger: ".open_store_slide",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 150,
+	  duration: 1,
+		opacity: 0
+	});
+
+	gsap.from(".tit_interview", {
+	  scrollTrigger: {
+		trigger: ".tit_interview",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 150,
+	  duration: 0.5,
+		opacity: 0
+	});
+		
+	gsap.from(".interview_slide", {
+	  scrollTrigger: {
+		trigger: ".interview_slide",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 150,
+	  duration: 0.7,
+		opacity: 0
+	});	
+
+
+	gsap.from(".tit_success", {
+	  scrollTrigger: {
+		trigger: ".tit_success",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 150,
+	  duration: 0.7,
+		opacity: 0
+	});
+	gsap.from(".success_slide", {
+	  scrollTrigger: {
+		trigger: ".success_slide",
+		toggleActions: "restart pause resume none"
+	  },
+	  x: -150,
+	  duration: 1,
+		opacity: 0
+	});
+
+	gsap.from(".tit_awards5", {
+	  scrollTrigger: {
+		trigger: ".success_slide",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 150,
+	  duration: 0.7,
+		opacity: 0
+	});
+
+	gsap.from(".list_text01", {
+	  scrollTrigger: {
+		trigger: ".list_text01",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 50,
+	  duration: 1,
+		opacity: 0
+	});
+	gsap.from(".list_text02", {
+	  scrollTrigger: {
+		trigger: ".list_text02",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 50,
+	  duration: 1.5,
+		opacity: 0
+	});
+
+	gsap.from(".tit_awards_history", {
+	  scrollTrigger: {
+		trigger: ".awards_history_slide",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 150,
+	  duration: 0.7,
+		opacity: 0
+	});
+	gsap.from(".awards_history_slide", {
+	  scrollTrigger: {
+		trigger: ".awards_history_slide",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 150,
+	  duration: 1,
+		opacity: 0
+	});
+
+
+	gsap.from(".ff_rank_title", {
+	  scrollTrigger: {
+		trigger: ".ff_rank_title",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 350,
+	  duration: 0.5,
+		opacity: 0
+	});
+	gsap.from(".ff_rank_list", {
+	  scrollTrigger: {
+		trigger: ".ff_rank_title",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 250,
+	  duration: 1,
+		opacity: 0
+	});
+
+	gsap.from(".contract_store_title", {
+	  scrollTrigger: {
+		trigger: ".contract_store_title",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 70,
+	  duration: 1,
+		opacity: 1
+	});
+	gsap.from("#contract_store_list", {
+	  scrollTrigger: {
+		trigger: "#contract_store_list",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 150,
+	  duration: 1.5,
+		opacity: 0
+	});
+
+    gsap.fromTo('.mf_arr_l', {
+        width: 0
+    },{
+        scrollTrigger: {
+            trigger: '.mf_arr_l',
+			toggleActions: "restart pause resume none"
+        },
+        width: $('.mf_arr_l').width(), 
+		duration: 2.5, 
+		ease: 'none'
+    });
+    gsap.fromTo('.mf_arr_r', {
+        width: 0
+    },{
+        scrollTrigger: {
+			trigger: '.mf_arr_l',
+			toggleActions: "restart pause resume none"
+        },
+        width: $('.mf_arr_r').width(), 
+		duration: 2.5, 
+		ease: 'none'
+    });
+	gsap.from(".mf_text01", {
+	  scrollTrigger: {
+		trigger: ".mf_text03",
+		toggleActions: "restart pause resume none"
+	  },
+	  x: -50,
+	  duration: 1.5,
+	  opacity: 0
+	});
+	gsap.from(".mf_text02", {
+	  scrollTrigger: {
+		trigger: ".mf_text03",
+		toggleActions: "restart pause resume none"
+	  },
+	  x: 100,
+	  duration: 2,
+	  opacity: 0
+	});
+	gsap.from(".mf_text03", {
+	  scrollTrigger: {
+		trigger: ".mf_text03",
+		toggleActions: "restart pause resume none"
+	  },
+	  x: -50,
+	  duration: 2,
+	  opacity: 0
+	});
+	gsap.from(".mf_text04", {
+	  scrollTrigger: {
+		trigger: ".mf_text04",
+		toggleActions: "restart pause resume none"
+	  },
+	  duration: 3,
+	  opacity: 0
+	});
+
+	gsap.from("#franchise", {
+	  scrollTrigger: {
+		trigger: "#franchise",
+		toggleActions: "restart pause resume none"
+	  },
+	  y: 150,
+	  duration: 1,
+		opacity: 0
+	});
+
+	gsap.timeline({
+		scrollTrigger: {
+			trigger: "#all_frank",
+			toggleActions: "restart pause resume none"
+		},
+	})
+	.from(".all_frank_bg1", {duration: 0.5, opacity: 0})
+	.from(".all_frank_bg2", {duration: 0.5, opacity: 0}, '-=0.1')
+	.from(".all_frank_bg3", {duration: 0.5, opacity: 0}, '-=0.1')
+	.from(".all_frank_bg4", {duration: 0.5, opacity: 0}, '-=0.1')
+	.from(".all_frank_bg5", {duration: 0.5, opacity: 0}, '-=0.1')
+	.from(".all_frank_title", {y: 120, opacity: 0})
+	.from(".all_frank_text", {y: 120, opacity: 0})
+	.from(".all_frank_logo", {y: 120, opacity: 0});
+
