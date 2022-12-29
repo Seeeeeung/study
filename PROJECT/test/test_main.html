@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>test</title>
+<link rel="stylesheet" type="text/css" href="import.css" media="all" />
+</head>
+<body>
+	<div id="main">
+		<header id="header-wrap" class="inner-wrap">
+			<div class="header-top">
+				<h1 class="logo"><a href="" class="btn-logo">로고이미지</a></h1>
+				<div class="btn-wrap">
+					<a href="" class="btn-login">로그인</a>
+					<a href="" class="btn-shop">샵?</a>
+				</div>
+			</div>
+
+			<nav>
+				<ul class="gnb">
+					<li>
+						<a href="">메뉴1</a>
+						<ul class="lnb">
+							<li><a href="">소메뉴1</a></li>
+							<li><a href="">소메뉴1</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="">메뉴1</a>
+						<ul class="lnb">
+							<li><a href="">소메뉴1</a></li>
+							<li><a href="">소메뉴1</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="">메뉴1</a>
+						<ul class="lnb">
+							<li><a href="">소메뉴1</a></li>
+							<li><a href="">소메뉴1</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="">메뉴1</a>
+						<ul class="lnb">
+							<li><a href="">소메뉴1</a></li>
+							<li><a href="">소메뉴1</a></li>
+						</ul>
+					</li>
+				</ul>
+
+				<a href="" class="btn-allmenu"></a>
+			</nav>
+		</header>
+
+		<div class="container">
+			<!-- contents -->
+			<div class="contents"><!-- 백그라운드 색갈설정 section으로 나눌지 contents를 여러개 쓸지 class 이름 생각하기 -->
+				<div class="main-visual inner-wrap">
+					<p class="tit">WELCOM!! <span class="sub-txt"><a href="" class="btn-more btn-story">텍스트1</a></span></p>
+					<p class="tit">텍스트2</p>
+				</div>
+
+				<div class="main-visual swiper">
+					<button type="button" class="btn-prev">이전</button>
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							콘텐츠
+						</div>
+						<div class="swiper-slide">
+							콘텐츠
+						</div>
+						<div class="swiper-slide">
+							콘텐츠
+						</div>
+						<div class="swiper-slide">
+							콘텐츠
+						</div>
+					</div>
+					<button type="button" class="btn-next">다음</button>
+
+					<div class="swipe-pagination">
+						<button type="button" class="swiper-pagination-bullet">1</button>
+						<button type="button" class="swiper-pagination-bullet">2</button>
+						<button type="button" class="swiper-pagination-bullet">3</button>
+						<button type="button" class="swiper-pagination-bullet">4</button>
+					</div>
+				</div>
+
+				<div class="inner-wrap">
+					<div class="tit-area">
+						<p class="tit">타이틀 타이틀 <span class="color-red">빨간타이틀</span> 타이틀 타이틀</p>
+					</div>
+
+					<ul class="rank-list">
+						<li>
+							<p class="tit"><strong>0000</strong>개</p>
+							<p class="desc">전국매장</p>
+						</li>
+						<li>
+							<p class="tit"><strong>0000</strong>개</p>
+							<p class="desc">전국매장</p>
+						</li>
+						<li>
+							<p class="tit"><strong>0000</strong>개</p>
+							<p class="desc">전국매장</p>
+						</li>
+						<li>
+							<p class="tit"><strong>0000</strong>개</p>
+							<p class="desc">전국매장</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- //contents -->
+
+			<!-- contents -->
+			<div class="contents">
+				<div class="inner-wrap">
+					<div class="tit-area">
+						<p class="tit">타이틀타이틀<span class="color-red">빨간타이틀</span></p>
+						<p class="desc">서브타이틀 서브타이틀 서브타이틀 서브타이틀</p>
+					</div>
+
+					<!-- tab-area -->
+					<div class="tab-area row"><!-- tab이 가로형일때 -->
+						<ul class="menu-list">
+							<li>
+								<a href="" role="tab" aria-selected="true" aria-controls="tab01-1"><span class="sub-txt">업계단독</span>텍스트텍스트 텍스트텍스트</a>
+							</li>
+							<li>
+								<a href="" role="tab" aria-selected="false" aria-controls="tab01-2"><span class="sub-txt">업계단독</span>텍스트텍스트 텍스트텍스트</a>
+							</li>
+							<li>
+								<a href="" role="tab" aria-selected="false" aria-controls="tab01-3"><span class="sub-txt">업계단독</span>텍스트텍스트 텍스트텍스트</a>
+							</li>
+						</ul>
+
+						<!-- cont-wrap으로 묶거나 tab-cont 별개로 만들기 중 한개 선택 -->
+						<!-- type01 -->
+						<div class="cont-wrap">
+							<div class="tab-cont active">컨텐츠 활성화</div>
+							<div class="tab-cont">컨텐츠</div>
+						</div>
+						<!-- //type01 -->
+
+						<!-- type02 -->
+						<div class="tab-cont" role="tabpanel" id="tab01-1">
+							<div class="box white">
+								<div class="tab-tit">
+									<div class="box yellow no-border-bottom"><!-- 노란 타이틀 없는 경우 해당 영역 삭제 -->
+										<i class="iconset ico-tabBi"></i>
+										<p class="txt"><span class="color-red">빨간 텍스트</span>텍스트 텍스트 텍스트 <span class="color-blue">파란텍스트</span>텍스트!</p>
+									</div>
+
+									<p class="tit">타이틀 타이틀타이틀 타이틀타이틀 타이틀<br />타이틀 타이틀타이틀 타이틀타이틀 타이틀타이틀 타이틀</p>
+								</div>
+
+								<div class="cont">
+									<img src="" alt="이미지" />
+									<ul><!-- list contents 하트.... -->
+										<li><span class="sub-txt">제휴 내용</span></li>
+										<li>텍스트 텍스트텍스트 텍스트텍스트 텍스트</li>
+										<li>텍스트 텍스트텍스트 텍스트텍스트 텍스트</li>
+										<li>텍스트 텍스트텍스트 텍스트텍스트 텍스트</li>
+										<li>텍스트 텍스트텍스트 텍스트텍스트 텍스트</li>
+									</ul>
+								</div>
+							</div>
+							<!-- //box -->
+						</div>
+
+						<div class="tab-cont" role="tabpanel" id="tab01-2">
+							<div class="box white">
+								<div class="tab-tit">
+									<div class="box yellow no-border-bottom"><!-- 노란 타이틀 없는 경우 해당 영역 삭제 -->
+										<i class="iconset ico-tabBi"></i>
+										<p class="txt"><span class="color-red">빨간 텍스트</span>텍스트 텍스트 텍스트 <span class="color-blue">파란텍스트</span>텍스트!</p>
+									</div>
+
+									<p class="tit">타이틀 타이틀타이틀 타이틀타이틀 타이틀<br />타이틀 타이틀타이틀 타이틀타이틀 타이틀타이틀 타이틀</p>
+								</div>
+
+								<div class="cont">
+									<img src="" alt="이미지" />
+									<ul><!-- list contents 하트.... -->
+										<li><span class="sub-txt">제휴 내용</span></li>
+										<li>텍스트 텍스트텍스트 텍스트텍스트 텍스트</li>
+										<li>텍스트 텍스트텍스트 텍스트텍스트 텍스트</li>
+										<li>텍스트 텍스트텍스트 텍스트텍스트 텍스트</li>
+										<li>텍스트 텍스트텍스트 텍스트텍스트 텍스트</li>
+									</ul>
+								</div>
+							</div>
+							<!-- //box -->
+						</div>
+
+						<div class="tab-cont" role="tabpanel" id="tab01-3">
+							<div class="box white">
+								<div class="tab-tit">
+									<div class="box yellow no-border-bottom"><!-- 노란 타이틀 없는 경우 해당 영역 삭제 -->
+										<i class="iconset ico-tabBi"></i>
+										<p class="txt"><span class="color-red">빨간 텍스트</span>텍스트 텍스트 텍스트 <span class="color-blue">파란텍스트</span>텍스트!</p>
+									</div>
+
+									<p class="tit">타이틀 타이틀타이틀 타이틀타이틀 타이틀<br />타이틀 타이틀타이틀 타이틀타이틀 타이틀타이틀 타이틀</p>
+								</div>
+
+								<div class="cont">
+									<img src="" alt="이미지" />
+									<ul><!-- list contents 하트.... -->
+										<li><span class="sub-txt">제휴 내용</span></li>
+										<li>텍스트 텍스트텍스트 텍스트텍스트 텍스트</li>
+										<li>텍스트 텍스트텍스트 텍스트텍스트 텍스트</li>
+										<li>텍스트 텍스트텍스트 텍스트텍스트 텍스트</li>
+										<li>텍스트 텍스트텍스트 텍스트텍스트 텍스트</li>
+									</ul>
+								</div>
+							</div>
+							<!-- //box -->
+						</div>
+					</div>
+					<!-- //tab-area -->
+				</div>
+			</div>
+			<!-- //contents -->
+
+			<!-- contents -->
+			<div class="contents">
+				<div class="inner-wrap">
+					<div class="tit-area">
+						<p class="tit">타이틀타이틀<span class="color-red">빨간타이틀</span></p>
+						<p class="desc">서브타이틀 서브타이틀 서브타이틀 서브타이틀</p>
+					</div>
+
+					<!-- tab-area -->
+					<div class="tab-area"><!-- tab이 기본일때 -->
+						<ul class="menu-list">
+							<li>
+								<a href="" role="tab" aria-selected="true" aria-controls="tab01-1">텍스트텍스트 텍스트텍스트</a>
+							</li>
+							<li>
+								<a href="" role="tab" aria-selected="false" aria-controls="tab01-2"><span class="sub-txt">업계단독</span>텍스트텍스트 텍스트텍스트</a>
+							</li>
+							<li>
+								<a href="" role="tab" aria-selected="false" aria-controls="tab01-3"><span class="sub-txt">업계단독</span>텍스트텍스트 텍스트텍스트</a>
+							</li>
+						</ul>
+
+						<!-- cont-wrap으로 묶거나 tab-cont 별개로 만들기 중 한개 선택 -->
+						<!-- type01 -->
+						<div class="cont-wrap">
+							<div class="tab-cont active">컨텐츠 활성화</div>
+							<div class="tab-cont">컨텐츠</div>
+						</div>
+						<!-- //type01 -->
+
+						<!-- type02 -->
+						<div class="tab-cont" role="tabpanel" id="tab01-1">
+							<ul class="icon-list">
+								<li>
+									<i class="iconset ico-open"></i>
+									<p class="tit">오전 7시 OPEN</p>
+									<p class="txt">출입문 자동 LOCK 열림<br />간판등, 실내등 ON</p>
+								</li>
+								<li>
+									<i class="iconset ico-open"></i>
+									<p class="tit">오전 7시 OPEN</p>
+									<p class="txt">출입문 자동 LOCK 열림<br />간판등, 실내등 ON</p>
+								</li>
+								<li>
+									<i class="iconset ico-open"></i>
+									<p class="tit">오전 7시 OPEN</p>
+									<p class="txt">출입문 자동 LOCK 열림<br />간판등, 실내등 ON</p>
+								</li>
+								<li>
+									<i class="iconset ico-open"></i>
+									<p class="tit">오전 7시 OPEN</p>
+									<p class="txt">출입문 자동 LOCK 열림<br />간판등, 실내등 ON</p>
+								</li>
+								<li>
+									<i class="iconset ico-open"></i>
+									<p class="tit">오전 7시 OPEN</p>
+									<p class="txt">출입문 자동 LOCK 열림<br />간판등, 실내등 ON</p>
+								</li>
+							</ul>
+						</div>
+
+						<div class="tab-cont" role="tabpanel" id="tab01-2">
+							<ul class="icon-list">
+								<li>
+									<i class="iconset ico-open"></i>
+									<p class="tit">오전 7시 OPEN</p>
+									<p class="txt">출입문 자동 LOCK 열림<br />간판등, 실내등 ON</p>
+								</li>
+								<li>
+									<i class="iconset ico-open"></i>
+									<p class="tit">오전 7시 OPEN</p>
+									<p class="txt">출입문 자동 LOCK 열림<br />간판등, 실내등 ON</p>
+								</li>
+								<li>
+									<i class="iconset ico-open"></i>
+									<p class="tit">오전 7시 OPEN</p>
+									<p class="txt">출입문 자동 LOCK 열림<br />간판등, 실내등 ON</p>
+								</li>
+								<li>
+									<i class="iconset ico-open"></i>
+									<p class="tit">오전 7시 OPEN</p>
+									<p class="txt">출입문 자동 LOCK 열림<br />간판등, 실내등 ON</p>
+								</li>
+								<li>
+									<i class="iconset ico-open"></i>
+									<p class="tit">오전 7시 OPEN</p>
+									<p class="txt">출입문 자동 LOCK 열림<br />간판등, 실내등 ON</p>
+								</li>
+							</ul>
+						</div>
+
+						<div class="tab-cont" role="tabpanel" id="tab01-3">
+							<ul class="icon-list">
+								<li>
+									<i class="iconset ico-open"></i>
+									<p class="tit">오전 7시 OPEN</p>
+									<p class="txt">출입문 자동 LOCK 열림<br />간판등, 실내등 ON</p>
+								</li>
+								<li>
+									<i class="iconset ico-open"></i>
+									<p class="tit">오전 7시 OPEN</p>
+									<p class="txt">출입문 자동 LOCK 열림<br />간판등, 실내등 ON</p>
+								</li>
+								<li>
+									<i class="iconset ico-open"></i>
+									<p class="tit">오전 7시 OPEN</p>
+									<p class="txt">출입문 자동 LOCK 열림<br />간판등, 실내등 ON</p>
+								</li>
+								<li>
+									<i class="iconset ico-open"></i>
+									<p class="tit">오전 7시 OPEN</p>
+									<p class="txt">출입문 자동 LOCK 열림<br />간판등, 실내등 ON</p>
+								</li>
+								<li>
+									<i class="iconset ico-open"></i>
+									<p class="tit">오전 7시 OPEN</p>
+									<p class="txt">출입문 자동 LOCK 열림<br />간판등, 실내등 ON</p>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!-- //tab-area -->
+				</div>
+			</div>
+			<!-- //contents -->
+
+			<!-- contents -->
+			<div class="contents">
+				<div class="inner-wrap">
+					<div class="tit-area">
+						<p class="tit">타이틀타이틀 타이틀 <span class="color-red">타이틀</span></p>
+						<p class="desc">서브타이틀 서브타이틀 서브타이틀서브타이틀.</p>
+					</div>
+				</div>
+
+				<div class="swiper">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<div class="img-list">
+								<img src="" alt="지점이미지" />
+								<ul class="text-list">
+									<li>
+										<span class="title">용인수지점</span>
+									</li>
+									<li>
+										<span class="title">주소</span>
+										<p class="desc">경기도 용인시 수지구 풍덕천로</p>
+									</li>
+									<li class="row">
+										<span class="title">평수</span>
+										<p class="desc">69㎡</p>
+									</li>
+									<li class="row">
+										<span class="title">오픈매출</span>
+										<p class="desc color-orange">2,000,000만원</p>
+									</li>
+								</ul>
+
+								<div class="box yellow hide">
+									<span class="sub-txt"><a href="" class="btn-more"><strong class="color-red">구경</strong>하러 가기</a></span>
+								</div>
+							</div>
+						</div>
+
+						<div class="swiper-slide">
+							<div class="img-list">
+								<img src="" alt="지점이미지" />
+								<ul class="text-list">
+									<li>
+										<span class="title">용인수지점</span>
+									</li>
+									<li>
+										<span class="title">주소</span>
+										<p class="desc">경기도 용인시 수지구 풍덕천로</p>
+									</li>
+									<li class="row">
+										<span class="title">평수</span>
+										<p class="desc">69㎡</p>
+									</li>
+									<li class="row">
+										<span class="title">오픈매출</span>
+										<p class="desc color-orange">2,000,000만원</p>
+									</li>
+								</ul>
+
+								<div class="box yellow hide">
+									<span class="sub-txt"><a href="" class="btn-more"><strong class="color-red">구경</strong>하러 가기</a></span>
+								</div>
+							</div>
+						</div>
+
+						<div class="swiper-slide">
+							<div class="img-list">
+								<img src="" alt="지점이미지" />
+								<ul class="text-list">
+									<li>
+										<span class="title">용인수지점</span>
+									</li>
+									<li>
+										<span class="title">주소</span>
+										<p class="desc">경기도 용인시 수지구 풍덕천로</p>
+									</li>
+									<li class="row">
+										<span class="title">평수</span>
+										<p class="desc">69㎡</p>
+									</li>
+									<li class="row">
+										<span class="title">오픈매출</span>
+										<p class="desc color-orange">2,000,000만원</p>
+									</li>
+								</ul>
+
+								<div class="box yellow hide">
+									<span class="sub-txt"><a href="" class="btn-more"><strong class="color-red">구경</strong>하러 가기</a></span>
+								</div>
+							</div>
+						</div>
+
+						<div class="swiper-slide">
+							<div class="img-list">
+								<img src="" alt="지점이미지" />
+								<ul class="text-list">
+									<li>
+										<span class="title">용인수지점</span>
+									</li>
+									<li>
+										<span class="title">주소</span>
+										<p class="desc">경기도 용인시 수지구 풍덕천로</p>
+									</li>
+									<li class="row">
+										<span class="title">평수</span>
+										<p class="desc">69㎡</p>
+									</li>
+									<li class="row">
+										<span class="title">오픈매출</span>
+										<p class="desc color-orange">2,000,000만원</p>
+									</li>
+								</ul>
+
+								<div class="box yellow hide">
+									<span class="sub-txt"><a href="" class="btn-more"><strong class="color-red">구경</strong>하러 가기</a></span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<button type="button" class="btn-prev">이전</button>
+					<div class="swipe-pagination">
+						<button type="button" class="swiper-pagination-bullet">1</button>
+						<button type="button" class="swiper-pagination-bullet">2</button>
+						<button type="button" class="swiper-pagination-bullet">3</button>
+						<button type="button" class="swiper-pagination-bullet">4</button>
+					</div>
+					<button type="button" class="btn-next">다음</button>
+
+				</div>
+				<!-- //swiper -->
+			</div>
+			<!-- //contents -->
+
+			<!-- contents -->
+			<div class="contents">
+				<div class="inner-wrap">
+					<div class="tit-area">
+						<p class="tit">업계최조 <span class="color-red">최단기간 250호점</span> 돌파!!</p>
+						<p class="desc">서브텍스트 서브타이틀 서브타이틀</p>
+					</div>
+
+					<p class="txt"><strong>2023</strong>년 <strong>6</strong>월 <strong class="color-yellow">350</strong>개 예상, <strong>12</strong>월 <strong class="color-yellow">500</strong>개 예상,</p>
+
+					<div class="chart">
+						<img src="" alt="차트 이미지" />
+						<p class="chart-tit">빵꾸똥꾸문구야 매장 수</p>
+					</div>
+				</div>
+			</div>
+			<!-- //contents -->
+
+			<!-- contents -->
+			<div class="contents">
+				<div class="inner-wrap">
+					<div class="tit-area">
+						<p class="tit">다녀왔어요!</p>
+						<p class="desc">생생한 매장 방문 후기를 확인하세요.</p>
+					</div>
+
+					<ul class="img-list">
+						<li>
+							<img src="" alt="지점이미지" />
+								<ul class="text-list">
+									<li class="row">
+										<i class="iconset ico-blog"></i>
+										<p class="date">2022.11.13</p>
+									</li>
+									<li>
+										<span class="title">산책하다 들린 무인문구점 빵꾸똥꾸문구야, 추억의 문방구 투어</span>
+										<p class="desc ellipsis">산책하다 들린 무인문구점 빵꾸똥꾸문구야, 추억의 문방구 투어산책하다 들린 무인문구점 빵꾸똥꾸문구야, 추억의 문방구 투어산책하다 들린 무인문구점 빵꾸똥꾸문구야, 추억의 문방구 투어</p>
+									</li>
+									<li class="row">
+										<p class="desc">평택용죽점</p>
+									</li>
+								</ul>
+						</li>
+
+						<li>
+							<img src="" alt="지점이미지" />
+								<ul class="text-list">
+									<li class="row">
+										<i class="iconset ico-blog"></i>
+										<p class="date">2022.11.13</p>
+									</li>
+									<li>
+										<span class="title">산책하다 들린 무인문구점 빵꾸똥꾸문구야, 추억의 문방구 투어</span>
+										<p class="desc ellipsis">산책하다 들린 무인문구점 빵꾸똥꾸문구야, 추억의 문방구 투어산책하다 들린 무인문구점 빵꾸똥꾸문구야, 추억의 문방구 투어산책하다 들린 무인문구점 빵꾸똥꾸문구야, 추억의 문방구 투어</p>
+									</li>
+									<li class="row">
+										<p class="desc">평택용죽점</p>
+									</li>
+								</ul>
+						</li>
+
+						<li>
+							<img src="" alt="지점이미지" />
+								<ul class="text-list">
+									<li class="row">
+										<i class="iconset ico-blog"></i>
+										<p class="date">2022.11.13</p>
+									</li>
+									<li>
+										<span class="title">산책하다 들린 무인문구점 빵꾸똥꾸문구야, 추억의 문방구 투어</span>
+										<p class="desc ellipsis">산책하다 들린 무인문구점 빵꾸똥꾸문구야, 추억의 문방구 투어산책하다 들린 무인문구점 빵꾸똥꾸문구야, 추억의 문방구 투어산책하다 들린 무인문구점 빵꾸똥꾸문구야, 추억의 문방구 투어</p>
+									</li>
+									<li class="row">
+										<p class="desc">평택용죽점</p>
+									</li>
+								</ul>
+						</li>
+					</ul>
+
+					<span class="sub-txt no-border"><a href="" class="btn-more color-gray">더 보러 가기</a></span>
+				</div>
+			</div>
+			<!-- //contents -->
+
+			<!-- contents -->
+			<div class="contents">
+				<div class="inner-wrap">
+					<div class="box green">
+						<div class="tit-area">
+							<p class="tit">매일 매일 흥미로운 일들이 가득해!</p>
+							<p class="desc color-white">빵꾸똥꾸문구야 공식블로그에 구경가세요 :)</p>
+						</div>
+
+						<i class="iconset ico-banner-blog"></i>
+
+						<p class="sub-txt green2"><a href="" class="btn-more"><span class="color-yellow">공식 블로그</span> 구경가기</a></p>
+					</div>
+
+					<div class="tit-area">
+						<p class="tit">잘 나가는 빵꾸똥꾸야</p>
+						<p class="desc">언론 매체들의 언론 보도를 확인해보세요.</p>
+					</div>
+
+					<ul class="img-list">
+						<li>
+							<img src="" alt="이미지" />
+							<ul class="text-list">
+								<li>
+									<span class="title">산책하다 들린 무인문구점 빵꾸똥꾸문구야, 추억의 문방구 투어</span>
+								</li>
+								<li class="row">
+									<span class="title">뉴스1</span>
+									<p class="date">2022.12.13</p>
+								</li>
+								<li>
+									<p class="desc ellipsis">산책하다 들린 무인문구점 빵꾸똥꾸문구야, 추억의 문방구 투어산책하다 들린 무인문구점 빵꾸똥꾸문구야, 추억의 문방구 투어산책하다 들린 무인문구점 빵꾸똥꾸문구야, 추억의 문방구 투어</p>
+								</li>
+							</ul>
+						</li>
+
+						<li>
+							<img src="" alt="이미지" />
+							<ul class="text-list">
+								<li>
+									<span class="title">산책하다 들린 무인문구점 빵꾸똥꾸문구야, 추억의 문방구 투어</span>
+								</li>
+								<li class="row">
+									<span class="title">뉴스1</span>
+									<p class="date">2022.12.13</p>
+								</li>
+								<li>
+									<p class="desc ellipsis">산책하다 들린 무인문구점 빵꾸똥꾸문구야, 추억의 문방구 투어산책하다 들린 무인문구점 빵꾸똥꾸문구야, 추억의 문방구 투어산책하다 들린 무인문구점 빵꾸똥꾸문구야, 추억의 문방구 투어</p>
+								</li>
+							</ul>
+						</li>
+
+						<li>
+							<img src="" alt="이미지" />
+							<ul class="text-list">
+								<li>
+									<span class="title">산책하다 들린 무인문구점 빵꾸똥꾸문구야, 추억의 문방구 투어</span>
+								</li>
+								<li class="row">
+									<span class="title">뉴스1</span>
+									<p class="date">2022.12.13</p>
+								</li>
+								<li>
+									<p class="desc ellipsis">산책하다 들린 무인문구점 빵꾸똥꾸문구야, 추억의 문방구 투어산책하다 들린 무인문구점 빵꾸똥꾸문구야, 추억의 문방구 투어산책하다 들린 무인문구점 빵꾸똥꾸문구야, 추억의 문방구 투어</p>
+								</li>
+							</ul>
+						</li>
+					</ul>
+
+					<span class="sub-txt no-border"><a href="" class="btn-more color-gray">더 보러 가기</a></span>
+
+					<div class="box blue">
+						<div class="tit-area">
+							<p class="tit">매일 매일 흥미로운 일들이 가득해!</p>
+							<p class="desc color-white">빵꾸똥꾸문구야 공식블로그에 구경가세요 :)</p>
+						</div>
+
+						<i class="iconset ico-banner-tel"></i>
+
+						<p class="sub-txt blue2"><i class="iconset ico-tel"></i>02.546.8250</p>
+					</div>
+				</div>
+			</div>
+			<!-- //contents -->
+		</div>
+		<!-- //container -->
+
+		<footer id="footer-wrap">
+			<div class="inner-wrap">
+				<div class="foot-banner">
+					<a href="" class="btn-logo">로고이미지</a>
+				</div>
+
+				<ul class="text-list">
+					<li>
+						<span class="title">(주)오피스넥스</span>
+						<p class="desc">대표 조성우, 선장덕</p>
+					</li>
+					<li class="row">
+						<p class="desc">서울시 강남구 언주로 134길 4, IB타워 7층</p>
+						<p class="desc">사업자등록번호 114-86-62046</p>
+					</li>
+					<li class="row">
+						<p class="desc">대표번호 02.546.8250</p>
+						<p class="desc">FAX 02.546.8250</p>
+						<p class="desc">이메일 bbangu&#64;officenex.co.kr</p>
+					</li>
+					<li>
+						<p class="copy">Copyright by 빵꾸똥꾸문구야 All rights reserved.</p>
+					</li>
+				</ul>
+			</div>
+		</footer>
+
+		<aside class="quick-area">
+			<ul class="list-area">
+				<div class="td">
+					<div class="report">
+						<ul>
+							<li>
+								<a href=""><i class="iconset ico-consult"></i><span class="txt">창업상담</span></a>
+							</li>
+							<li>
+								<a href=""><i class="iconset ico-consult"></i><span class="txt">창업상담</span></a>
+							</li>
+							<li>
+								<a href=""><i class="iconset ico-consult"></i><span class="txt">창업상담</span></a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="common">
+						<ul>
+							<li>
+								<a href="" class="kakao">
+									<i class="iconset ico-kakao"></i>
+									<span class="txt">카카오채널</span>
+								</a>
+							</li>
+							<li>
+								<a href="" class="btn-top">
+									<i class="iconset ico-quick-top"></i>
+									<span class="txt">TOP</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</ul>
+		</aside>
+	</div><!-- //main -->
+</body>
+</html>
