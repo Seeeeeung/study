@@ -420,6 +420,17 @@
 					currentArr.push(currentIdx);
 
 					for (let j=0; j<num.length; j++) {
+						/* 클릭한 td 두번 클릭시 기능 추가 해야함 */
+						// console.log(this)
+						this.addEventListener('click', function() {
+							this.classList.remove('active');
+							currentArr.find(function(value) {
+								if (line[j].includes(value)) {
+									currentBingoArr["line"+num[j]].pop();
+									console.log('???')
+								} 
+							});
+						})
 						currentArr.find(function(value) {
 							if (line[j].includes(value)) {
 								currentBingoArr["line"+num[j]].push(value);
@@ -446,10 +457,6 @@
 		}
 		done.addEventListener('click', bingoGame)
 
-		/* 클릭한 td 두번 클릭시 기능 추가 해야함 
-		if (currentCheck[i].classList.contains('active')) {
-			return false
-		}*/
 	</script>
 </body>
 </html>
