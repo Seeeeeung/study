@@ -217,7 +217,7 @@
 .main-scroll.solution.active>.sub-txt {opacity:1; transform:translateY(0);}
 
 
-.solution>.inner-wrap {position:relative; padding-bottom:0;}
+.solution>.inner-wrap {position:relative; padding-bottom:0; z-index:20;}
 .main-scroll.solution>.inner-wrap:before {position:absolute; bottom:400px; right:0; display:block; width:110px; height:112px; background:url('../images/images/bg-solution.png') no-repeat 0 50%; background-size:110px auto; content:''; opacity:0;}
 .main-scroll.solution.active>.inner-wrap:before {animation:characters cubic-bezier(.36,1.21,.68,1.42) forwards 1s; animation-delay:1.3s;}
 @keyframes characters {
