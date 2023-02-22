@@ -236,7 +236,7 @@
 .solution .tab-nav [aria-selected="true"] {color:#fff; font-weight:bold; background-color:#222; border:1px solid #222;}
 
 .solution .tab-contents {width:100%;}
-.solution .tab-contents .cont-list {width:100%; height:auto; }
+.solution .tab-contents .cont-list {width:100%; height:auto; overflow:hidden;}
 .solution .tab-contents .cont-list>li {text-align:center; white-space:nowrap;}
 .solution .tab-contents .thumb {width:auto; height:auto; margin:0 auto 24px auto; text-align:center;}
 .solution .tab-contents .txt {margin-bottom:12px; font-family:'NanumSquareRound'; line-height:normal;}
@@ -257,8 +257,7 @@
 .main-scroll.solution.active .tab-contents:nth-of-type(1).active .cont-list>li,
 .main-scroll.solution.active .tab-contents:nth-of-type(2).active .cont-list>li {animation:tabCont01 forwards 1s;}
 
-.solution .tab-contents:nth-of-type(3) .cont-list li>.profit-box { top:40px; opacity:0;}
-.solution .tab-contents:nth-of-type(3) .cont-list li>.profit-box {z-index:10;}
+.solution .tab-contents:nth-of-type(3) .cont-list li>.profit-box { top:40px; opacity:0; z-index:10;}
 .main-scroll.solution.active .tab-contents:nth-of-type(3).active .cont-list>li>.profit-box {animation:tabCont03 forwards 0.8s;}
 .main-scroll.solution.active .tab-contents:nth-of-type(3).active>.tit {animation:slideDown40 forwards 0.8s;}
 
