@@ -258,7 +258,6 @@
 .main-scroll.solution.active .tab-contents:nth-of-type(2).active .cont-list>li {animation:tabCont01 forwards 1s;}
 
 .solution .tab-contents:nth-of-type(3) .cont-list li>.profit-box { top:40px; opacity:0;}
-/* .solution .tab-contents:nth-of-type(3) .cont-list li>.profit-box {z-index:0;} */
 .main-scroll.solution.active .tab-contents:nth-of-type(3).active .cont-list>li>.profit-box {animation:tabCont03 forwards 0.8s;}
 .main-scroll.solution.active .tab-contents:nth-of-type(3).active>.tit {animation:slideDown40 forwards 0.8s;}
 

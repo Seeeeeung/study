@@ -311,25 +311,16 @@
 			var targetId = $(this).attr('aria-controls');
 			// 모달창 오픈
 			$(this).on('click', function() {
-				$('#' + targetId).css({'z-index':'999', 'visibility':'visible'}).addClass('active')
-				// $(this).next('.layer-modal').css({'z-index':'999', 'visibility':'visible'}).addClass('active').parents('.container').siblings('aside').css('z-index','0');
-
-				// 메인 탭 내부 모달창
-				// if ($('.profit-box').length) $(this).parent('.profit-box').css('z-index','1');
+				$('#' + targetId).css({'z-index':'999', 'visibility':'visible'}).addClass('active');
 	
-				$('body').css('overflow','hidden');
+				$('body').addClass('overflow');
 			});
 	
 			// 모달창 닫기
 			$('#' + targetId).find('.btn-close-modal').on('click', function() {
-				// let _this = $(this)
-				$(this).parents('.layer-modal').removeClass('active').css('visibility','hidden')
-				// $(this).parents('.layer-modal').removeClass('active').css('visibility','hidden').parents('.container').siblings('aside').css('z-index','999');
+				$(this).parents('.layer-modal').removeClass('active').css('visibility','hidden');
 
-				// 메인 탭 내부 모달창
-				// if ($('.profit-box').length) setTimeout(function() {_this.parents('.profit-box').css('z-index','0');},500);
-
-				$('body').css('overflow','auto');
+				$('body').removeClass('overflow');
 			});
 		});
 	}
