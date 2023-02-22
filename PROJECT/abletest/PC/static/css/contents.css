@@ -199,7 +199,7 @@
 .swiper-tab-scroll .swiper-slide:last-child .thumb {right:-56px; bottom:-56px;}
 
 /* 창업솔루션 */
-.solution {position:relative; width:100%; min-width:1200px; margin-bottom:120px;}
+.solution {position:relative; z-index:20; width:100%; min-width:1200px; margin-bottom:120px;}
 .main-scroll.solution:after {position:absolute; bottom:0; left:-280px; z-index:-1; display:block; width:280px; height:540px; background-color:#fef9cf; border-radius:0 270px 270px 0; opacity:0; content:''; transition-property:left, opacity; transition-duration:0.7s; transition-delay:0.5s;}
 .main-scroll.solution.active:after {left:-140px; opacity:1;}
 .main-scroll.solution:before {position:absolute; bottom:0; right:-100%; display:block; width:1690px; height:540px; background-color:#fef9cf; border-radius:270px 0 0 270px; opacity:0; content:''; transition-property:right, opacity; transition-duration:0.7s; transition-delay:0.5s;}
@@ -217,7 +217,7 @@
 .main-scroll.solution.active>.sub-txt {opacity:1; transform:translateY(0);}
 
 
-.solution>.inner-wrap {position:relative; padding-bottom:0; z-index:20;}
+.solution>.inner-wrap {position:relative; padding-bottom:0;}
 .main-scroll.solution>.inner-wrap:before {position:absolute; bottom:400px; right:0; display:block; width:110px; height:112px; background:url('../images/images/bg-solution.png') no-repeat 0 50%; background-size:110px auto; content:''; opacity:0;}
 .main-scroll.solution.active>.inner-wrap:before {animation:characters cubic-bezier(.36,1.21,.68,1.42) forwards 1s; animation-delay:1.3s;}
 @keyframes characters {
