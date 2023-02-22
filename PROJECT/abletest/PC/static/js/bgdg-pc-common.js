@@ -308,23 +308,26 @@
 	// modal 
 	if ($('.layer-modal').length) {
 		$('.btn-open-modal').each(function() {
+			var targetId = $(this).attr('aria-controls');
 			// 모달창 오픈
 			$(this).on('click', function() {
-				$(this).next('.layer-modal').css({'z-index':'999', 'visibility':'visible'}).addClass('active').parents('.container').siblings('aside').css('z-index','6');
+				$('#' + targetId).css({'z-index':'999', 'visibility':'visible'}).addClass('active')
+				// $(this).next('.layer-modal').css({'z-index':'999', 'visibility':'visible'}).addClass('active').parents('.container').siblings('aside').css('z-index','0');
 
 				// 메인 탭 내부 모달창
-				if ($('.profit-box').length) $(this).parent('.profit-box').css('z-index','11');
+				// if ($('.profit-box').length) $(this).parent('.profit-box').css('z-index','1');
 	
 				$('body').css('overflow','hidden');
 			});
 	
 			// 모달창 닫기
-			$(this).next('.layer-modal').find('.btn-close-modal').on('click', function() {
-				let _this = $(this)
-				$(this).parents('.layer-modal').removeClass('active').css('visibility','hidden').parents('.container').siblings('aside').css('z-index','999');
+			$('#' + targetId).find('.btn-close-modal').on('click', function() {
+				// let _this = $(this)
+				$(this).parents('.layer-modal').removeClass('active').css('visibility','hidden')
+				// $(this).parents('.layer-modal').removeClass('active').css('visibility','hidden').parents('.container').siblings('aside').css('z-index','999');
 
 				// 메인 탭 내부 모달창
-				if ($('.profit-box').length) setTimeout(function() {_this.parents('.profit-box').css('z-index','10');},500);
+				// if ($('.profit-box').length) setTimeout(function() {_this.parents('.profit-box').css('z-index','0');},500);
 
 				$('body').css('overflow','auto');
 			});
