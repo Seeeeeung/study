@@ -1,5 +1,7 @@
 package exampleProject;
 
+import java.util.Arrays;
+
 public class print {
 	public static void main(String[] args) {
 //		System.out.println("Hello Java!!");
@@ -110,7 +112,102 @@ public class print {
 		}
 		System.out.println(sum);
 		System.out.println(sum / grade7.length);
-	}
-}
+		
+
+		// 다차원 배열
+		int[][] arr = new int[2][3];
+		int k = 10;
+		for (int i = 0; i < arr.length; i++) {
+//			System.out.println(arr.length + "arr"); // 2
+			for (int j = 0; j < arr[i].length; j++) {
+				arr[i][j] = k;
+				k += 10;
+//				System.out.println(arr[i].length + "arr"); // 3
+			}
+		}
+		
+		for (int i=0; i<arr.length; i++) {
+			for (int j=0; j<arr[i].length; j++) {
+				System.out.print(arr[i][j] + " ");
+			}
+			System.out.println();
+		}
+		
+		// 가변배열
+		int[][] arr2 = {
+				{10, 20},
+				{10, 20, 30, 40},
+				{10}
+		};
+		
+		// 배열의 복사
+		int[] arr3 = new int[] {1,2,3,4,5};
+		int newLen = 10;
+		
+		// arraycopy()
+		int[] arr4 = new int[newLen];
+		System.arraycopy(arr3, 0, arr4, 0, arr3.length);
+
+		for(int i = 0; i<arr4.length; i++) {
+			System.out.print(arr4[i]+" ");
+		}
+		System.out.println(" ");
+		
+		// copyOf()
+		int[] arr5 = Arrays.copyOf(arr3, 10);
+		for(int i = 0; i<arr5.length; i++) {
+			System.out.print(arr5[i]+" ");
+		}
+		System.out.println(" ");
+		
+		// clone()
+		int[] arr6 = (int[])arr3.clone();
+		for(int i = 0; i<arr6.length; i++) {
+			System.out.print(arr6[i]+" ");
+		}
+		System.out.println(" ");
+		
+		// for문, 인덱스 이용 복사
+		int[] arr7 = new int[newLen];
+		for (int i=0; i<arr3.length; i++) {
+			arr7[i] = arr3[i];
+		}
+		for(int i = 0; i<arr7.length; i++) {
+			System.out.print(arr7[i]+" ");
+		}
+		System.out.println(" end ");
+		
+		// Enhanced for
+		int[] arr8 = new int[]{1,2,3,4,5};
+		int[] arr9 = new int[]{1,2,3,4,5};
+		
+		for (int e : arr8) {
+			System.out.print(e + " ");
+		}
+		System.out.println(" end ");
+		
+		// 예제 : 모든 배열요소에 10을 더함
+		for(int i = 0; i<arr8.length; i++) {
+			arr8[i] += 10;
+			// 출력
+			System.out.print(arr8[i] + " ");
+		}
+		System.out.println(" end ");
+		
+		for (int e:arr9) {
+			e += 10;
+		}
+		for(int i = 0; i<arr9.length; i++) {
+			// 출력
+			System.out.print(arr9[i] + " ");
+		} // 배열 끝
+		
+		// 클래스
+		
+
+		
+	} // Main
+	
+} // print
 
 
