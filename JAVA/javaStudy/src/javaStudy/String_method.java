@@ -1,9 +1,10 @@
 package javaStudy;
 
 
-public class String_charAt {
+public class String_method {
 	
 	public static void main(String[] args) {
+		// charAt
 		String str = new String("Jave");
 		System.out.println("원본 문자열 : " + str);
 		
@@ -13,6 +14,7 @@ public class String_charAt {
 		
 		System.out.println("\ncharAt() 메소드 호출 후 원본 문자열 : " + str);
 		
+		// compareTo
 		String compareStr = new String("abcd");
 		System.out.println("\n원본 문자열" + compareStr);
 		
