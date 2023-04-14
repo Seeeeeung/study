@@ -33,5 +33,10 @@ public class class_arrays {
 		for (int i = 0; i < arr4.length; i++) {
 			System.out.print(arr4[i] + " ");
 		}
+
+		System.out.println();
+
+		// fill()
+//		int[] arr5
 	}
 }
