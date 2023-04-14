@@ -18,11 +18,20 @@ public class class_arrays {
 		for (int i = 0; i < arr2.length; i++) {
 			System.out.print(arr2[i] + " ");
 		}
-		
+
 		System.out.println();
+
 		int[] arr3 = Arrays.copyOf(arr1,  10);
 		for (int i = 0; i < arr3.length; i++) {
 			System.out.print(arr3[i] + " ");
+		}
+
+		System.out.println();
+
+		// copyOfRange()
+		int[] arr4 = Arrays.copyOfRange(arr1, 2, 4);
+		for (int i = 0; i < arr4.length; i++) {
+			System.out.print(arr4[i] + " ");
 		}
 	}
 }

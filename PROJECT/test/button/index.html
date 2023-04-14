@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<style>
+.wrap-button {width:100%; height:100vh; text-align:center;}
+.btn-wave {display:inline-block; position:relative; top:calc(50% - 15px); width:100px; height:30px; outline:none; border:1px solid #ccc; border-radius:30px; font-size:20px; background-color:#fff; cursor:pointer;}
+.btn-wave div {position:absolute; left:0px; top:0px; z-index:-1; width:100%; height:100%; border-radius:30px; box-shadow:0 0 0 0 rgb(234,88,154); opacity:0; transition:box-shadow 0.4s cubic-bezier(0.08, 0.82, 0.17, 1), opacity 2s cubic-bezier(0.08, 0.82, 0.17, 1);}
+.btn-wave div.active {opacity:0.2; box-shadow:0 0 0 7px rgb(245, 166, 202);}
+</style>
+</head>
+<body>
+	<div class="wrap-button">
+		<button type="button" class="btn-wave">
+			<span>more</span>
+		</button>
+	</div>
+
+	<script>
+		document.querySelector('.btn-wave').addEventListener('click', function() {
+			const wave = document.createElement('div');
+			this.append(wave);
+			console.log(this)
+			setTimeout(function() {
+				wave.classList.add('active')
+				console.log(wave)
+
+				// wave.remove();
+			},10)
+			setTimeout(function() {
+				// wave.classList.remove('active')
+				console.log(wave)
+
+				wave.remove();
+			},500)
+		})
+	</script>
+</body>
+</html>
