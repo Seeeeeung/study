@@ -37,6 +37,22 @@ public class class_arrays {
 		System.out.println();
 
 		// fill()
-//		int[] arr5
+		int[] arr5 = new int[10];
+		Arrays.fill(arr5,7);
+		for (int i = 0; i < arr5.length; i++) {
+			System.out.print(arr5[i] + " ");
+		}
+		
+		System.out.println();
+		
+		int[] arr6 = {5, 3, 4, 1, 2};
+		Arrays.sort(arr6);
+		for(int i = 0; i < arr6.length; i++) {
+			System.out.print(arr6[i] + " ");
+		}
+		
+		System.out.println();
+		
+		
 	}
 }
