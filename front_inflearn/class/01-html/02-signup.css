@@ -1,0 +1,11 @@
+@charset "utf-8";
+body {position:relative; width:1920px; height:1080px;}
+#container {position:absolute; left:625px; top:60px; width:670px; height:960px; border:1px solid #aacdff; border-radius:20px; box-shadow:7px 7px 39px 0 rgba(0,104,255,0.25);}
+#contents {display:inline-flex; flex-direction:column; justify-content:space-between; position:absolute; left:725px; top:132px; width:470px; height:818px;}
+/* #contents > * {border:1px solid red;} */
+h2 {margin:0; font-size:32px; color:#0068ff; font-weight:700;}
+.input-box .input-text {width:100%; height:40px; border:none; border-bottom:1px solid #cfcfcf;}
+.input-box .input-text:focus {outline:none; border-bottom-color:#0068ff;}
+.input-box.col {text-align:center;}
+hr {width:100%; outline:none; margin-top:-20px;}
+button {height:75px; border:1px solid #0068ff; border-radius:10px; background-color:#fff; color:#0068ff;}
