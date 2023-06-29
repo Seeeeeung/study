@@ -1,0 +1,20 @@
+html, body {width:100%; height:100%; margin:0px; box-sizing:border-box;}
+.wrapper {display:flex; flex-direction:column; justify-content:space-between; align-items:center; width:100%; height:100%; padding:20px; box-sizing:border-box;}
+.header {display:flex; flex-direction:column; justify-content:space-between; width:100%;}
+
+.header-tit {display:flex; align-items:flex-end;}
+.title {margin:0; color:#55b2e4; font-size:13px; font-weight:700;}
+.sub-tit {margin:0 0 0 10px; font-size:8px;}
+.line {width:100%; margin:10px 0; border-top:1px solid gray;}
+
+.game-container {display:flex; flex-direction:column; justify-content:space-between; align-items:center; width:222px; height:168px; padding:20px; border:1px solid gray; border-radius:15px; box-sizing:border-box; background-color:#f6f6f6;}
+.game-container p {margin:0;}
+.game-tit {font-size:12px; font-weight:900;}
+.game-sub-tit {font-size:11px;}
+.word-result {font-size:11px; font-weight:700;}
+.word-text {display:flex; justify-content:space-between; width:100%;}
+
+.text-box {width:130px; height:24px; border-radius:5px; border:1px solid #000; font-size:11px; font-weight:700; padding:0 0 0 5px;}
+.search {flex-shrink:0; height:24px; padding:0 8px; font-size:11px; font-weight:700; border-radius:5px; border:1px solid #000;}
+.word-result {color:#999;}
+.lotto {justify-content:space-evenly; align-items:center; width:130px; height:21px; margin:10px 0; border:1px solid #000; border-radius:8px; background-color:#ffe400; padding:3px; font-size:10px; font-weight:700; box-sizing:border-box;}

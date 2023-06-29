@@ -1,0 +1,12 @@
+html, body {width:100%; height:100%; margin:0px; box-sizing:border-box;}
+.wrapper {display:flex; flex-direction:column; justify-content:space-between; width:100%; height:100%; padding:20px; box-sizing:border-box;}
+.header {display:flex; flex-direction:column; justify-content:space-between; width:100%;}
+
+.cont-tit {display:flex; align-items:flex-end;}
+.title {margin:0; color:#55b2e4; font-size:13px; font-weight:700;}
+.sub-tit {margin:0 0 0 10px; font-size:8px;}
+.line {width:100%; margin:10px 0; border-top:1px solid gray;}
+.cont-body {font-size:11px; color:gray;}
+
+.body {width:100%; height:270px;}
+.video {width:100%; height:240px; margin-top:15px; background-color:#c4c4c4;}
