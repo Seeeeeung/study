@@ -15,6 +15,7 @@ html, body {width:100%; height:100%; margin:0px; box-sizing:border-box;}
 .word-text {display:flex; justify-content:space-between; width:100%;}
 
 .text-box {width:130px; height:24px; border-radius:5px; border:1px solid #000; font-size:11px; font-weight:700; padding:0 0 0 5px;}
-.search {flex-shrink:0; height:24px; padding:0 8px; font-size:11px; font-weight:700; border-radius:5px; border:1px solid #000;}
+.search,
+.lotto-btn {flex-shrink:0; height:24px; padding:0 8px; font-size:11px; font-weight:700; border-radius:5px; border:1px solid #000;}
 .word-result {color:#999;}
 .lotto {justify-content:space-evenly; align-items:center; width:130px; height:21px; margin:10px 0; border:1px solid #000; border-radius:8px; background-color:#ffe400; padding:3px; font-size:10px; font-weight:700; box-sizing:border-box;}

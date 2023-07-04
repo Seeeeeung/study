@@ -1,0 +1,40 @@
+/* common */
+* {box-sizing:border-box;}
+html, body {margin:0; padding:0;}
+body {font-size:16px;}
+h2 {margin:0; padding:0;}
+input,button,select {font-size:inherit;}
+button,label,select {cursor:pointer;}
+input:focus {outline:none;}
+
+.input-text {width:100%; max-width:380px; height:60px; border:1px solid #d2d2d2; border-radius:7px; padding:0 8px;}
+.input-text:focus {border-color:#0068ff;}
+
+.wrap-tel {display:flex; justify-content:space-between; align-items:center; width:380px; margin-bottom:20px;}
+.wrap-tel .num {position:relative;}
+.wrap-tel .num:after {content:''; display:block; position:absolute; right:-24px; top:21px; width:11px; height:1px; background-color:#000;}
+.wrap-tel .num:last-child:after {display:none;}
+.wrap-tel .input-text {width:100px; height:40px; display:block;}
+
+.list-form {margin:0; padding:0; list-style-type:none;}
+.list-form li {margin:0;}
+.list-form li + li {margin-top:20px;}
+
+.btn {width:120px; height:40px; border-radius:7px; font-size:16px;}
+.btn.white {color:#0068ff; border:1px solid #d2d2d2; background-color:#fff;}
+.btn.blue {color:#fff; border:none; background-color:#0068ff;;}
+.btn-join {width:100%; max-width:380px; height:75px; color:#0068ff; border:1px solid #0068ff; border-radius:10px; font-size:18px; background-color:#fff;}
+
+.btn:disabled {border:1px solid #d2d2d2; color:#bbb; background-color:#eeecec;}
+
+select {width:100%; max-width:380px; height:60px; border:1px solid #d2d2d2; border-radius:7px; font-size:16px; padding:0 8px;}
+
+/* contents */
+.box-join {position:absolute; left:50%; top:118px; margin-left:-270px; width:540px; padding:60px 80px 40px; border:1px solid #aacdff; border-radius:20px; box-shadow:7px 7px 39px 0 rgba(0,104,255,0.25);}
+.title {font-size:32px; font-weight:700; color:#0068ff; margin-bottom:60px;}
+.wrap-validation {text-align:right;}
+.wrap-validation .send-num {margin-bottom:15px;}
+.wrap-validation span {margin-right:10px; color:#0068ff; font-weight:700;}
+.a-c {text-align:center;}
+.bg-chk + .bg-chk {margin-left:20px;}
+.button-group {margin-top:25px; padding-top:20px; border-top:1px solid #e6e6e6;}

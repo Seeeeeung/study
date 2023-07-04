@@ -1,0 +1,26 @@
+/* * {box-sizing:border-box; margin:0;} */
+html, body {width:100%; height:100%; margin:0;}
+
+.wrapper {display:flex; flex-direction:column; justify-content:space-between; align-items:center; width:100%; height:100%; padding:20px; box-sizing:border-box;}
+.wrap-header {display:flex; flex-direction:column; justify-content:space-between; width:100%;}
+.wrap-album {display:flex; justify-content:space-around; align-items:center; padding-top:10px;}
+.wrap-album p {margin:0;}
+.album {text-align:center; font-weight:700;}
+.thumb {width:120px; height:120px;}
+p.album-tit {margin:3px 0; font-size:11px; color:#0f465e;}
+.singer {font-size:10px; color:#999;}
+
+.wrapper-title {display:flex; align-items:flex-end;}
+.title {margin:0; color:#55b2e4; font-size:13px; font-weight:700;}
+.sub-tit {margin:0 0 0 10px; font-size:8px;}
+
+.line {width:100%; margin:10px 0; border-top:1px solid gray;}
+
+.wrap-body {width:100%;}
+table caption {font-size:0;}
+table {width:100%; margin-top:10px; border-collapse:collapse; empty-cells:show; border-spacing:0px;}
+table thead tr th {height:20px; background-color:#eee; border-top:1px solid #999; border-bottom:1px solid #999; font-size:10px; color:#999;}
+table thead tr th:nth-child(2) ~ th,
+table tbody tr td:nth-child(2) ~ td {padding-left:15px; text-align:left;}
+table tbody tr td {text-align:center; border-bottom:1px dashed #999; font-size:10px; color:#0f465e;}
+table tbody tr td:first-child {color:#000;}

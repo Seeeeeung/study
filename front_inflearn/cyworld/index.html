@@ -4,6 +4,7 @@
 	<title>김승연님의 미니홈피 :: 사이좋은 사람들, 싸이월드</title>
 	<link rel="stylesheet" href="./styles/index.css">
 	<script src="https://kit.fontawesome.com/fa88076b45.js" crossorigin="anonymous"></script>
+	<script src="./index.js"></script>
 </head>
 <body>
 	<div class="background">
@@ -56,6 +57,7 @@
 				</div>
 				<!-- // left -->
 
+				<!-- right -->
 				<div class="right">
 					<div class="right-header">
 						<div class="right-header-tit">
@@ -67,10 +69,18 @@
 						</div>
 					</div>
 					<div class="right-body">
-						<iframe src="./game.html"></iframe>
+						<iframe id="contentFrame" src="./home.html"></iframe>
 					</div>
 				</div>
+				<!-- // right -->
 
+				<!-- nav -->
+				<div class="navigation">
+					<div class="navigation-item" id="menuHome" onclick="menuHome()">홈</div>
+					<div class="navigation-item" id="menuJuckbox" onclick="menuJuckbox()">쥬크박스</div>
+					<div class="navigation-item" id="menuGame" onclick="menuGame()">게임</div>
+				</div>
+				<!-- //nav -->
 			</div>
 			<!-- // wrapper -->
 		</div>

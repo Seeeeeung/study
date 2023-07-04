@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>코드캠프 회원가입</title>
+	<link rel="stylesheet" href="./final.css">
+	<script src="./final.js"></script>
+</head>
+<body>
+	<div class="box-join">
+		<h2 class="title">코드캠프 회원가입</h2>
+		<ul class="list-form">
+			<li>
+				<input type="email" title="이메일을 입력" placeholder="이메일을 입력해주세요." class="input-text">
+			</li>
+			<li>
+				<input type="text" title="이름을 입력" placeholder="이름을 입력해주세요." class="input-text">
+			</li>
+			<li>
+				<input type="password" title="비밀번호를 입력" placeholder="비밀번호를 입력해주세요." class="input-text">
+			</li>
+			<li>
+				<input type="password" title="비밀번호를 다시 입력" placeholder="비밀번호를 다시 입력해주세요." class="input-text">
+			</li>
+			<li>
+				<div class="wrap-tel">
+					<div class="num">
+						<input type="tel" title="핸드폰번호 첫번째 자리 입력" maxlength="3" class="input-text" id="ph1" oninput="changeFocus()" value="010">
+					</div>
+					<div class="num">
+						<input type="tel" title="핸드폰번호 두번째 자리 입력" maxlength="4" class="input-text" id="ph2" oninput="changeFocus2()" value="0101">
+					</div>
+					<div class="num">
+						<input type="tel" title="핸드폰번호 세번째 자리 입력" maxlength="4" class="input-text" id="ph3" oninput="changeDisabled()" value="0102">
+					</div>
+				</div>
+
+				<div class="wrap-validation">
+					<div class="send-num">
+						<span class="num" id="valid-num">000000</span>
+						<button type="button" class="btn white" id="submit" disabled="true" onclick="token()">인증번호 전송</button>
+					</div>
+
+					<div class="check-num">
+						<span class="timer">3:00</span>
+						<button type="button" class="btn blue" id="validate" disabled="true">인증완료</button>
+					</div>
+				</div>
+			</li>
+
+			<li>
+				<select>
+					<option selected="true" disabled="true">지역을 선택하세요.</option>
+					<option>서울</option>
+					<option>경기</option>
+					<option>인천</option>
+				</select>
+			</li>
+
+			<li class="a-c">
+				<span class="bg-chk">
+					<input type="radio" name="radio-01" id="radio01-1"><label for="radio01-1">여성</label>
+				</span>
+				<span class="bg-chk">
+					<input type="radio" name="radio-01" id="radio01-2"><label for="radio01-2">남성</label>
+				</span>
+			</li>
+		</ul>
+
+		<div class="button-group line">
+			<button type="button" class="btn btn-join" id="join" disabled="true">가입하기</button>
+		</div>
+	</div>
+</body>
+</html>
