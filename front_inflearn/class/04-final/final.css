@@ -25,12 +25,13 @@ input:focus {outline:none;}
 .btn.blue {color:#fff; border:none; background-color:#0068ff;;}
 .btn-join {width:100%; max-width:380px; height:75px; color:#0068ff; border:1px solid #0068ff; border-radius:10px; font-size:18px; background-color:#fff;}
 
-.btn:disabled {border:1px solid #d2d2d2; color:#bbb; background-color:#eeecec;}
+.btn:disabled {border:1px solid #d2d2d2; color:#bbb; background-color:#eeecec; cursor:default;}
 
 select {width:100%; max-width:380px; height:60px; border:1px solid #d2d2d2; border-radius:7px; font-size:16px; padding:0 8px;}
 
 /* contents */
-.box-join {position:absolute; left:50%; top:118px; margin-left:-270px; width:540px; padding:60px 80px 40px; border:1px solid #aacdff; border-radius:20px; box-shadow:7px 7px 39px 0 rgba(0,104,255,0.25);}
+.wrap-join {padding:180px 0;}
+.box-join {width:540px; margin:0 auto; padding:60px 80px 40px; border:1px solid #aacdff; border-radius:20px; box-shadow:7px 7px 39px 0 rgba(0,104,255,0.25);}
 .title {font-size:32px; font-weight:700; color:#0068ff; margin-bottom:60px;}
 .wrap-validation {text-align:right;}
 .wrap-validation .send-num {margin-bottom:15px;}
@@ -38,3 +39,8 @@ select {width:100%; max-width:380px; height:60px; border:1px solid #d2d2d2; bord
 .a-c {text-align:center;}
 .bg-chk + .bg-chk {margin-left:20px;}
 .button-group {margin-top:25px; padding-top:20px; border-top:1px solid #e6e6e6;}
+
+li .error,
+li .warning {display:none;margin:0; font-size:13px; color:red;}
+li.err .error,
+li.warn .warning {display:block;}
