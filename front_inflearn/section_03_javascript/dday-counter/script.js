@@ -18,8 +18,12 @@ const inputYear = document.querySelector('#target-year-input').value,
 };
 
 const counterMaker = (data) => {
-	console.log(data)
-	console.log('반복 실행중') // => 쓸데없는 데이터 낭비를 하지 않기 위해 항상 체크하기(카운터가 작동하지 않을때 실행중인지 확인 // 오류있을경우도 마찬가지.)
+	if (data !== savedDate) {
+		localStorage.setItem('saved-date', data);
+	}
+
+	// console.log(data)
+	// console.log('반복 실행중') // => 쓸데없는 데이터 낭비를 하지 않기 위해 항상 체크하기(카운터가 작동하지 않을때 실행중인지 확인 // 오류있을경우도 마찬가지.)
 	const nowDate = new Date();
 	const targetDate = new Date(data).setHours(0,0,0,0);
 	const remaining = (targetDate - nowDate) / 1000;
@@ -125,14 +129,17 @@ const counterMaker = (data) => {
 	/* 오류가 없을 경우 작동 끝 */
 }
 
-const starter = function() {
-	const getTargetDateInput = dateFormMaker(); // counterMaker 에 있었을때 setInterval 때문에 타이머가 진행되는 동안 계속 input의 값을 받아오기때문에 버튼을 눌렀을때만 실행시키기 위해 starter 함수에 넣음.
+const starter = function(getTargetDateInput) {
+	if (!getTargetDateInput) { // undefined 인지 아닌지 확인 (truthy check) 
+		getTargetDateInput = dateFormMaker();
+		console.log(getTargetDateInput)
+	}
+	// const getTargetDateInput = dateFormMaker(); // counterMaker 에 있었을때 setInterval 때문에 타이머가 진행되는 동안 계속 input의 값을 받아오기때문에 버튼을 눌렀을때만 실행시키기 위해 starter 함수에 넣음.
 
 	// const intervalIdArr = [];
 	// 함수가 실행할때마다 배열은 공백이 되기떄문에 아이디가 다 들어가지 않았다
 	// 전역변수로 넣어주면 밖에서 불러오기떄문에 잘들어감.
 
-	localStorage.setItem('saved-date', getTargetDateInput);
 
 	container.style.display = 'flex';
 	msgContainer.style.display = 'none';
@@ -147,10 +154,12 @@ const starter = function() {
 	setClearInterval(); // 카운트 다운 시작 버튼만 눌렀을때(초기화 버튼 안누른 상태) 타이머 초기화가 안되있어서 타이머가 여러개 작동하기떄문에 화면상 오류를 띄우기때문에 초기화 한번 진행 시켜 줘야함 , intervalId 아래로 들어가면 작동안함^^
 
 	counterMaker(getTargetDateInput);
-	const intervalId =	setInterval(() => counterMaker(getTargetDateInput), 1000); // 1초 뒤에 시작되기때문에 앞에 함수를 한번 호출해줌 / 전달인자가 있는 경우 화살표 함수를 사용하여 수식을 표현하고 인자를 넣어줘야한다. 중괄호는 생략해도 됨{}
-	console.log(intervalId)
+	const intervalId =	setInterval(() => {
+		counterMaker(getTargetDateInput)
+	}, 1000); // 1초 뒤에 시작되기때문에 앞에 함수를 한번 호출해줌 / 전달인자가 있는 경우 화살표 함수를 사용하여 수식을 표현하고 인자를 넣어줘야한다. 중괄호는 생략해도 됨{}
+	// console.log(intervalId)
 	intervalIdArr.push(intervalId);
-	console.log(intervalIdArr)
+	// console.log(intervalIdArr)
 }
 
 const setClearInterval = () => {
@@ -164,12 +173,13 @@ const resetTimer = function() {
 	container.style.display = 'none';
 	msgContainer.style.display = 'flex';
 	msgContainer.innerHTML = '<h3>D-Day 를 입력해 주세요</h3>';
+	localStorage.removeItem('saved-date')
 	setClearInterval();
 }
 
 if (savedDate) { // truthy (true 와는 다름)
-	// console.log(savedDate);
 	starter(savedDate);
 } else {
-	console.log('data is null');
+	container.style.display = 'none';
+	msgContainer.innerHTML = '<h3>D-Day 를 입력해 주세요</h3>';
 }
