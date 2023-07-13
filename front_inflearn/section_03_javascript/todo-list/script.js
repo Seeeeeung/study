@@ -86,3 +86,70 @@ if (savedTodoList) {
 		createTodo(savedTodoList[i]);
 	}
 }
+
+// 위치 반영 날씨
+const weatherSearch = function(position) {
+	// const openWeatherRes = 
+	fetch( // one call 말고  weather 로 사용
+		`https://api.openweathermap.org/data/2.5/weather?lat=${position.latitude}&lon=${position.longitude}&exclude={part}&appid=a541a22ceb7461514acf60015872654b`
+		).then((res) => {
+		// console.log(res.json())
+		// JSON.parse 는 Response.body만 있을때 사용 가능하다. Res.header 가 있으면 사용이 불가능하기 때문에 .json 을 사용해야함
+		return res.json()
+	}).then((json) => {
+		console.log(json.name, json.weather[0].description)
+	}).catch((err) => { // 에러 발생시 에러 이유 확인 가능
+		console.error(err)
+	})
+	
+	// a541a22ceb7461514acf60015872654b
+}
+
+// 1
+const accessToGeo = function (position) {
+	const positionObj = {
+		latitude: position.coords.latitude,
+		longitude: position.coords.longitude,
+	}
+	console.log(positionObj)
+
+	weatherSearch(positionObj)
+}
+
+// 2
+// ((position) => { // 콜백함수 (:익명함수)
+// 	console.log(position)
+// })
+
+// 1 === 2
+
+const askForLocation = function () {
+	// 4
+	navigator.geolocation.getCurrentPosition(accessToGeo, (err) => {
+		console.log(err)
+	}) // 첫번째 매개변수는 위치 정보 허용 / 두번째 매개변수는 차단
+
+	// 3
+	// navigator.geolocation.getCurrentPosition((position) => { // 콜백함수 (:익명함수)
+	// 	console.log(position)
+	// })
+
+	// 3 === 4
+}
+askForLocation();
+
+
+// const promiseTest = function () {
+// 	return new Promise((resolver, reject) => {
+// 		setTimeout(() => {
+// 			resolver(100);
+// 			// reject('error')
+// 		}, 2000)
+// 	});
+// }
+// // promiseTest();
+// console.log(promiseTest());
+
+// promiseTest().then((res) => {
+// 	console.log(res);
+// })
