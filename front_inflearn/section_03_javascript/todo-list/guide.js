@@ -84,7 +84,7 @@ const weatherDataActive = function ({ location, weather }) {
   const locationNameTag = document.querySelector('#location-name-tag');
 
   locationNameTag.textContent = location;
-  document.body.style.backgroundImage = `url('./images/${weather}.jpg')`;
+  document.body.style.backgroundImage = `url('./image/${weather}.jpg')`;
 
   if (
     !savedWeatherData ||
@@ -100,7 +100,7 @@ const weatherDataActive = function ({ location, weather }) {
 
 const weatherSearch = function ({ latitude, longitude }) {
   fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid={API Key}`
+    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=a541a22ceb7461514acf60015872654b`
   )
     .then((res) => {
       return res.json();

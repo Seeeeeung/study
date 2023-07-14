@@ -1,5 +1,7 @@
 * {box-sizing: border-box;}
-body {display:flex; flex-direction:column; align-items:center; min-height:100vh; margin:0; background:azure;}
+body {display:flex; flex-direction:column; align-items:center; min-height:100vh; margin:0; background-image:url('./image/Clear.jpg'); background-size:cover;}
+h1 {opacity:80%; color:#fff; text-shadow:2px 2px gray;}
+input {opacity:80%;}
 .todo-container {max-width:100%; width:400px;}
 #todoInput {display:block; width:100%; border:none; font-size:2rem; padding:0.5rem 2rem 0.5rem; background:lightyellow;}
 #todoList {list-style-type:none; margin:20px 0 0; padding:0; background:lightyellow;}
@@ -8,4 +10,5 @@ body {display:flex; flex-direction:column; align-items:center; min-height:100vh;
 li button {width:1.5rem; height:1.5rem; margin:0.5rem; border:2px solid black; border-radius:8px; background:mintcream; cursor:pointer;}
 li button:active {border:2px solid grey;}
 .delete-btn-wrapper {margin-top:1rem;}
-.delete-btn-wrapper button {padding:0.2rem 1rem; font-weight:bold; background:antiquewhite; cursor:pointer;}
+.delete-btn-wrapper button {padding:0.2rem 1rem; font-weight:bold; background:antiquewhite; cursor:pointer; border:none; border-radius:5px; box-shadow:3px 3px gray;}
+.delete-btn-wrapper button:active {margin-left:3px; margin-top:3px; box-shadow:none;}
