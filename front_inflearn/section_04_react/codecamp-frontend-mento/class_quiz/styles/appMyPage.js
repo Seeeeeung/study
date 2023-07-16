@@ -47,7 +47,7 @@ export const UserImg = styled.div`
 `
 
 export const UserName = styled.span`
-	font-size:19px; font-weight:bold;
+	color:#000; font-size:19px; font-weight:bold;
 `
 
 export const Nav = styled.div`
@@ -64,18 +64,38 @@ export const Gnb = styled.ul`
 		margin-right:0;
 	}
 	& > li a {position:relative; text-decoration:none; font-size:20px; font-weight:bold; color:#cacaca;}
-	& > .active a {color:#ff1b6d;}
-	& > .active a:after {content:''; position:absolute; bottom:-6px; left:0; width:100%; height:1px; background-color:#ff1b6d;}
+	& > .on a {color:#ff1b6d;}
+	& > .on a:after {content:''; position:absolute; bottom:-6px; left:0; width:100%; height:1px; background-color:#ff1b6d;}
 `
 
 export const Container = styled.div`
-
+	padding-bottom:80px;
 `
 
 export const Contents = styled.div`
-
+	padding:20px;
 `
 
 export const QuickBar = styled.div`
+	display:flex; justify-content:space-around; align-items:center;
+	position:fixed;
+	bottom:0;
+	left:0;
+	z-index:9999;
+	width:100%; height:80px; border-top:1px solid #dcdcdc;
+	background-color:#fff;
 
+	& > a {
+		display:flex; flex-direction:column; justify-content:space-between; align-items:center; 
+		height:100%; padding:10px 10px 6px; box-sizing:border-box;
+		text-decoration:none; color:#adadad; font-size:14px;
+	}
+
+	& > a.active {color:#ff1b60;}
+
+	& > a [class^='ico'] {width:40px; height:40px; background-size:35px auto; background-position:center; background-repeat:no-repeat;}
+	& > a .ico-home {background-image:url('/ico-home.png');}
+	& > a .ico-isload {background-image:url('/ico-isload.png'); background-size:30px auto;}
+	& > a .ico-favorit {background-image:url('/ico-favorit.png');}
+	& > a .ico-mypage {background-image:url('/ico-mypage.png');}
 `

@@ -1,0 +1,5 @@
+button.btnDefault {color:#fff; background-color:rgba(255, 27, 96,0.6);}
+button.btnKakao {display:flex; justify-content:center; align-items:center; background-color:transparent; color:#ffe100; border:2px solid #fae100;}
+.ico-kakao {flex-shrink:0; display:block; width:25px; height:25px; margin-right:10px; background:url('/ico-kakao.png') no-repeat; background-size:25px auto;}
+
+/* p.on {display:block;} */

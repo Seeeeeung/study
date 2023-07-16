@@ -1,1 +1,9 @@
 .title {margin:0; font-size:26px; font-weight:700;}
+.accordion {list-style-type:none; margin:0; padding:0;}
+.qna li {margin-top:20px;}
+.qna li:first-child {margin-top:0;}
+.qna .btn-toggle {position:relative; width:100%; min-height:55px; border:none; background-color:#fff; padding:20px 60px 20px 0; word-break:keep-all; word-wrap:break-word; cursor:pointer;}
+.qna .tit {color:#000; text-align:left; font-size:17px;}
+.qna span {position:absolute; left:0; top:0px; font-size:14px; color:#adadad;}
+.qna .ico-arr-btm {display:block; position:absolute; top:0; right:0; width:60px; height:61px; background:url('/ico-arr-btm.png') no-repeat top 14px right; background-size:22px auto;}
+.name {border:1px solid red;}

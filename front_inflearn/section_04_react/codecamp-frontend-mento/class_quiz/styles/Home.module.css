@@ -15,6 +15,7 @@
   max-width: var(--max-width);
   width: 100%;
   z-index: 2;
+	/* color:#27b8dc */
   font-family: var(--font-mono);
 }
 

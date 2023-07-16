@@ -17,7 +17,7 @@ export default function appMyPage() {
 
 	return (
 		<>
-			<Search>
+			<Search className={styles.name}>
 					<button type='button'>검색하기</button>
 			</Search>
 
@@ -42,7 +42,7 @@ export default function appMyPage() {
 					<li>
 						<a href=''>이벤트</a>
 					</li>
-					<li className='active'>
+					<li className={'on'}> {/* className={styles.on} 으로 사용할 경우 css-in-js 에선 작동하지않음. module.css 에서는 작동하지만 부모요소를 선택할수 없다. 그래서 그외의 {'on'}이나 'on' 등을 사용해야 함. */}
 						<a href=''>FAQ</a>
 					</li>
 					<li>
@@ -53,63 +53,63 @@ export default function appMyPage() {
 
 			<Container>
 				<Contents>
-					<ul className={[styles.accordion, styles.qna]}>
+					<ul className={`${styles.accordion} ${styles.qna}`}>
 						<li>
-							<div className='tit-area'>
-								<button type='button' className={'btn-toggle tit'}>
+							<div className='tit-area'>{/* 일반 class로 들어갈시 작동 안됨.*/}
+								<button type='button' className={`${styles['btn-toggle']} ${styles.tit}`}>
 									<span>Q. 01</span>
 									리뷰 작성은 어떻게 하나요?
-									<i className='ico-arr-btm'></i>
+									<i className={`${styles['ico-arr-btm']}`}></i>
 								</button>
 							</div>
 						</li>
 
 						<li>
 							<div className='tit-area'>
-								<button type='button' className={'btn-toggle tit'}>
+								<button type='button' className={`${styles['btn-toggle']} ${styles.tit}`}>
 									<span>Q. 02</span>
 									리뷰 수정/삭제는 어떻게 하나요?
-									<i className='ico-arr-btm'></i>
+									<i className={`${styles['ico-arr-btm']}`}></i>
 								</button>
 							</div>
 						</li>
 
 						<li>
 							<div className='tit-area'>
-								<button type='button' className={'btn-toggle tit'}>
+								<button type='button' className={`${styles['btn-toggle']} ${styles.tit}`}>
 									<span>Q. 03</span>
 									아이디/비밀번호를 잊어버렸어요
-									<i className='ico-arr-btm'></i>
+									<i className={`${styles['ico-arr-btm']}`}></i>
 								</button>
 							</div>
 						</li>
 
 						<li>
 							<div className='tit-area'>
-								<button type='button' className={'btn-toggle tit'}>
+								<button type='button' className={`${styles['btn-toggle']} ${styles.tit}`}>
 									<span>Q. 04</span>
 									회원탈퇴를 하고싶어요.
-									<i className='ico-arr-btm'></i>
+									<i className={`${styles['ico-arr-btm']}`}></i>
 								</button>
 							</div>
 						</li>
 
 						<li>
 							<div className='tit-area'>
-								<button type='button' className={'btn-toggle tit'}>
+								<button type='button' className={`${styles['btn-toggle']} ${styles.tit}`}>
 									<span>Q. 05</span>
 									출발지 설정은 어떻게 하나요?
-									<i className='ico-arr-btm'></i>
+									<i className={`${styles['ico-arr-btm']}`}></i>
 								</button>
 							</div>
 						</li>
 
 						<li>
 							<div className='tit-area'>
-								<button type='button' className={'btn-toggle tit'}>
+								<button type='button' className={`${styles['btn-toggle']} ${styles.tit}`}>
 									<span>Q. 06</span>
 									비밀번호를 변경하고 싶어요
-									<i className='ico-arr-btm'></i>
+									<i className={`${styles['ico-arr-btm']}`}></i>
 								</button>
 							</div>
 						</li>
@@ -119,22 +119,22 @@ export default function appMyPage() {
 
 			<QuickBar>
 				<a href=''>
-					<img src='/btn-home.png' />
+					<i className={'ico-home'}></i>
 					<span>홈</span>
 				</a>
 
 				<a href=''>
-					<img src='/btn-islode.png' />
+					<i className={'ico-isload'}></i>
 					<span>잇츠로드</span>
 				</a>
 
 				<a href=''>
-					<img src='/btn-favorit.png' />
+					<i className={'ico-favorit'}></i>
 					<span>마이찜</span>
 				</a>
 
-				<a href='' className={styles.active}>
-					<img src='/btn-mypage.png' />
+				<a href='' className={'active'}>
+					<i className={'ico-mypage'}></i>
 					<span>마이</span>
 				</a>
 			</QuickBar>
