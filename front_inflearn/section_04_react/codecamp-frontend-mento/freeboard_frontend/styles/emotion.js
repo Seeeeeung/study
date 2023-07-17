@@ -97,3 +97,6 @@ export const Radio = styled.input``
 export const ButtonGroup = styled.div`
 	margin-top:80px; text-align:center;
 `
+export const Error = styled.p`
+	margin:0; font-size:14px; color:red;
+`
