@@ -2,6 +2,10 @@
 import { useState } from 'react'
 import {Container, Contents, BoxShadow, Title, WrapForm, WrapInp, Inp, InpLabel, TextArea, Button, ButtonGroup, FileBox, FileUpLoad, BgChk, Radio, Error} from '../../../styles/emotion.js'
 
+// const CREATE_BOARD = gql`
+// 	mutation createBoard 
+// `
+
 export default function boardUpLoadPage() {
 	const [writer, setWriter] = useState('')
 	const [password, setPassword] = useState('')
