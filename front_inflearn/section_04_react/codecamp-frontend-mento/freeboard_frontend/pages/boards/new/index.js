@@ -1,12 +1,21 @@
 // import styled from '@emotion/styled';
 import { useState } from 'react'
 import {Container, Contents, BoxShadow, Title, WrapForm, WrapInp, Inp, InpLabel, TextArea, Button, ButtonGroup, FileBox, FileUpLoad, BgChk, Radio, Error} from '../../../styles/emotion.js'
+import { useMutation, gql } from '@apollo/client'
 
-// const CREATE_BOARD = gql`
-// 	mutation createBoard 
-// `
+const CREATE_BOARD = gql`
+mutation createBoard($createBoardInput: CreateBoardInput!) {
+	createBoard(createBoardInput: $createBoardInput) {
+		_id
+			writer
+			title
+			contents
+		}
+	}
+`
 
 export default function boardUpLoadPage() {
+	const [createBoard] = useMutation(CREATE_BOARD)
 	const [writer, setWriter] = useState('')
 	const [password, setPassword] = useState('')
 	const [title, setTitle] = useState('')
@@ -71,13 +80,26 @@ export default function boardUpLoadPage() {
 	}
 
 
-	function onClickSubmit() {
+	const onClickSubmit = async () => {
+		const result = await createBoard({
+			variables: {
+				createBoardInput : {
+					writer:writer,
+					title:title,
+					password:password,
+					contents:contents
+				}
+			}
+		})
 		if (!writer) setWriterError('작성자를 입력해주세요.');
 		if (!password) setPasswordError('비밀번호를 입력해주세요.');
 		if (!title) setTitleError('제목을 입력해주세요.');
 		if (!contents) setContentsError('내용을 입력해주세요.');
 
-		if (writer && password && title && contents) alert('게시글이 등록되었습니다.')
+		if (writer && password && title && contents) {
+			// alert('게시글이 등록되었습니다.')
+			console.log(result)
+		}
 	
 		// console.log(!title)
 		// switch(true) {
