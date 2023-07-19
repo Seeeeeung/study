@@ -1,6 +1,6 @@
 // import styled from '@emotion/styled';
 import { useState } from 'react'
-import {Container, Contents, BoxShadow, Title, WrapForm, WrapInp, Inp, InpLabel, TextArea, Button, ButtonGroup, FileBox, FileUpLoad, BgChk, Radio, Error} from '../../../styles/emotion.js'
+import {Container, Contents, BoxShadow, Title, WrapForm, WrapInp, Inp, InpLabel, TextArea, Button, ButtonGroup, FileBox, FileUpLoad, BgChk, Radio, Error} from '../../../styles/boardsNew.js'
 import { useMutation, gql } from '@apollo/client'
 
 const CREATE_BOARD = gql`
