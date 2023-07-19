@@ -2,11 +2,12 @@
 import { useState } from 'react'
 import {Container, Contents, BoxShadow, Title, WrapForm, WrapInp, Inp, InpLabel, TextArea, Button, ButtonGroup, FileBox, FileUpLoad, BgChk, Radio, Error} from '../../../styles/boardsNew.js'
 import { useMutation, gql } from '@apollo/client'
+import { useRouter } from 'next/router.js'
 
 const CREATE_BOARD = gql`
 mutation createBoard($createBoardInput: CreateBoardInput!) {
 	createBoard(createBoardInput: $createBoardInput) {
-		_id
+			_id
 			writer
 			title
 			contents
@@ -15,7 +16,9 @@ mutation createBoard($createBoardInput: CreateBoardInput!) {
 `
 
 export default function boardUpLoadPage() {
-	const [createBoard] = useMutation(CREATE_BOARD)
+	const router = useRouter()
+	const [createBoard] = useMutation(CREATE_BOARD);
+	
 	const [writer, setWriter] = useState('')
 	const [password, setPassword] = useState('')
 	const [title, setTitle] = useState('')
@@ -81,6 +84,13 @@ export default function boardUpLoadPage() {
 
 
 	const onClickSubmit = async () => {
+		if (!writer) setWriterError('작성자를 입력해주세요.');
+		if (!password) setPasswordError('비밀번호를 입력해주세요.');
+		if (!title) setTitleError('제목을 입력해주세요.');
+		if (!contents) setContentsError('내용을 입력해주세요.');
+
+		try {
+			
 		const result = await createBoard({
 			variables: {
 				createBoardInput : {
@@ -91,14 +101,13 @@ export default function boardUpLoadPage() {
 				}
 			}
 		})
-		if (!writer) setWriterError('작성자를 입력해주세요.');
-		if (!password) setPasswordError('비밀번호를 입력해주세요.');
-		if (!title) setTitleError('제목을 입력해주세요.');
-		if (!contents) setContentsError('내용을 입력해주세요.');
-
 		if (writer && password && title && contents) {
 			// alert('게시글이 등록되었습니다.')
-			console.log(result)
+			// console.log(result)
+			router.push(`/boards/${result.data.createBoard._id}`)
+		}
+		} catch (error) {
+			console.log(error.message)
 		}
 	
 		// console.log(!title)

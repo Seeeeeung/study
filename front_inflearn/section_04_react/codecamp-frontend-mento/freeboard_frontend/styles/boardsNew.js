@@ -21,10 +21,6 @@ export const Container = styled.div`
 export const Contents = styled.div`
 	max-width:1200px; margin:0 auto;
 	& input::placeholder, textarea::placeholder {color:#c4c4c4;}
-	& button {cursor:pointer}
-	& button.small {min-width:auto;}
-	& button.black {color:#fff; background-color:#000;}
-	& button.yellow {background-color:#ffd600;}
 `
 export const BoxShadow = styled.div`
 	padding:70px 70px 130px; background-color:#fff; box-shadow:0 4px 20px 0 rgba(0,0,0,0.2);
@@ -96,6 +92,9 @@ export const BgChk = styled.span`
 export const Radio = styled.input``
 export const ButtonGroup = styled.div`
 	margin-top:80px; text-align:center;
+
+	& > button {margin-right:15px;}
+	& > button:last-of-type {margin-right:0;}
 `
 export const Error = styled.p`
 	margin:0; font-size:14px; color:red;
