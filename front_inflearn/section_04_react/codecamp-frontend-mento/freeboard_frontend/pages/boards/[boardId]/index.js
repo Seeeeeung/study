@@ -19,7 +19,7 @@ export default function boardViewPage() {
 	// const [] = useState('')
 	const router = useRouter()
 	const { data } = useQuery(FETCH_BOARD, {
-		variables: {boardId: router.query.boardId}
+		variables: {boardId: router.query.boardId} // 여기서 query.boardId 의 boardId는 폴더명임
 	})
 	console.log(data)
 
