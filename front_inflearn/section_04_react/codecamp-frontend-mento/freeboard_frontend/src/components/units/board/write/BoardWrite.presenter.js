@@ -82,7 +82,7 @@ export default function BoardWriteUI(props) {
 					</S.WrapForm>
 
 					<S.ButtonGroup>
-						<S.Button type='button' className={'yellow'} onClick={props.onClickSubmit}>등록하기</S.Button>
+						<S.Button type='button' className={'yellow'} onClick={props.onClickSubmit} disabled={props.isActive}>등록하기</S.Button>
 					</S.ButtonGroup>
 
 				</S.BoxShadow>

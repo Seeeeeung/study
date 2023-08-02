@@ -45,7 +45,7 @@ export default function BoardDetailUI(props) {
 				<ButtonGroup>
 					<Button type="button" className={'white'}>목록으로</Button>
 					<Button type="button" className={'white'}>수정하기</Button>
-					<Button type="button" className={'white'}>삭제하기</Button>
+					<Button type="button" className={'white'} id={props.data?.fetchBoard?._id} onClick={props.onClickDelete}>삭제하기</Button>
 				</ButtonGroup>
 			</Contents>
 		</Container>

@@ -7,7 +7,8 @@ import BoardWriteUI from './BoardWrite.presenter'
 
 
 export default function BoardWrite() {
-	const router = useRouter()
+	const router = useRouter();
+	const [isActive, setIsActive] = useState(true);
 	const [createBoard] = useMutation(CREATE_BOARD);
 	
 	const [writer, setWriter] = useState('')
@@ -27,19 +28,24 @@ export default function BoardWrite() {
 		if (_checkTarget.includes('작성자')) {
 			setWriter(savedData);
 			if (savedData !== '') setWriterError('')
+			password && title && contents && event.target.value ? setIsActive(false) : setIsActive(true);
 		}
 		if (_checkTarget.includes('비밀번호')) {
 			setPassword(savedData);
 			if (savedData !== '') setPasswordError('')
+			writer && title && contents && event.target.value ? setIsActive(false) : setIsActive(true);
 		}
 		if (_checkTarget.includes('제목')) {
 			setTitle(savedData);
 			if (savedData !== '') setTitleError('')
+			writer && password && contents && event.target.value ? setIsActive(false) : setIsActive(true);
 		}
 		if (_checkTarget.includes('내용')) {
 			setContents(savedData);
 			if (savedData !== '') setContentsError('')
+			writer && password && title && event.target.value ? setIsActive(false) : setIsActive(true);
 		}
+
 	}
 
 
@@ -69,6 +75,8 @@ export default function BoardWrite() {
 		}
 	}
 
+	console.log(isActive)
+
 	return (
 		<BoardWriteUI
 				errorWriter = {errorWriter}
@@ -77,6 +85,7 @@ export default function BoardWrite() {
 				errorContents = {errorContents}
 				onChangeValue = {onChangeValue}
 				onClickSubmit = {onClickSubmit}
+				isActive = {isActive}
 		/>
 	)
 }
