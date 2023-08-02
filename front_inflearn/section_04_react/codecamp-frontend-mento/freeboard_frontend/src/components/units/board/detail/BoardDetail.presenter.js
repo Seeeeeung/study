@@ -12,7 +12,7 @@ export default function BoardDetailUI(props) {
 							<img src='/images/img-profile.png' className={'img-profile'} />
 
 							<p className={'user-name'}>{props.data?.fetchBoard?.writer}</p>
-							<p className={'date'}>Date : {props.data?.fetchBoard?.createdAt}</p>
+							<p className={'date'}>Date : {getDate(props.data?.fetchBoard?.createdAt)}</p>
 						</div>
 
 						<div className={'right'}>
