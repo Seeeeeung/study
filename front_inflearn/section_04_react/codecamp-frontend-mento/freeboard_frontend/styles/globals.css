@@ -19,6 +19,7 @@ iframe {display:inline-block; border:0;}
 button {margin:0; padding:0;}
 
 .a-l {text-align:left !important;}
+.a-r {margin:30px 0 0 auto;}
 
 
 button {cursor:pointer;}
@@ -27,3 +28,13 @@ button.small {min-width:auto;}
 button.black {color:#fff; background-color:#000;}
 button.yellow {background-color:#ffd600;}
 button.white {color:#000; background-color:#fff; border:1px solid #bdbdbd;}
+button.border {border:1px solid #f2f2f2; border-radius:10px;}
+button.icon {display:flex; align-items:center;}
+
+
+/* table reset */
+table {width:100%; margin:0; border:0; table-layout:fixed; border-collapse:collapse; empty-cells:show;}
+table caption {overflow:hidden; position:absolute; width:1px; height:1px; margin:-1px; border:0; padding:0; clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap; text-indent:-9999px;}
+table th,
+table td {padding:0; word-break:break-all;}
+.ellipsis {overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}

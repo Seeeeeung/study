@@ -46,9 +46,9 @@ export const UpAndDown = styled.div`
 	& .count {margin:8px 0 0;}
 	& button {overflow:hidden; outline:none; display:block; width:24px; height:24px; margin:0 auto; border:none; background-position:center; background-repeat:no-repeat; background-size:24px auto; background-color:#fff; font-size:1px; text-indent:-9999px; line-height:0;}
 `
-export const UpIcon = styled.button`
+export const UpBtn = styled.button`
 	background-image:url('/images/btn-up.png'); 
 `
-export const DownIcon = styled.button`
+export const DownBtn = styled.button`
 	background-image:url('/images/btn-down.png');
 `

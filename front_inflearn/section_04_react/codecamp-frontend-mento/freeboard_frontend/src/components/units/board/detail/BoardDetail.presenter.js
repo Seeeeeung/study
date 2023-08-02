@@ -31,12 +31,12 @@ export default function BoardDetailUI(props) {
 
 					<S.UpAndDown>
 						<div className={'wrap-up'}>
-							<S.UpIcon>추천 하기</S.UpIcon>
+							<S.UpBtn>추천 하기</S.UpBtn>
 							<p className={'count'}>1920</p>
 						</div>
 
 						<div className={'wrap-down'}>
-							<S.DownIcon>미추천 하기</S.DownIcon>
+							<S.DownBtn>미추천 하기</S.DownBtn>
 							<p className={'count'}>1920</p>
 						</div>
 					</S.UpAndDown>
