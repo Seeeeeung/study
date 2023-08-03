@@ -51,7 +51,7 @@ export default function BoardDetailUI(props) {
 				</ButtonGroup>
 
 				<BoardCommentWrite />
-				<BoardCommentList />
+				<BoardCommentList pageId={props.data?.fetchBoard?._id} />
 			</Contents>
 		</Container>
 	)
