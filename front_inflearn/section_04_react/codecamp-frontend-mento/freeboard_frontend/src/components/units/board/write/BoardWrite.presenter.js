@@ -5,11 +5,11 @@ export default function BoardWriteUI(props) {
 		<S.Container>
 			<S.Contents>
 				<S.BoxShadow>
-					<S.Title>게시물 등록</S.Title>
+					<S.Title>게시물 {props.isEdit ? "수정" : "등록"}</S.Title>
 					<S.WrapForm className={'col'}>
 						<S.WrapInp>
 							<S.InpLabel>작성자</S.InpLabel>
-							<S.Inp type='text' title='작성자를 입력' placeholder='이름을 입력해주세요.' onChange={props.onChangeValue} />
+							<S.Inp type='text' title='작성자를 입력' placeholder='이름을 입력해주세요.' onChange={props.onChangeValue} defaultValue={props.data?.fetchBoard?.writer} readOnly={props.data?.fetchBoard?.writer} />
 							<S.Error>{props.errorWriter}</S.Error>
 						</S.WrapInp>
 
@@ -22,13 +22,13 @@ export default function BoardWriteUI(props) {
 
 					<S.WrapForm>
 						<S.InpLabel>제목</S.InpLabel>
-						<S.Inp type='text' title='제목을 작성' placeholder='제목을 작성해주세요.' onChange={props.onChangeValue} />
+						<S.Inp type='text' title='제목을 작성' placeholder='제목을 작성해주세요.' onChange={props.onChangeValue} defaultValue={props.data?.fetchBoard?.title} />
 						<S.Error>{props.errorTtitle}</S.Error>
 					</S.WrapForm>
 
 					<S.WrapForm>
 						<S.InpLabel>내용</S.InpLabel>
-						<S.TextArea cols='' rows='' title='내용을 작성해주세요.' placeholder='내용을 작성해주세요.' onChange={props.onChangeValue}></S.TextArea>
+						<S.TextArea cols='' rows='' title='내용을 작성해주세요.' placeholder='내용을 작성해주세요.' onChange={props.onChangeValue} defaultValue={props.data?.fetchBoard?.contents}></S.TextArea>
 						<S.Error>{props.errorContents}</S.Error>
 					</S.WrapForm>
 
@@ -82,7 +82,7 @@ export default function BoardWriteUI(props) {
 					</S.WrapForm>
 
 					<S.ButtonGroup>
-						<S.Button type='button' className={'yellow'} onClick={props.onClickSubmit} disabled={props.isActive}>등록하기</S.Button>
+						<S.Button type='button' className={'yellow'} onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit} disabled={props.isEdit ? false : props.isActive}> {props.isEdit ? "수정" : "등록"}하기</S.Button>
 					</S.ButtonGroup>
 
 				</S.BoxShadow>

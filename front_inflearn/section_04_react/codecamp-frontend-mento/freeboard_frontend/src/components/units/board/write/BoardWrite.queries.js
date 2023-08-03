@@ -11,3 +11,11 @@ mutation createBoard($createBoardInput: CreateBoardInput!) {
 		}
 	}
 `
+export  const UPDATE_BOARD = gql`
+	mutation updateBoard($updateBoardInput: UpdateBoardInput!, $boardId: ID!, $password:String) {
+		updateBoard(updateBoardInput : $updateBoardInput, boardId: $boardId, password:$password) {
+			title
+			contents
+		}
+	}
+`

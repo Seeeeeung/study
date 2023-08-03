@@ -43,8 +43,8 @@ export default function BoardDetailUI(props) {
 				</BoxShadow>
 
 				<ButtonGroup>
-					<Button type="button" className={'white'}>목록으로</Button>
-					<Button type="button" className={'white'}>수정하기</Button>
+					<Button type="button" className={'white'} onClick={props.onClickMoveBoardPage}>목록으로</Button>
+					<Button type="button" className={'white'} onClick={props.onClickMoveUpdatePage}>수정하기</Button>
 					<Button type="button" className={'white'} id={props.data?.fetchBoard?._id} onClick={props.onClickDelete}>삭제하기</Button>
 				</ButtonGroup>
 			</Contents>

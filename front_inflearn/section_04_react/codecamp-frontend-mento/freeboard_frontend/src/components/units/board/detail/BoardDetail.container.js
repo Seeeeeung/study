@@ -9,6 +9,13 @@ export default function BoardDetail() {
 	const { data } = useQuery(FETCH_BOARD, {
 		variables: {boardId: router.query.boardId} // 여기서 query.boardId 의 boardId는 폴더명임
 	});
+	const onClickMoveUpdatePage = () => {
+		router.push(`/boards/${router.query.boardId}/edit`)
+	}
+	const onClickMoveBoardPage = () => {
+		router.push(`/boards/`)
+	}
+
 	const [deleteBoard] = useMutation(DELETE_BOARD);
 	const onClickDelete = async () => {
 		try {
@@ -27,6 +34,5 @@ export default function BoardDetail() {
 		}
 	}
 
-
-	return <BoardDetailUI data = {data} onClickDelete={onClickDelete} />
+	return <BoardDetailUI data = {data} onClickDelete={onClickDelete} onClickMoveUpdatePage={onClickMoveUpdatePage} onClickMoveBoardPage={onClickMoveBoardPage} />
 }

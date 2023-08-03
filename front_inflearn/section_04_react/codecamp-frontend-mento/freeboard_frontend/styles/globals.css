@@ -32,7 +32,8 @@ button.white {color:#000; background-color:#fff; border:1px solid #bdbdbd;}
 button.border {border:1px solid #f2f2f2; border-radius:10px;}
 button.icon {display:flex; align-items:center;}
 
-
+/* input */
+input[readonly] {background-color:#e1dddd}
 
 /* table reset */
 table {width:100%; margin:0; border:0; table-layout:fixed; border-collapse:collapse; empty-cells:show;}
