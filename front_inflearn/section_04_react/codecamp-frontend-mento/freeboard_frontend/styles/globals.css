@@ -31,6 +31,9 @@ button.yellow {background-color:#ffd600;}
 button.white {color:#000; background-color:#fff; border:1px solid #bdbdbd;}
 button.border {border:1px solid #f2f2f2; border-radius:10px;}
 button.icon {display:flex; align-items:center;}
+.btn-comment {overflow:hidden; display:inline-block; width:24px; height:24px; margin:-1px 0 0 0; padding:0; font-size:1px; text-indent:-9999px; line-height:0; vertical-align:middle; background-position:center; background-repeat:no-repeat; background-size:24px auto; border:none; background-color:#fff;}
+.btn-update {margin-right:10px; background-image:url('/images/btn-update.png');}
+.btn-delete {background-image:url('/images/btn-delete.png');}
 
 /* input */
 input[readonly] {background-color:#e1dddd}
@@ -41,3 +44,7 @@ table caption {overflow:hidden; position:absolute; width:1px; height:1px; margin
 table th,
 table td {padding:0; word-break:break-all;}
 .ellipsis {overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+
+/* icon */
+.iconset {display:inline-block;}
+.ico-comment {width:24px; height:24px; background:url('/images/ico-comment.png') no-repeat center; background-size:24px auto;}

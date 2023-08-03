@@ -15,12 +15,12 @@ export const Card = styled.a`
 
 	& > img {display:block; width:100%; height:120px; border:20px 20px 0 0;}
 	& .title-4 {overflow:hidden; margin:0; padding:20px; text-align:left; text-overflow:ellipsis; white-space:nowrap; font-size:18px;font-weight:500;}
-	& .title-4 + div {height:72px; margin:0; padding:0 20px 20px; border:none; box-sizing:border-box;}
-	& > div .left {width:100%; height:100%; min-width:95px; padding-left:30px;}
-	& > div .left .img-profile {width:24px; height:24px; top:0;}
-	& > div .left .user-name {font-size:16px; font-weight:400;}
-	& > div .left .date {position:absolute; left:0; bottom:0; width:100%;}
-	& .right {text-align:center; font-size:16px;}
+	& .title-4 + div {height:72px; margin:0; padding:0 50px 20px; border:none; box-sizing:border-box;}
+	// & > div .left {width:100%; height:100%; min-width:95px; padding-left:30px;}
+	& > div .img-profile {width:24px; height:24px; left:20px; top:3px;}
+	& > div .user-name {font-size:16px; font-weight:400;}
+	& > div .date {position:absolute; left:20px; bottom:20px; width:100%; font-size:12px;}
+	& .right {position:absolute; right:20px; top:0; text-align:center; font-size:16px;}
 	& .right .count {margin:0;}
 
 	@media only screen and (max-width:1200px) {

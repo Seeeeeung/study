@@ -1,18 +1,18 @@
 import styled from '@emotion/styled'
 
-export const UserInterFace = styled.div`
-	display:flex; justify-content:space-between; align-items:center; padding:0 0 20px; margin-bottom:60px;
+export const WrapUserCont = styled.div`
+	position:relative; padding:0 85px 20px 60px; margin-bottom:60px; 
 	border-bottom:1px solid #bdbdbd;
 
-	& > .left {position:relative; padding-left:60px;}
-	& > .left .img-profile {display:block; position:absolute; left:0; top:calc(50% - 28px); width:56px; height:56px;}
-	& > .left p {margin:0;}
-	& > .left .user-name {font-size:20px; font-weight:bold;}
-	& > .left .date {font-size:16px; color:#828282;}
+	& .img-profile {display:block; position:absolute; left:0; top:0; width:56px; height:56px;}
+	& > p {margin:0;}
+	& > .user-name {font-size:20px; font-weight:bold; line-height:1.6}
+	& > .date {font-size:16px; color:#828282;}
 
-	& > .right {flex-shrink:0}
-	& > .right i {overflow:hidden; display:inline-block; width:32px; height:32px; margin:-1px 15px 0 0; padding:0; font-size:1px; text-indent:-9999px; line-height:0; vertical-align:middle; background-position:0 0; background-repeat:no-repeat; background-size:32px auto;}
-	& > .right i:last-of-type {margin-right:0;}
+	& .right {position:absolute; right:0; top:calc(50% - 16px);}
+
+	& .right i {overflow:hidden; display:inline-block; width:32px; height:32px; margin:-1px 15px 0 0; padding:0; font-size:1px; text-indent:-9999px; line-height:0; vertical-align:middle; background-position:0 0; background-repeat:no-repeat; background-size:32px auto;}
+	& .right i:last-of-type {margin-right:0;}
 
 `
 export const LinkIcon = styled.i`

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 
 export const Container = styled.div`
-	padding:80px 0 160px;
+	padding:80px 20px 160px;
 
 	// common
 	input[type="number"]::-webkit-outer-spin-button,

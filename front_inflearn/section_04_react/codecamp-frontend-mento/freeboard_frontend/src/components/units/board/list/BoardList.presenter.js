@@ -1,4 +1,4 @@
-import { UserInterFace } from "../detail/BoardDetail.styles";
+import { WrapUserCont } from "../detail/BoardDetail.styles";
 import { Container, Contents, Title, Button } from "../write/BoardWrite.styles"
 import * as S from "./BoardList.styles"
 import { getDate } from "../../../../commons/lib/utils"
@@ -15,19 +15,17 @@ export default function BoardListUI(props) {
 							{/* a 태그가 밑으로 깔려서 a태그의 id 를 얻어올수 없어서 클릭이벤트가 먹히지 않는다.  */}
 							<img src="/images/img-ex-boards.png" />
 							<p className={'title-4'}>{el.title}</p>
-							<UserInterFace>
-								<div className={'left'}>
-									<img src='/images/img-profile.png' className={'img-profile'} />
 
+							<WrapUserCont>
+									<img src='/images/img-profile.png' className={'img-profile'} />
 									<p className={'user-name'}>{el.writer}</p>
 									<p className={'date'}>Date : {getDate(el.createdAt)}</p>
-								</div>
 
 								<div className={'right'}>
 									<S.UpIcon>추천 현황</S.UpIcon>
 									<p className={'count'}>1920</p>
 								</div>
-							</UserInterFace>
+							</WrapUserCont>
 						</S.Card>
 					))}
 				</S.CardWrap>
