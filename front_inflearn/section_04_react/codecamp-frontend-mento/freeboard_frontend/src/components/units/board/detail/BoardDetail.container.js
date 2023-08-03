@@ -18,6 +18,7 @@ export default function BoardDetail() {
 				// refetchQueries: [{query: FETCH_BOARDS}]
 			})
 			// console.log(result)
+			alert('삭제완료')
 
 			router.push('/boards')
 
