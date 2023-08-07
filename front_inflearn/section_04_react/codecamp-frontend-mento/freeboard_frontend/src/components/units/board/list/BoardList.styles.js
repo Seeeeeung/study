@@ -19,8 +19,8 @@ export const Card = styled.a`
 	// & > div .left {width:100%; height:100%; min-width:95px; padding-left:30px;}
 	& > div .img-profile {width:24px; height:24px; left:20px; top:3px;}
 	& > div .user-name {font-size:16px; font-weight:400;}
-	& > div .date {position:absolute; left:20px; bottom:20px; width:100%; font-size:12px;}
-	& .right {position:absolute; right:20px; top:0; text-align:center; font-size:16px;}
+	& > div .date {position:absolute; left:20px; bottom:20px; width:calc(100% - 75px); font-size:12px;}
+	& > div .right {position:absolute; right:20px; top:0; text-align:center; font-size:16px;}
 	& .right .count {margin:0;}
 
 	@media only screen and (max-width:1200px) {

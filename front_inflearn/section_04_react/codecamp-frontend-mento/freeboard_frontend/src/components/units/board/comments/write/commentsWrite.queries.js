@@ -12,15 +12,3 @@ mutation createBoardComment($boardId: ID!,$createBoardCommentInput : CreateBoard
 	}
 }
 `
-
-export const FETCH_BOARD_COMMENTS = gql`
-	query fetchBoardComments($boardId : ID!) {
-		fetchBoardComments(boardId : $boardId) {
-			_id
-			writer
-			contents
-			createdAt
-			rating
-		}
-	}
-`

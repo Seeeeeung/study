@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import BoardCommentWriteUI from "./commentsWrite.presenter";
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { CREATE_BOARD_COMMENT } from "./commentsWrite.queries";
 import { useState } from "react";
 import { FETCH_BOARD_COMMENTS } from "../list/commentsList.queries";
@@ -35,16 +35,16 @@ export default function BoardCommentWrite() {
 						contents: myContents,
 						rating: 1
 					},
-					boardId : router.query.boardId,
-					refetchQueries : [
-						{
-							query : FETCH_BOARD_COMMENTS, 
-							variables: {
-								boardId : router.query.boardId
-							}
+					boardId : router.query.boardId
+				},
+				refetchQueries : [
+					{
+						query : FETCH_BOARD_COMMENTS, 
+						variables: {
+							boardId : router.query.boardId
 						}
-					]
-				}
+					}
+				]
 			})
 			console.log(result)
 		} catch(error) {
