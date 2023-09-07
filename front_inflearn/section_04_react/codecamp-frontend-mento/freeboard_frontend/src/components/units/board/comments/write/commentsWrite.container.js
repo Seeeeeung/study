@@ -3,7 +3,7 @@ import BoardCommentWriteUI from "./commentsWrite.presenter";
 import { useMutation } from "@apollo/client";
 import { CREATE_BOARD_COMMENT } from "./commentsWrite.queries";
 import { useState } from "react";
-import { FETCH_BOARD_COMMENTS } from "../list/commentsList.queries";
+import { FETCH_BOARD_COMMENTS } from "../list/commentsList.queries";import * as S from "./commentsWrite.styles"
 
 export default function BoardCommentWrite() {
 	const router = useRouter()
@@ -26,6 +26,7 @@ export default function BoardCommentWrite() {
 	const onClickSubmitComment = async () => {
 		console.log(router.query.boardId)
 		console.log('dddd')
+
 		try {
 			const result = await createBoardComment({
 				variables : {
@@ -47,17 +48,30 @@ export default function BoardCommentWrite() {
 				]
 			})
 			console.log(result)
+			setMyWriter('')
+			setMyPassword('')
+			setMyContents('')
 		} catch(error) {
 			console.log(error.message)
 		}
 	} 
 
 	return (
-		<BoardCommentWriteUI
-			onChangeValueWriter={onChangeValueWriter}
-			onChangeValuePassword={onChangeValuePassword}
-			onChangeValueContents={onChangeValueContents}
-			onClickSubmitComment={onClickSubmitComment}
-		/>
+		<S.CommentWriteWrap>
+			<S.CommentTitle>
+				<i className={"iconset ico-comment"}></i>
+				댓글
+			</S.CommentTitle>
+
+			<BoardCommentWriteUI
+				onChangeValueWriter={onChangeValueWriter}
+				onChangeValuePassword={onChangeValuePassword}
+				onChangeValueContents={onChangeValueContents}
+				onClickSubmitComment={onClickSubmitComment}
+				myWriter={myWriter}
+				myPassword={myPassword}
+				myContents={myContents}
+			 />
+		</S.CommentWriteWrap>
 	)
 }

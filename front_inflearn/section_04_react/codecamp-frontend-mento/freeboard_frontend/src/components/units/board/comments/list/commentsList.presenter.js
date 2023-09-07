@@ -8,7 +8,7 @@ export default function BoardCommentListUI(props) {
 	return (
 		<S.CommentListWrap>
 			{props.data?.fetchBoardComments.map((el) => (
-				<WrapUserCont className={'wrap-comment'}>
+				<WrapUserCont className={'wrap-comment'} key={el._id}>
 						<img src='/images/img-profile.png' className={'img-profile'} />
 
 						<InterFace>
@@ -25,7 +25,7 @@ export default function BoardCommentListUI(props) {
 
 					<div className={'right'}>
 						<button className={'btn-comment btn-update'}>수정하기</button>
-						<button className={'btn-comment btn-delete'}>삭제하기</button>
+						<button className={'btn-comment btn-delete'} onClick={props.onClickDel} id={el._id}>삭제하기</button>
 					</div>
 				</WrapUserCont>
 			))}
