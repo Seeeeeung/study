@@ -5,6 +5,8 @@ import { useState } from "react";
 
 export default function BoardCommentList(props) {
 	console.log(props.pageId)
+
+
 	const { data } = useQuery(FETCH_BOARD_COMMENTS, {
 		variables: {
 			boardId : props.pageId
@@ -15,7 +17,10 @@ export default function BoardCommentList(props) {
 
 	console.log(data)
 
+
+	// console.log(isEdit)
 	const onClickDel = async (event) => {
+		console.log('dd')
 		console.log(event.target.id)
 		const myPassword = prompt('비밀번호를 입력해주세요.', '')
 		setMyPassword(myPassword)

@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const CommentWriteWrap = styled.div`
-	margin:80px 0 50px; padding-top:30px; border-top:1px solid #bdbdbd;
+	margin:80px 0 0; padding-top:30px; border-top:1px solid #bdbdbd;
 `
 export const CommentTitle = styled.p`
 	position:relative; margin:0; padding-left:35px; font-size:18px; font-weight:bold;
@@ -9,7 +9,7 @@ export const CommentTitle = styled.p`
 	& > .ico-comment {position:absolute; left:0; top:0;}
 `
 export const CommentForm = styled.div`
-	margin-top:30px;
+	margin:30px 0 50px;
 `
 export const InterFace = styled.div`
 	display:flex; align-items:center; justify-content:flex-start; margin-bottom:20px;
