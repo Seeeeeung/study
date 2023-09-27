@@ -3,11 +3,12 @@ import { Button, Inp, TextArea } from "../../write/BoardWrite.styles"
 
 export default function BoardCommentWriteUI(props) {
 	// console.log(props.isEdit)
-	console.log(props)
+	
+	console.log(props.el)
 	return (
 			<S.CommentForm>
 				<S.InterFace>
-					<Inp type="text" title="작성자 입력" placeholder="작성자" onChange={props.onChangeValueWriter}  />
+					<Inp type="text" title="작성자 입력" placeholder="작성자" onChange={props.onChangeValueWriter} defaultValue={props.el?.writer} />
 					<Inp type="password" title="비밀번호 입력" placeholder="비밀번호" onChange={props.onChangeValuePassword} defaultValue={props?.el?.myPassword} />
 					<p className={'star'}>별점넣는곳</p>
 				</S.InterFace>

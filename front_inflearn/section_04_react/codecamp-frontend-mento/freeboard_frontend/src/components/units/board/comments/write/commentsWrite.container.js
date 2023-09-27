@@ -52,14 +52,14 @@ export default function BoardCommentWrite(props) {
 				]
 			})
 			console.log(result)
-			setMyWriter('')
-			setMyPassword('')
-			setMyContents('')
 
 		} catch(error) {
 			console.log(error.message)
 		}
 
+		setMyWriter('')
+		setMyPassword('')
+		setMyContents('')
 	}
 	
 	const onClickUpdateComment = async (event) => {
