@@ -16,6 +16,7 @@ export default function BoardCommentWrite(props) {
 
 	const onChangeValueWriter = (event) => {
 		setMyWriter(event.target.value)
+		console.log(event.target.value)
 	}
 	const onChangeValuePassword = (event) => {
 		setMyPassword(event.target.value)
@@ -62,14 +63,13 @@ export default function BoardCommentWrite(props) {
 		setMyContents('')
 	}
 	
+	console.log(myWriter)
 	const onClickUpdateComment = async (event) => {
-		console.log('ddd')
-
+		console.log(event.target.id)
 		try {
 			const result = await updateBoardComment({
 				variables : {
 					updateBoardCommentInput : {
-						writer: myWriter,
 						contents: myContents,
 						rating: 1,
 					},
@@ -78,12 +78,13 @@ export default function BoardCommentWrite(props) {
 				}
 			})
 			console.log(result)
+			props.setIsEdit?.(false);
 
 		} catch (error) {
 			alert(error.message)
 		}
 	}
-	console.log(props.el)
+	// console.log(props.el)
 
 
 	return (
