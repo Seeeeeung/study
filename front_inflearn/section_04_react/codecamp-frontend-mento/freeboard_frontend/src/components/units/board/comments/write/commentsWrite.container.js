@@ -3,16 +3,15 @@ import BoardCommentWriteUI from "./commentsWrite.presenter";
 import { useMutation } from "@apollo/client";
 import { CREATE_BOARD_COMMENT, UPDATE_BOARD_COMMENT } from "./commentsWrite.queries";
 import { useState } from "react";
-import { FETCH_BOARD_COMMENTS } from "../list/commentsList.queries";import * as S from "./commentsWrite.styles"
+import { FETCH_BOARD_COMMENTS } from "../list/commentsList.queries";
 
-export default function BoardCommentWrite() {
+export default function BoardCommentWrite(props) {
 	const router = useRouter()
 	const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT)
 	const [updateBoardComment] = useMutation(UPDATE_BOARD_COMMENT)
 	const [myWriter, setMyWriter] = useState('')
 	const [myPassword, setMyPassword] = useState('')
 	const [myContents, setMyContents] = useState('')
-	const [checkPassword, setCheckPw] = useState('')
 
 
 	const onChangeValueWriter = (event) => {
@@ -23,8 +22,11 @@ export default function BoardCommentWrite() {
 	}
 	const onChangeValueContents = (event) => {
 		setMyContents(event.target.value)
-		console.log(event.target.value)
+		// console.log(event.target.value)
 	}
+
+	
+	console.log(myWriter)
 	const onClickSubmitComment = async () => {
 		console.log(router.query.boardId)
 		console.log('dddd')
@@ -53,23 +55,25 @@ export default function BoardCommentWrite() {
 			setMyWriter('')
 			setMyPassword('')
 			setMyContents('')
+
 		} catch(error) {
 			console.log(error.message)
 		}
 
 	}
-
+	
 	const onClickUpdateComment = async (event) => {
-		const checkPassword = prompt("비밀번호를 입력해주세요", '');
-		setCheckPw(checkPassword)
+		console.log('ddd')
+
 		try {
 			const result = await updateBoardComment({
 				variables : {
 					updateBoardCommentInput : {
+						writer: myWriter,
 						contents: myContents,
-						rating: 1
+						rating: 1,
 					},
-					password: checkPassword,
+					password: myPassword,
 					boardCommentId: event.target.id
 				}
 			})
@@ -79,24 +83,21 @@ export default function BoardCommentWrite() {
 			alert(error.message)
 		}
 	}
+	console.log(props.el)
+
 
 	return (
-		<S.CommentWriteWrap>
-			<S.CommentTitle>
-				<i className={"iconset ico-comment"}></i>
-				댓글
-			</S.CommentTitle>
-
-			<BoardCommentWriteUI
-				onChangeValueWriter={onChangeValueWriter}
-				onChangeValuePassword={onChangeValuePassword}
-				onChangeValueContents={onChangeValueContents}
-				onClickSubmitComment={onClickSubmitComment}
-				onClickUpdateComment={onClickUpdateComment}
-				myWriter={myWriter}
-				myPassword={myPassword}
-				myContents={myContents}
-			 />
-		</S.CommentWriteWrap>
+		<BoardCommentWriteUI
+			onChangeValueWriter={onChangeValueWriter}
+			onChangeValuePassword={onChangeValuePassword}
+			onChangeValueContents={onChangeValueContents}
+			onClickSubmitComment={onClickSubmitComment}
+			onClickUpdateComment={onClickUpdateComment}
+			myWriter={myWriter}
+			myPassword={myPassword}
+			myContents={myContents}
+			isEdit={props.isEdit}
+			el={props.el}
+		/>
 	)
 }

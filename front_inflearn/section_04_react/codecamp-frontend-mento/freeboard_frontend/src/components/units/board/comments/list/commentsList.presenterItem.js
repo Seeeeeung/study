@@ -4,15 +4,19 @@ import { InterFace } from "../write/commentsWrite.styles"
 import { getDate } from "../../../../../../src/commons/lib/utils"
 import BoardCommentWriteUI from "../write/commentsWrite.presenter"
 import { useState } from "react"
+import BoardCommentWrite from "../write/commentsWrite.container"
 
 export default function BoardCommentListUItem(props) {
-	console.log(props.data)
+	// console.log(props)
 	
 	const [isEdit, setIsEdit] = useState(false)
-	const onClickEdit = () => {
+	const onClickEdit = (event) => {
+		// console.log(event.target)
 		setIsEdit(true)
+		// console.log(isEdit)
 	}
 
+	console.log(props)
 	return (
 		<>
 			{!isEdit && (
@@ -37,7 +41,7 @@ export default function BoardCommentListUItem(props) {
 					</div>
 				</WrapUserCont>
 			)}
-			{isEdit && <BoardCommentWriteUI isEdit={true} setIsEdit={setIsEdit} el={props.el} id={props.el?._id} />}
+			{isEdit && (<BoardCommentWrite isEdit={true} setIsEdit={setIsEdit} el={props.el} />)}
 		</>
 	)
 }

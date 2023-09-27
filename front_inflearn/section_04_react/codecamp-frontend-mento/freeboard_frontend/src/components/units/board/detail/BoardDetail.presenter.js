@@ -3,6 +3,7 @@ import {Container, Contents, BoxShadow, Title, Button, ButtonGroup} from "../wri
 import { getDate } from "../../../../commons/lib/utils"
 import BoardCommentWrite from "../comments/write/commentsWrite.container"
 import BoardCommentList from "../comments/list/commentsList.container"
+import * as C from "../comments/write/commentsWrite.styles"
 
 export default function BoardDetailUI(props) {
 	return (
@@ -50,7 +51,13 @@ export default function BoardDetailUI(props) {
 					<Button type="button" className={'white'} id={props.data?.fetchBoard?._id} onClick={props.onClickDelete}>삭제하기</Button>
 				</ButtonGroup>
 
-				<BoardCommentWrite />
+				<C.CommentWriteWrap>
+					<C.CommentTitle>
+						<i className={"iconset ico-comment"}></i>
+						댓글
+					</C.CommentTitle>
+				</C.CommentWriteWrap>
+
 				<BoardCommentList pageId={props.data?.fetchBoard?._id} />
 			</Contents>
 		</Container>
